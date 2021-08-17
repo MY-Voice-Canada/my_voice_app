@@ -4,6 +4,8 @@ Welcome to [MY Voice Canada's](https://www.myvoicecanada.com) official app! This
 
 ## App Layout & Screenshots
 
+Here are a couple pages of the app in image format:
+
 ### Splash Screen
 
 ![Splash Screen](./screenshots/app_splashscreen.png)

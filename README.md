@@ -1,10 +1,14 @@
 # MY Voice's Official App
 
-Welcome to [MY Voice Canada's](https://www.myvoicecanada.com) official app! This _youth-made_ app allows you to read **articles from our magazine**, **ask questions that can be answered by professional youth councilors**, **connect with other Muslim adolescents nearby**, and much more!!! The rest of this document outlines the app and its technicalities and contains some meta information about the team behind it...
+Welcome to [MY Voice Canada's](https://www.myvoicecanada.com) official app! This _youth-made_ app allows you to read **articles from our magazine**, **ask questions that can be answered by professional youth councilors**, **connect with other Muslim adolescents nearby**, and much more!!! The rest of this document outlines the app and its technicalities, and contains some information about the team behind it...
+
+
 
 ## App Layout & Screenshots
 
-(Insert screenshots of finale version here...)
+(Insert screenshots of final version here...)
+
+
 
 ## Technicalities
 
@@ -14,6 +18,8 @@ The entire list of dependencies is defined in `pubspec.yaml`; some of the depend
 
 - css_colors (ver. )
 - url_launcher (ver. )
+
+
 
 ## The Team
 
@@ -26,6 +32,7 @@ As stated above, this app was fully **thought of**, **designed**, and **develope
 | Emaad Siddiqui   |        App Developer        |                   ... |
 | Fatima Sarfraz   |      User & Usability       |                   ... |
 | Ibrahim Chaudhry |    Copy & Content Writer    |                   ... |
+
 
 The link to the full MY Voice team can be found [here](https://myvoicecanada.com/about/).
 

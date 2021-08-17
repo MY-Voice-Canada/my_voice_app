@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import './splashscreen.dart';
+import './home.dart';
+
 void main() => runApp(MYVMApp());
 
 class MYVMApp extends StatelessWidget {
@@ -10,22 +13,7 @@ class MYVMApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.orange,
       ),
-      home: MYVMAppHome(),
-    );
-  }
-}
-
-class MYVMAppHome extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("MY Voice"),
-        backgroundColor: Theme.of(context).primaryColor,
-      ),
-      body: Center(
-        child: Text("..."),
-      ),
+      home: MYVMASplashScreen(),
     );
   }
 }

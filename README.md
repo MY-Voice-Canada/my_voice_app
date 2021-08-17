@@ -8,15 +8,15 @@ Here are a couple pages of the app in image format:
 
 ### Splash Screen
 
-![Splash Screen](./screenshots/app_splashscreen.png)
+![Splash Screen](./assets/images/app_splashscreen.png)
 
 ### Sign in
 
-![Sign In](./screenshots/app_signin.png)
+![Sign In](./assets/images/app_signin.png)
 
 ### Homepage
 
-![Home](./screenshots/app_home.png)
+![Home](./assets/images/app_home.png)
 
 ## Technicalities
 

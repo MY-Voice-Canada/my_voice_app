@@ -29,7 +29,7 @@ The entire list of dependencies is defined in `pubspec.yaml`; some of the depend
 
 ## The Team
 
-As stated above, this app was fully **thought of**, **designed**, and **developed** by youth from [MY Voice Canada's](https://www.myvoicecanada.com), with just a touch of adult guidance. The following is a chart detailing the members of the team along with their roles and contact:
+As stated above, this app was fully **thought of**, **designed**, and **developed** by youth from [MY Voice Canada](https://www.myvoicecanada.com), with just a touch of adult guidance. The following is a chart detailing the members of the team along with their roles and contact:
 
 | Name             |            Role             |               Contact |
 | :--------------- | :-------------------------: | --------------------: |

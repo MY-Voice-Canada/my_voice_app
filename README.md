@@ -33,6 +33,7 @@ As stated above, this app was fully **thought of**, **designed**, and **develope
 
 | Name             |            Role             |               Contact |
 | :--------------- | :-------------------------: | --------------------: |
+| Maida Amir       |       (ADULT) Advisor       |                   ... |
 | Sabah Raja       | App Team Lead + UX Designer |                   ... |
 | Faizaan Aslam    |        App Developer        | faizaan3424@gmail.com |
 | Emaad Siddiqui   |        App Developer        |                   ... |

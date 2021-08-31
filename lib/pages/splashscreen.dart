@@ -29,7 +29,7 @@ class _MYVMASplashScreenState extends State<MYVMASplashScreen> {
                     onPressed: _goToHomepage,
                     child: Text("Sign in"),
                   ),
-                  Text(Provider.of<MYVMProvider>(context).screenHeightAppbarless.toString()),
+                  Text(" | "),
                   TextButton(
                     onPressed: _goToHomepage,
                     child: Text("Register"),

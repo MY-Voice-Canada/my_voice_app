@@ -4,15 +4,13 @@ import 'package:provider/provider.dart';
 import './pages/splashscreen.dart';
 import './pages/home.dart';
 
-void main() => runApp(ChangeNotifierProvider(
-      create: (_) => MYVMProvider(),
-      child: MYVMApp(),
-    ));
+void main() => runApp(MYVMApp());
 
 class MYVMApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    Provider.of<MYVMProvider>(context).screenHeightAppbarless = ((MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top) as int);
+    final height = (MediaQuery.of(context).size.height - MediaQuery.of(context).padding.top).toInt();
+    //Provider.of<MYVMProvider>(context).screenHeightAppbarless = 20;
 
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -25,6 +23,6 @@ class MYVMApp extends StatelessWidget {
   }
 }
 
-class MYVMProvider extends ChangeNotifier {
+/*class MYVMProvider extends ChangeNotifier {
   int screenHeightAppbarless = 0;
-}
+}*/

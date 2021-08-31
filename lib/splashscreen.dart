@@ -8,14 +8,7 @@ class MYVMASplashScreen extends StatefulWidget {
 }
 
 class _MYVMASplashScreenState extends State<MYVMASplashScreen> {
-  @override
-  void initState() {
-    super.initState();
-    _navigateToHome();
-  }
-
-  _navigateToHome() async {
-    await Future.delayed(Duration(milliseconds: 1500), () {});
+  void _goToHomepage() {
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => MYVMAHome()));
   }
@@ -23,7 +16,26 @@ class _MYVMASplashScreenState extends State<MYVMASplashScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(child: Image.asset("assets/images/logo.png")),
+      body: Center(
+        child: Column(
+          children: [
+            Image.asset("assets/images/logo.png"),
+            Row(
+              children: [
+                TextButton(
+                  onPressed: _goToHomepage,
+                  child: Text("Sign in"),
+                ),
+                Text(" | "),
+                TextButton(
+                  onPressed: _goToHomepage,
+                  child: Text("Register"),
+                ),
+              ],
+            ),
+          ],
+        )
+      ),
     );
   }
 }

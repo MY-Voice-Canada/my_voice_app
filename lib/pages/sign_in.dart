@@ -12,8 +12,8 @@ class MYVMASignIn extends StatelessWidget {
         title: Text("MY Voice"),
         backgroundColor: Theme.of(context).primaryColor,
       ),
-      body: SingleChildScrollView(
-        child: Text("..."),
+      body: Center(
+        child: Text("Sign In"),
       ),
     );
   }

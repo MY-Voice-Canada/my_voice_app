@@ -27,12 +27,27 @@ class _MYVMASplashScreenState extends State<MYVMASplashScreen> {
                 children: [
                   TextButton(
                     onPressed: _goToHomepage,
-                    child: Text("Sign in"),
+                    child: Text(
+                      "Sign in",
+                      style: TextStyle(
+                        fontSize: 24,
+                      ),
+                    ),
                   ),
-                  Text(" | "),
+                  Text(
+                  " | ",
+                    style: TextStyle(
+                      fontSize: 24,
+                    ),
+                  ),
                   TextButton(
                     onPressed: _goToHomepage,
-                    child: Text("Register"),
+                    child: Text(
+                      "Register",
+                      style: TextStyle(
+                        fontSize: 24,
+                      ),
+                    ),
                   ),
                 ],
               ),

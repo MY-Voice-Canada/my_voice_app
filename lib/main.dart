@@ -25,5 +25,7 @@ class MYVMApp extends StatelessWidget {
 
 class MYVMProvider extends ChangeNotifier {
   double screenHeightAppbarless = 0;
+  double screenWidth = 0;
+  
   double buttonFontSize = 36;
 }

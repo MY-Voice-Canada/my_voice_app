@@ -8,12 +8,27 @@ class MYVMASignIn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("MY Voice"),
-        backgroundColor: Theme.of(context).primaryColor,
-      ),
-      body: Center(
-        child: Text("Sign In"),
+      body: Stack(
+        children: [
+          Positioned(
+            top: Provider.of<MYVMProvider>(context).screenHeightAppbarless / 20,
+            left: Provider.of<MYVMProvider>(context).screenWidth / 32,
+            child: TextButton(
+              onPressed: () => Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => MYVMASplashScreen())),
+              child: Text(
+                "←",
+                style: TextStyle(
+                  color: Theme.of(context).primaryColor,
+                  fontSize: 72,
+                ),
+              ),
+            ),
+          ),
+          Center(
+            child: Text("Sign In..."),
+          ),
+        ],
       ),
     );
   }

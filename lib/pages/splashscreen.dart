@@ -16,6 +16,8 @@ class _MYVMASplashScreenState extends State<MYVMASplashScreen> {
     Provider.of<MYVMProvider>(context).screenHeightAppbarless =
         (MediaQuery.of(context).size.height -
             MediaQuery.of(context).padding.top);
+    Provider.of<MYVMProvider>(context).screenWidth =
+        MediaQuery.of(context).size.width;
 
     return Scaffold(
       body: Center(

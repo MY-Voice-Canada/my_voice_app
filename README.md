@@ -24,8 +24,7 @@ This app was made in Dart using the Flutter SDK (ver. >=2.12.0). However, it is 
 
 The entire list of dependencies is defined in `pubspec.yaml`; some of the dependencies stated there include
 
-- css_colors (ver. )
-- url_launcher (ver. )
+- provider (ver. ^6.0.0)
 
 ## The Team
 

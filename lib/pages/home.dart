@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../main.dart';
+import './splashscreen.dart';
 
 class MYVMAHome extends StatelessWidget {
   @override

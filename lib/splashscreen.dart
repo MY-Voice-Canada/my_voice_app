@@ -19,7 +19,7 @@ class _MYVMASplashScreenState extends State<MYVMASplashScreen> {
       body: Center(
         child: Column(
           children: [
-            Image.asset("assets/images/logo.png"),
+            Image.asset("assets/images/new_logo.png"),
             Row(
               children: [
                 TextButton(

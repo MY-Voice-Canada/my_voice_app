@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 import '../main.dart';
 import './splashscreen.dart';
@@ -20,13 +21,32 @@ class MYVMARegister extends StatelessWidget {
                 "<",
                 style: TextStyle(
                   color: Theme.of(context).primaryColor,
-                  fontSize: 72,
+                  fontSize: 48,
                 ),
               ),
             ),
           ),
           Center(
-            child: Text("Sign In..."),
+            child: OverflowBox(
+              maxWidth: Provider.of<MYVMProvider>(context).screenWidth * 2,
+              child: Container(
+                width: Provider.of<MYVMProvider>(context).screenWidth * 1.23,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      HexColor("FCB831").withOpacity(0.1),
+                      HexColor("00B6B6").withOpacity(0.1),
+                    ],
+                  ),
+                  shape: BoxShape.circle,
+                ),
+              ),
+            ),
+          ),
+          Center(
+            child: Text("Regsiter..."),
           ),
         ],
       ),

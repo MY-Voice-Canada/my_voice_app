@@ -21,7 +21,7 @@ class MYVMASignIn extends StatelessWidget {
                 "<",
                 style: TextStyle(
                   color: Theme.of(context).primaryColor,
-                  fontSize: 72,
+                  fontSize: 48,
                 ),
               ),
             ),
@@ -36,13 +36,17 @@ class MYVMASignIn extends StatelessWidget {
                     begin: Alignment.topCenter,
                     end: Alignment.bottomCenter,
                     colors: [
-                      
+                      HexColor("FCB831").withOpacity(0.1),
+                      HexColor("00B6B6").withOpacity(0.1),
                     ],
                   ),
                   shape: BoxShape.circle,
                 ),
               ),
             ),
+          ),
+          Center(
+            child: Text("Sign In..."),
           ),
         ],
       ),

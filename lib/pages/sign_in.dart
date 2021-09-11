@@ -46,7 +46,7 @@ class MYVMASignIn extends StatelessWidget {
             ),
           ),
           Center(
-            child: Text("Sign In..."),
+            child: Text("Sign In...", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
           ),
         ],
       ),

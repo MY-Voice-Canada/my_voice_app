@@ -17,7 +17,7 @@ class MYVMARegister extends StatelessWidget {
               onPressed: () => Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) => MYVMASplashScreen())),
               child: Text(
-                "←",
+                "<",
                 style: TextStyle(
                   color: Theme.of(context).primaryColor,
                   fontSize: 72,

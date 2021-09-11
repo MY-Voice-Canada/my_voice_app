@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import './pages/splashscreen.dart';
-import './pages/sign_in.dart';
 
 void main() => runApp(ChangeNotifierProvider(
       create: (_) => MYVMProvider(),

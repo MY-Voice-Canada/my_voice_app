@@ -17,7 +17,7 @@ class MYVMASignIn extends StatelessWidget {
               onPressed: () => Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) => MYVMASplashScreen())),
               child: Text(
-                "←",
+                "<",
                 style: TextStyle(
                   color: Theme.of(context).primaryColor,
                   fontSize: 72,
@@ -26,7 +26,15 @@ class MYVMASignIn extends StatelessWidget {
             ),
           ),
           Center(
-            child: Text("Sign In..."),
+            child: OverflowBox(
+              maxWidth: Provider.of<MYVMProvider>(context).screenWidth * 2,
+              child: Container(
+                width: Provider.of<MYVMProvider>(context).screenWidth * 1.3,
+                //margin: EdgeInsets.all(100.0),
+                decoration:
+                    BoxDecoration(color: Colors.orange, shape: BoxShape.circle),
+              ),
+            ),
           ),
         ],
       ),

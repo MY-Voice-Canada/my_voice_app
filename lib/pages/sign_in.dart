@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:hexcolor/hexcolor.dart';
 
 import '../main.dart';
 import './splashscreen.dart';
@@ -29,10 +30,17 @@ class MYVMASignIn extends StatelessWidget {
             child: OverflowBox(
               maxWidth: Provider.of<MYVMProvider>(context).screenWidth * 2,
               child: Container(
-                width: Provider.of<MYVMProvider>(context).screenWidth * 1.3,
-                //margin: EdgeInsets.all(100.0),
-                decoration:
-                    BoxDecoration(color: Colors.orange, shape: BoxShape.circle),
+                width: Provider.of<MYVMProvider>(context).screenWidth * 1.23,
+                decoration: BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topCenter,
+                    end: Alignment.bottomCenter,
+                    colors: [
+                      
+                    ],
+                  ),
+                  shape: BoxShape.circle,
+                ),
               ),
             ),
           ),

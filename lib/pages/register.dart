@@ -46,7 +46,19 @@ class MYVMARegister extends StatelessWidget {
             ),
           ),
           Center(
-            child: Text("Regsiter..."),
+            child: SizedBox(
+              height:
+                  Provider.of<MYVMProvider>(context).screenHeightAppbarless /
+                      0.75,
+              child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SignInAndRegisterRow(
+                      signedIn: false,
+                      registered: true,
+                    ),
+                  ]),
+            ),
           ),
         ],
       ),

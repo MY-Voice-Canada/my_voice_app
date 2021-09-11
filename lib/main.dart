@@ -16,7 +16,6 @@ class MYVMApp extends StatelessWidget {
       title: "MY Voice App",
       theme: ThemeData(
         primaryColor: Color.fromRGBO(37, 150, 190, 1.0),
-        //colorScheme: Color.fromRGBO(37, 150, 190, 1.0),
         fontFamily: "RobotoMono",
       ),
       home: MYVMASplashScreen(),
@@ -27,6 +26,6 @@ class MYVMApp extends StatelessWidget {
 class MYVMProvider extends ChangeNotifier {
   double screenHeightAppbarless = 0;
   double screenWidth = 0;
-  
+
   double buttonFontSize = 36;
 }

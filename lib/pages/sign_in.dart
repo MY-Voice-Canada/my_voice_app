@@ -46,7 +46,15 @@ class MYVMASignIn extends StatelessWidget {
             ),
           ),
           Center(
-            child: Text("Sign In...", style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            child: SizedBox(
+              height: Provider.of<MYVMProvider>(context).screenHeightAppbarless / 0.75,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SignInAndRegisterRow(signedIn: true, registered: false,),
+                ]
+              ),
+            ),
           ),
         ],
       ),

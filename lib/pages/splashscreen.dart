@@ -5,6 +5,57 @@ import '../main.dart';
 import './sign_in.dart';
 import './register.dart';
 
+class SignInAndRegisterRow extends StatelessWidget {
+  var signedIn;
+  var registered;
+
+  SignInAndRegisterRow({@required signedIn, @required registered}) {
+    this.signedIn = signedIn;
+    this.registered = registered;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        TextButton(
+          onPressed: this.signedIn? () => {} : () => Navigator.pushReplacement(
+              context, MaterialPageRoute(builder: (context) => MYVMASignIn())),
+          child: Text(
+            "Sign in",
+            style: TextStyle(
+              color: Theme.of(context)
+                  .primaryColor
+                  .withOpacity(this.signedIn? 0.5 : 1),
+              fontSize: Provider.of<MYVMProvider>(context).buttonFontSize,
+            ),
+          ),
+        ),
+        Text(
+          " | ",
+          style: TextStyle(
+            fontSize: Provider.of<MYVMProvider>(context).buttonFontSize,
+          ),
+        ),
+        TextButton(
+          onPressed: this.registered? () => {} : () => Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => MYVMARegister())),
+          child: Text(
+            "Register",
+            style: TextStyle(
+              color: Theme.of(context)
+                  .primaryColor
+                  .withOpacity(this.registered? 0.5 : 1),
+              fontSize: Provider.of<MYVMProvider>(context).buttonFontSize,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
 class MYVMASplashScreen extends StatefulWidget {
   @override
   _MYVMASplashScreenState createState() => _MYVMASplashScreenState();
@@ -27,41 +78,7 @@ class _MYVMASplashScreenState extends State<MYVMASplashScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Image.asset("assets/images/new_logo.png"),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                TextButton(
-                  onPressed: () => Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => MYVMASignIn())),
-                  child: Text(
-                    "Sign in",
-                    style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontSize:
-                          Provider.of<MYVMProvider>(context).buttonFontSize,
-                    ),
-                  ),
-                ),
-                Text(
-                  " | ",
-                  style: TextStyle(
-                    fontSize: Provider.of<MYVMProvider>(context).buttonFontSize,
-                  ),
-                ),
-                TextButton(
-                  onPressed: () => Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => MYVMARegister())),
-                  child: Text(
-                    "Register",
-                    style: TextStyle(
-                      color: Theme.of(context).primaryColor,
-                      fontSize:
-                          Provider.of<MYVMProvider>(context).buttonFontSize,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            SignInAndRegisterRow(signedIn: false, registered: false,),
           ],
         ),
       )),

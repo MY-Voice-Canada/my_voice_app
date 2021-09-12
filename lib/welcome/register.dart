@@ -4,8 +4,9 @@ import 'package:hexcolor/hexcolor.dart';
 
 import '../main.dart';
 import './splashscreen.dart';
+import 'login_row.dart';
 
-class MYVMASignIn extends StatelessWidget {
+class MYVMARegister extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,13 +48,17 @@ class MYVMASignIn extends StatelessWidget {
           ),
           Center(
             child: SizedBox(
-              height: Provider.of<MYVMProvider>(context).screenHeightAppbarless / 0.75,
+              height:
+                  Provider.of<MYVMProvider>(context).screenHeightAppbarless /
+                      0.75,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SignInAndRegisterRow(signedIn: true, registered: false,),
-                ]
-              ),
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    LoginRow(
+                      signedIn: false,
+                      registered: true,
+                    ),
+                  ]),
             ),
           ),
         ],

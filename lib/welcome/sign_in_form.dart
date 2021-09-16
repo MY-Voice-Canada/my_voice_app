@@ -25,7 +25,7 @@ class _SIFormState extends State<SIForm> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: Provider.of<MYVMProvider>(context).screenHeightAppbarless / 4.5,
+      height: Provider.of<MYVMProvider>(context).screenHeightAppbarless / 3.0,
       width: Provider.of<MYVMProvider>(context).screenWidth * 0.90,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -47,6 +47,9 @@ class _SIFormState extends State<SIForm> {
                 ),
               ),
             ),
+          ),
+          SizedBox(
+            height: 7.5,
           ),
           TextField(
             controller: _passwordController,

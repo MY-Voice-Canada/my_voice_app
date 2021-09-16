@@ -26,7 +26,8 @@ class MYVMApp extends StatelessWidget {
 class MYVMProvider extends ChangeNotifier {
   double screenHeightAppbarless = 0;
   double screenWidth = 0;
+  double buttonFontSize = 24;
 
-  final buttonFontSize = 36;
-
+  String userEmail = "";
+  String userPassword = "";
 }

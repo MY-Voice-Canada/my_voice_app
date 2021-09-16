@@ -54,6 +54,7 @@ class MYVMASignIn extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   LoginRow(signedIn: true, registered: false,),
+                  SizedBox(height: 20),
                   SIForm(),
                 ]
               ),

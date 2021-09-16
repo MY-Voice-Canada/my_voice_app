@@ -27,5 +27,6 @@ class MYVMProvider extends ChangeNotifier {
   double screenHeightAppbarless = 0;
   double screenWidth = 0;
 
-  double buttonFontSize = 36;
+  final buttonFontSize = 36;
+
 }

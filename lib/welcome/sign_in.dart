@@ -4,7 +4,8 @@ import 'package:hexcolor/hexcolor.dart';
 
 import '../main.dart';
 import './splashscreen.dart';
-import 'login_row.dart';
+import './login_row.dart';
+import './sign_in_form.dart';
 
 class MYVMASignIn extends StatelessWidget {
   @override
@@ -53,6 +54,7 @@ class MYVMASignIn extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   LoginRow(signedIn: true, registered: false,),
+                  SIForm(),
                 ]
               ),
             ),

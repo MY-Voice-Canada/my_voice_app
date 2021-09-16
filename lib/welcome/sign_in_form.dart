@@ -12,7 +12,13 @@ class SIForm extends StatefulWidget {
 class _SIFormState extends State<SIForm> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  bool _passwordVisible = false;
+  late bool _passwordVisible;
+
+  @override
+  void initState() {
+    _passwordVisible = false;
+    super.initState();
+  }
 
   void _submitSI() {
     if (_emailController.text != "" && _passwordController.text != "") {

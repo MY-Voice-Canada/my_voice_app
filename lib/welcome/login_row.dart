@@ -7,8 +7,9 @@ import './register.dart';
 
 class LoginRow extends StatelessWidget {
   bool signedIn;
+  bool registered;
 
-  LoginRow({required this.signedIn});
+  LoginRow({required this.signedIn, required this.registered});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class LoginRow extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         TextButton(
-          onPressed: signedIn
+          onPressed: this.signedIn
               ? () => {}
               : () => Navigator.pushReplacement(context,
                   MaterialPageRoute(builder: (context) => MYVMASignIn())),
@@ -37,16 +38,16 @@ class LoginRow extends StatelessWidget {
           ),
         ),
         TextButton(
-          onPressed: this.signedIn
-              ? () => Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => MYVMARegister()))
-              : () => {},
+          onPressed: this.registered
+              ? () => {}
+              : () => Navigator.pushReplacement(context,
+                  MaterialPageRoute(builder: (context) => MYVMARegister())),
           child: Text(
             "Register",
             style: TextStyle(
               color: Theme.of(context)
                   .primaryColor
-                  .withOpacity(this.signedIn? 1 : 0.5),
+                  .withOpacity(this.registered ? 0.5 : 1),
               fontSize: Provider.of<MYVMProvider>(context).buttonFontSize,
             ),
           ),

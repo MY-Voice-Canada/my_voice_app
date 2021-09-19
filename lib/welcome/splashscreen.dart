@@ -28,6 +28,7 @@ class _MYVMASplashScreenState extends State<MYVMASplashScreen> {
             Image.asset("assets/images/new_logo.png"),
             LoginRow(
               signedIn: false,
+              registered: false,
             ),
           ],
         ),

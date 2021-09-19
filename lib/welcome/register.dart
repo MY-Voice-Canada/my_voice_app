@@ -57,7 +57,6 @@ class MYVMARegister extends StatelessWidget {
                   children: [
                     LoginRow(
                       signedIn: false,
-                      registered: true,
                     ),
                   ]),
             ),

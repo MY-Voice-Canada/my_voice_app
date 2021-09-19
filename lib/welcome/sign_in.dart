@@ -50,15 +50,16 @@ class MYVMASignIn extends StatelessWidget {
           ),
           Center(
             child: SizedBox(
-              height: Provider.of<MYVMProvider>(context).screenHeightAppbarless / 0.75,
+              height:
+                  Provider.of<MYVMProvider>(context).screenHeightAppbarless /
+                      0.75,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  LoginRow(signedIn: true, registered: false,),
-                  SizedBox(height: 20),
-                  SIForm(),
-                ]
-              ),
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    LoginRow(signedIn: true),
+                    SizedBox(height: 20),
+                    SIForm(),
+                  ]),
             ),
           ),
         ],

@@ -26,7 +26,9 @@ class _MYVMASplashScreenState extends State<MYVMASplashScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             Image.asset("assets/images/new_logo.png"),
-            LoginRow(signedIn: false, registered: false,),
+            LoginRow(
+              signedIn: false,
+            ),
           ],
         ),
       )),

@@ -4,7 +4,8 @@ import 'package:hexcolor/hexcolor.dart';
 
 import '../main.dart';
 import './splashscreen.dart';
-import 'login_row.dart';
+import './login_row.dart';
+import './register_form.dart';
 
 class MYVMARegister extends StatelessWidget {
   @override
@@ -55,10 +56,9 @@ class MYVMARegister extends StatelessWidget {
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    LoginRow(
-                      signedIn: false,
-                      registered: true,
-                    ),
+                    LoginRow(signedIn: false, registered: true),
+                    SizedBox(height: 20),
+                    RForm(),
                   ]),
             ),
           ),

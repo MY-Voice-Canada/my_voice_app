@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 import '../main.dart';
+import '../home/home.dart';
 
 class SIForm extends StatefulWidget {
   @override
@@ -13,20 +14,36 @@ class _SIFormState extends State<SIForm> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   late bool _passwordVisible;
+  bool _formCompleted = false;
 
   @override
   void initState() {
     _passwordVisible = false;
+    _emailController.addListener(_formUpdated);
+    _passwordController.addListener(_formUpdated);
     super.initState();
   }
 
-  //TODO: test out using null ?? operand
   void _submitSI() {
     if (_emailController.text != "" && _passwordController.text != "") {
-      Provider.of<MYVMProvider>(context).userEmail = _emailController.text;
-      Provider.of<MYVMProvider>(context).userPassword =
+      Provider.of<MYVMProvider>(context, listen: false).userEmail =
+          _emailController.text;
+      Provider.of<MYVMProvider>(context, listen: false).userPassword =
           _passwordController.text;
+
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => MYVMHome()));
     }
+  }
+
+  void _formUpdated() {
+    setState(() {
+      //print(this._formCompleted);
+      if (_emailController.text != "" && _passwordController.text != "")
+        this._formCompleted = true;
+      else
+        this._formCompleted = false;
+    });
   }
 
   @override
@@ -88,17 +105,20 @@ class _SIFormState extends State<SIForm> {
             width: Provider.of<MYVMProvider>(context).screenWidth * 0.90,
             height: 60,
             decoration: BoxDecoration(
-              color: HexColor("FCB831"),
+              color: this._formCompleted
+                  ? HexColor("FCB831")
+                  : HexColor("FCB831").withOpacity(0.5),
               border: Border.all(color: Colors.grey),
               borderRadius: BorderRadius.all(Radius.circular(50)),
             ),
             child: TextButton(
-              onPressed: _submitSI,
+              onPressed: this._formCompleted ? _submitSI : () {},
               child: Text(
                 "Sign in",
                 style: TextStyle(
                   fontSize: 18.0,
-                  color: Colors.grey[800],
+                  color:
+                      this._formCompleted ? Colors.grey[800] : Colors.grey[600],
                   fontWeight: FontWeight.w200,
                 ),
               ),

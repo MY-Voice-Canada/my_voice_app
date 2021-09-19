@@ -4,7 +4,12 @@ import 'package:provider/provider.dart';
 import '../main.dart';
 import '../welcome/splashscreen.dart';
 
-class MYVMASignIn extends StatelessWidget {
+class MYVMHome extends StatefulWidget {
+  @override
+  _MYVMHomeState createState() => _MYVMHomeState();
+}
+
+class _MYVMHomeState extends State<MYVMHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -13,7 +18,17 @@ class MYVMASignIn extends StatelessWidget {
         backgroundColor: Theme.of(context).primaryColor,
       ),
       body: SingleChildScrollView(
-        child: Text("..."),
+        child: TextButton(
+          onPressed: () => Navigator.pushReplacement(context,
+              MaterialPageRoute(builder: (context) => MYVMASplashScreen())),
+          child: Text(
+            "Email: ${Provider.of<MYVMProvider>(context).userEmail}, Password: ${Provider.of<MYVMProvider>(context).userPassword}",
+            style: TextStyle(
+              color: Theme.of(context).primaryColor,
+              fontSize: 48,
+            ),
+          ),
+        ),
       ),
     );
   }

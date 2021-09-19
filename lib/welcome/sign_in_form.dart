@@ -20,6 +20,7 @@ class _SIFormState extends State<SIForm> {
     super.initState();
   }
 
+  //TODO: test out using null ?? operand
   void _submitSI() {
     if (_emailController.text != "" && _passwordController.text != "") {
       Provider.of<MYVMProvider>(context).userEmail = _emailController.text;
@@ -54,9 +55,6 @@ class _SIFormState extends State<SIForm> {
               ),
             ),
           ),
-          SizedBox(
-            height: 7.5,
-          ),
           TextField(
             controller: _passwordController,
             keyboardType: TextInputType.text,
@@ -86,9 +84,25 @@ class _SIFormState extends State<SIForm> {
               ),
             ),
           ),
-          TextButton(
-            onPressed: _submitSI,
-            child: Text("Sign In"),
+          Container(
+            width: Provider.of<MYVMProvider>(context).screenWidth * 0.90,
+            height: 60,
+            decoration: BoxDecoration(
+              color: HexColor("FCB831"),
+              border: Border.all(color: Colors.grey),
+              borderRadius: BorderRadius.all(Radius.circular(50)),
+            ),
+            child: TextButton(
+              onPressed: _submitSI,
+              child: Text(
+                "Sign in",
+                style: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.grey[800],
+                  fontWeight: FontWeight.w200,
+                ),
+              ),
+            ),
           ),
           Text("Forgot Password?"),
         ],

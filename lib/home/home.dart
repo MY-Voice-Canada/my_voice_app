@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../main.dart';
-import './splashscreen.dart';
+import '../welcome/splashscreen.dart';
 
 class MYVMASignIn extends StatelessWidget {
   @override

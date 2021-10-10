@@ -26,13 +26,13 @@ class _SIFormState extends State<SIForm> {
 
   void _submitSI() {
     if (_emailController.text != "" && _passwordController.text != "") {
-      Provider.of<MYVMProvider>(context, listen: false).userEmail =
+      Provider.of<MVProvider>(context, listen: false).userEmail =
           _emailController.text;
-      Provider.of<MYVMProvider>(context, listen: false).userPassword =
+      Provider.of<MVProvider>(context, listen: false).userPassword =
           _passwordController.text;
 
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => MYVMHome()));
+          context, MaterialPageRoute(builder: (context) => MVHome()));
     }
   }
 
@@ -49,8 +49,8 @@ class _SIFormState extends State<SIForm> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: Provider.of<MYVMProvider>(context).screenHeightAppbarless / 3.0,
-      width: Provider.of<MYVMProvider>(context).screenWidth * 0.90,
+      height: Provider.of<MVProvider>(context).screenHeightAppbarless / 3.0,
+      width: Provider.of<MVProvider>(context).screenWidth * 0.90,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -102,7 +102,7 @@ class _SIFormState extends State<SIForm> {
             ),
           ),
           Container(
-            width: Provider.of<MYVMProvider>(context).screenWidth * 0.90,
+            width: Provider.of<MVProvider>(context).screenWidth * 0.90,
             height: 60,
             decoration: BoxDecoration(
               color: this._formCompleted

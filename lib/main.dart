@@ -4,11 +4,11 @@ import 'package:provider/provider.dart';
 import './welcome/splashscreen.dart';
 
 void main() => runApp(ChangeNotifierProvider(
-      create: (_) => MYVMProvider(),
-      child: MYVMApp(),
+      create: (_) => MVProvider(),
+      child: MVApp(),
     ));
 
-class MYVMApp extends StatelessWidget {
+class MVApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,12 +18,12 @@ class MYVMApp extends StatelessWidget {
         primaryColor: Color.fromRGBO(37, 150, 190, 1.0),
         fontFamily: "RobotoMono",
       ),
-      home: MYVMASplashScreen(),
+      home: MVASplashScreen(),
     );
   }
 }
 
-class MYVMProvider extends ChangeNotifier {
+class MVProvider extends ChangeNotifier {
   double screenHeightAppbarless = 0;
   double screenWidth = 0;
   double buttonFontSize = 24;

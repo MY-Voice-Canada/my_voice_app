@@ -4,12 +4,12 @@ import 'package:provider/provider.dart';
 import '../main.dart';
 import '../welcome/splashscreen.dart';
 
-class MYVMHome extends StatefulWidget {
+class MVHome extends StatefulWidget {
   @override
-  _MYVMHomeState createState() => _MYVMHomeState();
+  _MVHomeState createState() => _MVHomeState();
 }
 
-class _MYVMHomeState extends State<MYVMHome> {
+class _MVHomeState extends State<MVHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,9 +20,9 @@ class _MYVMHomeState extends State<MYVMHome> {
       body: SingleChildScrollView(
         child: TextButton(
           onPressed: () => Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => MYVMASplashScreen())),
+              MaterialPageRoute(builder: (context) => MVASplashScreen())),
           child: Text(
-            "Email: ${Provider.of<MYVMProvider>(context).userEmail}, Password: ${Provider.of<MYVMProvider>(context).userPassword}",
+            "Email: ${Provider.of<MVProvider>(context).userEmail}, Password: ${Provider.of<MVProvider>(context).userPassword}",
             style: TextStyle(
               color: Theme.of(context).primaryColor,
               fontSize: 48,

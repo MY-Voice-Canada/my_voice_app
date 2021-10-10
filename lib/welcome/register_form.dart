@@ -29,13 +29,13 @@ class _RState extends State<RForm> {
     if (_nameController.text != "" &&
         _emailController.text != "" &&
         _passwordController.text != "") {
-      Provider.of<MYVMProvider>(context, listen: false).userEmail =
+      Provider.of<MVProvider>(context, listen: false).userEmail =
           _emailController.text;
-      Provider.of<MYVMProvider>(context, listen: false).userPassword =
+      Provider.of<MVProvider>(context, listen: false).userPassword =
           _passwordController.text;
 
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => MYVMHome()));
+          context, MaterialPageRoute(builder: (context) => MVHome()));
     }
   }
 
@@ -54,8 +54,8 @@ class _RState extends State<RForm> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: Provider.of<MYVMProvider>(context).screenHeightAppbarless / 3.0,
-      width: Provider.of<MYVMProvider>(context).screenWidth * 0.90,
+      height: Provider.of<MVProvider>(context).screenHeightAppbarless / 3.0,
+      width: Provider.of<MVProvider>(context).screenWidth * 0.90,
       child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -124,7 +124,7 @@ class _RState extends State<RForm> {
             ),
           ),
           Container(
-            width: Provider.of<MYVMProvider>(context).screenWidth * 0.90,
+            width: Provider.of<MVProvider>(context).screenWidth * 0.90,
             height: 60,
             decoration: BoxDecoration(
               color: this._formCompleted

@@ -20,35 +20,35 @@ class LoginRow extends StatelessWidget {
           onPressed: this.signedIn
               ? () => {}
               : () => Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => MYVMASignIn())),
+                  MaterialPageRoute(builder: (context) => MVASignIn())),
           child: Text(
             "Sign in",
             style: TextStyle(
               color: Theme.of(context)
                   .primaryColor
                   .withOpacity(this.signedIn ? 0.5 : 1),
-              fontSize: Provider.of<MYVMProvider>(context).buttonFontSize,
+              fontSize: Provider.of<MVProvider>(context).buttonFontSize,
             ),
           ),
         ),
         Text(
           " | ",
           style: TextStyle(
-            fontSize: Provider.of<MYVMProvider>(context).buttonFontSize,
+            fontSize: Provider.of<MVProvider>(context).buttonFontSize,
           ),
         ),
         TextButton(
           onPressed: this.registered
               ? () => {}
               : () => Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => MYVMARegister())),
+                  MaterialPageRoute(builder: (context) => MVARegister())),
           child: Text(
             "Register",
             style: TextStyle(
               color: Theme.of(context)
                   .primaryColor
                   .withOpacity(this.registered ? 0.5 : 1),
-              fontSize: Provider.of<MYVMProvider>(context).buttonFontSize,
+              fontSize: Provider.of<MVProvider>(context).buttonFontSize,
             ),
           ),
         ),

@@ -7,7 +7,7 @@ import './splashscreen.dart';
 import './login_row.dart';
 import './register_form.dart';
 
-class MYVMARegister extends StatelessWidget {
+class MVARegister extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,11 +15,11 @@ class MYVMARegister extends StatelessWidget {
       body: Stack(
         children: [
           Positioned(
-            top: Provider.of<MYVMProvider>(context).screenHeightAppbarless / 20,
-            left: Provider.of<MYVMProvider>(context).screenWidth / 32,
+            top: Provider.of<MVProvider>(context).screenHeightAppbarless / 20,
+            left: Provider.of<MVProvider>(context).screenWidth / 32,
             child: TextButton(
               onPressed: () => Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => MYVMASplashScreen())),
+                  MaterialPageRoute(builder: (context) => MVASplashScreen())),
               child: Text(
                 "<",
                 style: TextStyle(
@@ -31,9 +31,9 @@ class MYVMARegister extends StatelessWidget {
           ),
           Center(
             child: OverflowBox(
-              maxWidth: Provider.of<MYVMProvider>(context).screenWidth * 2,
+              maxWidth: Provider.of<MVProvider>(context).screenWidth * 2,
               child: Container(
-                width: Provider.of<MYVMProvider>(context).screenWidth * 1.23,
+                width: Provider.of<MVProvider>(context).screenWidth * 1.23,
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topCenter,
@@ -51,7 +51,7 @@ class MYVMARegister extends StatelessWidget {
           Center(
             child: SizedBox(
               height:
-                  Provider.of<MYVMProvider>(context).screenHeightAppbarless /
+                  Provider.of<MVProvider>(context).screenHeightAppbarless /
                       0.75,
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

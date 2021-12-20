@@ -35,8 +35,7 @@ As stated above, this app was fully **thought of**, **designed**, and **develope
 | :--------------- | :-------------------------: | --------------------------: |
 | Maida Amir       |       (ADULT) Advisor       |        maida.amir@gmail.com |
 | Sabah Raja       | App Team Lead + UX Designer |      sabs.raja.93@gmail.com |
-| Faizaan Aslam    |        App Developer        |       faizaan3424@gmail.com |
-| Emaad Siddiqui   |        App Developer        |         emaad2002@gmail.com |
+| Faizaan Aslam    |     Head App Developer      |       faizaan3424@gmail.com |
 | Fatima Sarfraz   |      User & Usability       |     fatisarfraz31@gmail.com |
 | Hana Sheikh      |      Graphic Designer       | hanasheikh.design@gmail.com |
 | Ahmed Saleem     |      Graphic Designer       |    ahmed.a.saleem@gmail.com |

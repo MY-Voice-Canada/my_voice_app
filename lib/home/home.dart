@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../main.dart';
 import '../welcome/splashscreen.dart';
+import './appbar.dart';
 
 class MVHome extends StatefulWidget {
   @override
@@ -13,10 +14,7 @@ class _MVHomeState extends State<MVHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("MY Voice"),
-        backgroundColor: Theme.of(context).primaryColor,
-      ),
+      appBar: getMVAppBar(context),
       body: ListView.builder(
         itemCount: 100,
         itemBuilder: (BuildContext context, int i) => Text(

@@ -17,7 +17,15 @@ class _MVHomeState extends State<MVHome> {
         title: Text("MY Voice"),
         backgroundColor: Theme.of(context).primaryColor,
       ),
-      body: SingleChildScrollView(
+      body: ListView.builder(
+        itemCount: 100,
+        itemBuilder: (BuildContext context, int i) => Text(
+          "${i + 1}",
+          style: TextStyle(fontSize: 48),
+        ),
+      ),
+    );
+    /*SingleChildScrollView(
         child: TextButton(
           onPressed: () => Navigator.pushReplacement(context,
               MaterialPageRoute(builder: (context) => MVASplashScreen())),
@@ -30,6 +38,6 @@ class _MVHomeState extends State<MVHome> {
           ),
         ),
       ),
-    );
+    );*/
   }
 }

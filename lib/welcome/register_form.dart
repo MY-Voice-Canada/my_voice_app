@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 import '../main.dart';
-import '../home/home.dart';
+import '../home/home_widget.dart';
 
 class RForm extends StatefulWidget {
   @override

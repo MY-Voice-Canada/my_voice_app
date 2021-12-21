@@ -2,7 +2,18 @@ import 'package:flutter/material.dart';
 
 AppBar getMVAppBar(BuildContext context) {
   return AppBar(
-    title: Text("MY Voice"),
+    title: Row(
+      children: [
+        Image.asset(
+          "assets/images/new_logo.png",
+          height: 50,
+        ),
+        SizedBox(
+          width: 10,
+        ),
+        Text("MY Voice Canada"),
+      ],
+    ),
     backgroundColor: Theme.of(context).primaryColor,
     actions: [
       IconButton(
@@ -14,7 +25,7 @@ AppBar getMVAppBar(BuildContext context) {
       ),
       IconButton(
         icon: Icon(
-          Icons.favorite_border,
+          Icons.favorite,
           color: Colors.white,
         ),
         onPressed: () {},

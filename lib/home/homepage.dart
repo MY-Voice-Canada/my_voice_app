@@ -5,17 +5,17 @@ import '../main.dart';
 import '../welcome/splashscreen.dart';
 import './appbar.dart';
 
-class MVHome extends StatefulWidget {
+class HomePage extends StatefulWidget {
   @override
-  _MVHomeState createState() => _MVHomeState();
+  _HomePageState createState() => _HomePageState();
 }
 
-class _MVHomeState extends State<MVHome> {
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: getMVAppBar(context),
-      bottomNavigationBar: BottomNavigationBar(
+      /*bottomNavigationBar: BottomNavigationBar(
         type: BottomNavigationBarType.fixed,
         backgroundColor: Theme.of(context).primaryColor,
         selectedLabelStyle: TextStyle(
@@ -35,8 +35,7 @@ class _MVHomeState extends State<MVHome> {
               icon: Icon(Icons.textsms_rounded), label: "Ask"),
           BottomNavigationBarItem(
               icon: Icon(Icons.add_circle_outline), label: "Get Involved"),
-        ],
-      ),
+        ],),*/
       body: ListView.builder(
         itemCount: 100,
         itemBuilder: (BuildContext context, int i) => Text(

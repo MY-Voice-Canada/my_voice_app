@@ -25,7 +25,7 @@ class _MVHomeState extends State<MVHome> {
     JAPage(),
   ];
 
-  void onTabTapped(int i) {
+  void _onBottomNavChange(int i) {
     setState(() {
       this._currentIndex = i;
     });
@@ -36,6 +36,7 @@ class _MVHomeState extends State<MVHome> {
     return Scaffold(
       appBar: getMVAppBar(context),
       bottomNavigationBar: BottomNavigationBar(
+        onTap: this._onBottomNavChange,
         type: BottomNavigationBarType.fixed,
         backgroundColor: Theme.of(context).primaryColor,
         selectedLabelStyle: TextStyle(

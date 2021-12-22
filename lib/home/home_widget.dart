@@ -17,18 +17,32 @@ class MVHome extends StatefulWidget {
 
 class _MVHomeState extends State<MVHome> {
   int _currentIndex = 0;
-  final List _children = [
-    HomePage(),
-    ReadPage(),
-    WatchPage(),
-    GIPage(),
-    JAPage(),
-  ];
+  late PageController _pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    this._pageController = PageController();
+  }
+
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
 
   void _onBottomNavChange(int i) {
     setState(() {
       this._currentIndex = i;
+
+      _pageController.animateToPage(i,
+          duration: Duration(milliseconds: 500), curve: Curves.easeOut);
+      //print(this._currentIndex);
     });
+  }
+
+  Color? _selectedIcon(int i) {
+    return this._currentIndex == i ? Colors.white : Colors.grey[800];
   }
 
   @override
@@ -39,41 +53,54 @@ class _MVHomeState extends State<MVHome> {
         onTap: this._onBottomNavChange,
         type: BottomNavigationBarType.fixed,
         backgroundColor: Theme.of(context).primaryColor,
-        selectedLabelStyle: TextStyle(
-          color: Colors.white,
-        ),
-        /*unselectedLabelStyle: TextStyle(
-          color: Colors.white,
-        ),*/
-        selectedItemColor: Colors.white,
-        currentIndex: 0,
+        //selectedLabelStyle: TextStyle(color: Colors.white),
+        currentIndex: this._currentIndex,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.menu_book_rounded), label: "Read"),
+              icon: Icon(
+                Icons.home,
+                color: _selectedIcon(0),
+              ),
+              label: "Home"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.ondemand_video_rounded), label: "Watch"),
+              icon: Icon(
+                Icons.menu_book_rounded,
+                color: _selectedIcon(1),
+              ),
+              label: "Read"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.textsms_rounded), label: "Ask"),
+              icon: Icon(
+                Icons.ondemand_video_rounded,
+                color: _selectedIcon(2),
+              ),
+              label: "Watch"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.add_circle_outline), label: "Get Involved"),
+              icon: Icon(
+                Icons.textsms_rounded,
+                color: _selectedIcon(3),
+              ),
+              label: "Ask"),
+          BottomNavigationBarItem(
+              icon: Icon(
+                Icons.add_circle_outline,
+                color: _selectedIcon(4),
+              ),
+              label: "Get Involved"),
         ],
       ),
-      body: _children[_currentIndex],
-    );
-    /*SingleChildScrollView(
-        child: TextButton(
-          onPressed: () => Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => MVASplashScreen())),
-          child: Text(
-            "Email: ${Provider.of<MVProvider>(context).userEmail}, Password: ${Provider.of<MVProvider>(context).userPassword}",
-            style: TextStyle(
-              color: Theme.of(context).primaryColor,
-              fontSize: 48,
-            ),
-          ),
-        ),
+      body: PageView(
+        controller: this._pageController,
+        onPageChanged: (i) {
+          setState(() => this._currentIndex = i);
+        },
+        children: [
+          HomePage(),
+          ReadPage(),
+          WatchPage(),
+          GIPage(),
+          JAPage(),
+        ],
       ),
-    );*/
+    );
   }
 }

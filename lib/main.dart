@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
 
 import './welcome/splashscreen.dart';
@@ -15,7 +16,7 @@ class MVApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: "MY Voice App",
       theme: ThemeData(
-        primaryColor: Color.fromRGBO(37, 150, 190, 1.0),
+        primaryColor: HexColor("139DA4"),
         fontFamily: "RobotoMono",
       ),
       home: MVASplashScreen(),

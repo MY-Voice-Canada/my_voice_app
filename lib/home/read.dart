@@ -16,19 +16,5 @@ class _ReadPageState extends State<ReadPage> {
     return Container(
       color: Colors.red,
     );
-    /*SingleChildScrollView(
-        child: TextButton(
-          onPressed: () => Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => MVASplashScreen())),
-          child: Text(
-            "Email: ${Provider.of<MVProvider>(context).userEmail}, Password: ${Provider.of<MVProvider>(context).userPassword}",
-            style: TextStyle(
-              color: Theme.of(context).primaryColor,
-              fontSize: 48,
-            ),
-          ),
-        ),
-      ),
-    );*/
   }
 }

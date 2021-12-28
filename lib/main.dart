@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 import './welcome/splashscreen.dart';
 
-void main() => runApp(ChangeNotifierProvider(
-      create: (_) => MVProvider(),
-      child: MVApp(),
-    ));
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(ChangeNotifierProvider(
+    create: (_) => MVProvider(),
+    child: MVApp(),
+  ));
+}
 
 class MVApp extends StatelessWidget {
   @override

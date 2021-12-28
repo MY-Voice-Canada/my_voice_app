@@ -50,14 +50,13 @@ class MVARegister extends StatelessWidget {
           ),
           Center(
             child: SizedBox(
-              height:
-                  Provider.of<MVProvider>(context).screenHeightAppbarless /
-                      0.75,
+              height: Provider.of<MVProvider>(context).screenHeightAppbarless /
+                  0.75,
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     LoginRow(signedIn: false, registered: true),
-                    SizedBox(height: 20),
+                    SizedBox(height: 20.0),
                     RForm(),
                   ]),
             ),

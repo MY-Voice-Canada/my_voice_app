@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_voice_app/services/auth.dart';
 import 'package:my_voice_app/welcome/form_decor.dart';
 import 'package:provider/provider.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -12,63 +13,52 @@ class RForm extends StatefulWidget {
 }
 
 class _RState extends State<RForm> {
+  final _formKey = GlobalKey<FormState>();
+
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _nameController = TextEditingController();
   late bool _passwordVisible;
-  bool _formCompleted = false;
 
   @override
   void initState() {
     _passwordVisible = false;
-    _emailController.addListener(_formUpdated);
-    _passwordController.addListener(_formUpdated);
     super.initState();
   }
 
   void _submitSI() {
-    if (_nameController.text != "" &&
-        _emailController.text != "" &&
-        _passwordController.text != "") {
-      Provider.of<MVProvider>(context, listen: false).userEmail =
-          _emailController.text;
-      Provider.of<MVProvider>(context, listen: false).userPassword =
-          _passwordController.text;
-
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => MVHome()));
-    }
-  }
-
-  void _formUpdated() {
-    setState(() {
-      //print(this._formCompleted);
-      if (_nameController.text != "" &&
-          _emailController.text != "" &&
-          _passwordController.text != "")
-        this._formCompleted = true;
-      else
-        this._formCompleted = false;
-    });
+    //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MVHome()));
   }
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: Provider.of<MVProvider>(context).screenHeightAppbarless / 3.0,
+      height: Provider.of<MVProvider>(context).screenHeightAppbarless / 2.8,
       width: Provider.of<MVProvider>(context).screenWidth * 0.90,
       child: Form(
+        key: _formKey,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             TextFormField(
+                validator: (_) => _nameController.text.isEmpty
+                    ? "Please enter your name!"
+                    : null,
                 controller: _nameController,
                 decoration: formDecoration.copyWith(hintText: "Name")),
             TextFormField(
+                validator: (_) =>
+                    !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                            .hasMatch(_emailController.text)
+                        ? "Please enter a valid email!"
+                        : null,
                 controller: _emailController,
                 keyboardType: TextInputType.emailAddress,
                 decoration: formDecoration.copyWith(hintText: "Email")),
             TextFormField(
+              validator: (_) => _passwordController.text.length < 6
+                  ? "Please enter a password with at least 6 characters!"
+                  : null,
               controller: _passwordController,
               keyboardType: TextInputType.text,
               obscureText: !_passwordVisible,
@@ -86,25 +76,31 @@ class _RState extends State<RForm> {
                 ),
               ),
             ),
+            SizedBox(
+              height: 10.0,
+            ),
             Container(
               width: Provider.of<MVProvider>(context).screenWidth * 0.90,
-              height: 60,
+              height: 60.0,
               decoration: BoxDecoration(
-                color: this._formCompleted
-                    ? HexColor("FCB831")
-                    : HexColor("FCB831").withOpacity(0.5),
+                color: HexColor("FCB831"),
                 border: Border.all(color: Colors.grey),
                 borderRadius: BorderRadius.all(Radius.circular(50)),
               ),
               child: TextButton(
-                onPressed: this._formCompleted ? _submitSI : () {},
+                onPressed: () async {
+                  if (_formKey.currentState!.validate()) {
+                    dynamic user = await MVAuth.registerNEP(
+                        _nameController.text,
+                        _emailController.text,
+                        _passwordController.text);
+                    }
+                },
                 child: Text(
                   "Create account",
                   style: TextStyle(
                     fontSize: 18.0,
-                    color: this._formCompleted
-                        ? Colors.grey[800]
-                        : Colors.grey[600],
+                    color: Colors.grey[800],
                     fontWeight: FontWeight.w200,
                   ),
                 ),

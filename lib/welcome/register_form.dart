@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_voice_app/welcome/form_decor.dart';
 import 'package:provider/provider.dart';
 import 'package:hexcolor/hexcolor.dart';
 
@@ -56,97 +57,61 @@ class _RState extends State<RForm> {
     return SizedBox(
       height: Provider.of<MVProvider>(context).screenHeightAppbarless / 3.0,
       width: Provider.of<MVProvider>(context).screenWidth * 0.90,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          TextField(
-            controller: _nameController,
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: Colors.white,
-              hintText: "Name",
-              hintStyle: TextStyle(
-                color: Colors.grey,
+      child: Form(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            TextFormField(
+                controller: _nameController,
+                decoration: formDecoration.copyWith(hintText: "Name")),
+            TextFormField(
+                controller: _emailController,
+                keyboardType: TextInputType.emailAddress,
+                decoration: formDecoration.copyWith(hintText: "Email")),
+            TextFormField(
+              controller: _passwordController,
+              keyboardType: TextInputType.text,
+              obscureText: !_passwordVisible,
+              decoration: formDecoration.copyWith(
+                hintText: "Password",
+                suffixIcon: IconButton(
+                  icon: Icon(
+                    _passwordVisible ? Icons.visibility : Icons.visibility_off,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _passwordVisible = !_passwordVisible;
+                    });
+                  },
+                ),
               ),
-              border: OutlineInputBorder(
+            ),
+            Container(
+              width: Provider.of<MVProvider>(context).screenWidth * 0.90,
+              height: 60,
+              decoration: BoxDecoration(
+                color: this._formCompleted
+                    ? HexColor("FCB831")
+                    : HexColor("FCB831").withOpacity(0.5),
+                border: Border.all(color: Colors.grey),
                 borderRadius: BorderRadius.all(Radius.circular(50)),
-                borderSide: BorderSide(
-                  color: Colors.grey,
+              ),
+              child: TextButton(
+                onPressed: this._formCompleted ? _submitSI : () {},
+                child: Text(
+                  "Create account",
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    color: this._formCompleted
+                        ? Colors.grey[800]
+                        : Colors.grey[600],
+                    fontWeight: FontWeight.w200,
+                  ),
                 ),
               ),
             ),
-          ),
-          TextField(
-            controller: _emailController,
-            keyboardType: TextInputType.emailAddress,
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: Colors.white,
-              hintText: "E-mail",
-              hintStyle: TextStyle(
-                color: Colors.grey,
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(50)),
-                borderSide: BorderSide(
-                  color: Colors.grey,
-                ),
-              ),
-            ),
-          ),
-          TextField(
-            controller: _passwordController,
-            keyboardType: TextInputType.text,
-            obscureText: !_passwordVisible,
-            decoration: InputDecoration(
-              filled: true,
-              fillColor: Colors.white,
-              hintText: "Password",
-              hintStyle: TextStyle(
-                color: Colors.grey,
-              ),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.all(Radius.circular(50)),
-                borderSide: BorderSide(
-                  color: Colors.grey,
-                ),
-              ),
-              suffixIcon: IconButton(
-                icon: Icon(
-                  _passwordVisible ? Icons.visibility : Icons.visibility_off,
-                ),
-                onPressed: () {
-                  setState(() {
-                    _passwordVisible = !_passwordVisible;
-                  });
-                },
-              ),
-            ),
-          ),
-          Container(
-            width: Provider.of<MVProvider>(context).screenWidth * 0.90,
-            height: 60,
-            decoration: BoxDecoration(
-              color: this._formCompleted
-                  ? HexColor("FCB831")
-                  : HexColor("FCB831").withOpacity(0.5),
-              border: Border.all(color: Colors.grey),
-              borderRadius: BorderRadius.all(Radius.circular(50)),
-            ),
-            child: TextButton(
-              onPressed: this._formCompleted ? _submitSI : () {},
-              child: Text(
-                "Create account",
-                style: TextStyle(
-                  fontSize: 18.0,
-                  color:
-                      this._formCompleted ? Colors.grey[800] : Colors.grey[600],
-                  fontWeight: FontWeight.w200,
-                ),
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

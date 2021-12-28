@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:my_voice_app/models/user.dart';
+import 'package:my_voice_app/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -17,14 +19,18 @@ void main() async {
 class MVApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "MY Voice App",
-      theme: ThemeData(
-        primaryColor: HexColor("139DA4"),
-        fontFamily: "RobotoMono",
+    return StreamProvider<MVUser?>.value(
+      value: MVAuth.userStream,
+      initialData: null,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: "MY Voice App",
+        theme: ThemeData(
+          primaryColor: HexColor("139DA4"),
+          fontFamily: "RobotoMono",
+        ),
+        home: MVASplashScreen(),
       ),
-      home: MVASplashScreen(),
     );
   }
 }

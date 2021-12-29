@@ -28,6 +28,7 @@ The entire list of dependencies is defined in `pubspec.yaml`. Some main dependen
 - cloud_firestore (ver. 3.1.5)
 - provider (ver. 6.0.0)
 - hexcolor (ver. 2.0.5)
+- flutter_spinkit (ver. 5.1.0)
 - flutter_phoenix (ver. 1.0.0)
 
 ## The Team

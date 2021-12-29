@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:my_voice_app/home/home_widget.dart';
 import 'package:my_voice_app/models/user.dart';
@@ -41,7 +42,7 @@ class MVWrapper extends StatelessWidget {
   Widget build(BuildContext context) {
     final MVUser? user = Provider.of<MVUser?>(context);
     print(user);
-    return user == null ? MVSplashScreen() : MVHome();
+    return Phoenix(child: user == null ? MVSplashScreen() : MVHome());
   }
 }
 

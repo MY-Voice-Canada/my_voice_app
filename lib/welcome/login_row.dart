@@ -19,8 +19,8 @@ class LoginRow extends StatelessWidget {
         TextButton(
           onPressed: this.signedIn
               ? () => {}
-              : () => Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => MVASignIn())),
+              : () => Navigator.pushReplacement(
+                  context, MaterialPageRoute(builder: (context) => MVSignIn())),
           child: Text(
             "Sign in",
             style: TextStyle(

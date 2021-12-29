@@ -47,10 +47,9 @@ class MVWrapper extends StatelessWidget {
 }
 
 class MVProvider extends ChangeNotifier {
-  double screenHeightAppbarless = 0;
-  double screenWidth = 0;
-  double buttonFontSize = 24;
+  bool isLoading = false;
 
-  String userEmail = "";
-  String userPassword = "";
+  late double screenHeightAppbarless;
+  late double screenWidth;
+  double buttonFontSize = 40;
 }

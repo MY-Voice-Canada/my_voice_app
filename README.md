@@ -24,8 +24,11 @@ This app was made in Dart using the Flutter SDK (ver. >=2.12.0). At the moment, 
 
 The entire list of dependencies is defined in `pubspec.yaml`. Some main dependencies include...
 
+- firebase_auth (ver. 3.3.4)
+- cloud_firestore (ver. 3.1.5)
 - provider (ver. 6.0.0)
 - hexcolor (ver. 2.0.5)
+- flutter_phoenix (ver. 1.0.0)
 
 ## The Team
 

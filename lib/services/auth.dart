@@ -5,9 +5,9 @@ import 'package:my_voice_app/models/user.dart';
 class MVAuth {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  static MVUser? _convertMVUser(User? user, [String? name]) {
+  static MVUser? _convertMVUser(User? user) {
     return user != null
-        ? MVUser(uid: user.uid, displayName: name ?? user.displayName ?? "User")
+        ? MVUser(uid: user.uid, displayName: user.displayName ?? "User")
         : null;
   }
 
@@ -22,9 +22,8 @@ class MVAuth {
           email: email, password: password);
       User? user = res.user;
       user?.updateDisplayName(name);
-      return _convertMVUser(user, name);
+      return _convertMVUser(user);
     } catch (e) {
-      print("Error time:");
       print(e.toString());
       return null;
     }

@@ -29,6 +29,17 @@ class MVAuth {
     }
   }
 
+  static Future<MVUser?> signInAnon() async {
+    try {
+      UserCredential res = await _auth.signInAnonymously();
+      User? user = res.user;
+      return _convertMVUser(user);
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
   static Future<MVUser?> signInEP(String email, String password) async {
     try {
       UserCredential res = await _auth.signInWithEmailAndPassword(

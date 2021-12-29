@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_voice_app/home/home_widget.dart';
+import 'package:my_voice_app/services/auth.dart';
 import 'package:provider/provider.dart';
 
 import '../main.dart';
@@ -10,6 +12,8 @@ class MVSplashScreen extends StatefulWidget {
 }
 
 class _MVSplashScreenState extends State<MVSplashScreen> {
+  String _guestText = "Continue as Guest";
+
   @override
   Widget build(BuildContext context) {
     Provider.of<MVProvider>(context).screenHeightAppbarless =
@@ -30,6 +34,25 @@ class _MVSplashScreenState extends State<MVSplashScreen> {
               signedIn: false,
               registered: false,
             ),
+            TextButton(
+                onPressed: () async {
+                  dynamic user = await MVAuth.signInAnon();
+                  if (user == null)
+                    setState(() {
+                      _guestText =
+                          "Guest mode could not work.\nPlease use one of the options above instead or refresh the app.";
+                    });
+                  else
+                    Navigator.of(context).pushReplacement(
+                        MaterialPageRoute(builder: (context) => MVHome()));
+                },
+                child: FittedBox(
+                  child: Text(
+                    _guestText,
+                    style: TextStyle(color: Colors.black),
+                  ),
+                  fit: BoxFit.fitWidth,
+                )),
           ],
         ),
       )),

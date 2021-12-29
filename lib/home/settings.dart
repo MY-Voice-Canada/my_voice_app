@@ -14,10 +14,9 @@ class _MVSettingsState extends State<MVSettings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: getMVAppBar(context),
-      body: Center(
-        child: Text("Settings"),
-      ),
-    );
+        appBar: getMVAppBar(context),
+        body: Center(
+          child: Text("Settings"),
+        ));
   }
 }

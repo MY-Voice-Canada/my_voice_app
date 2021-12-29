@@ -4,12 +4,12 @@ import 'package:provider/provider.dart';
 import '../main.dart';
 import 'login_row.dart';
 
-class MVASplashScreen extends StatefulWidget {
+class MVSplashScreen extends StatefulWidget {
   @override
-  _MVASplashScreenState createState() => _MVASplashScreenState();
+  _MVSplashScreenState createState() => _MVSplashScreenState();
 }
 
-class _MVASplashScreenState extends State<MVASplashScreen> {
+class _MVSplashScreenState extends State<MVSplashScreen> {
   @override
   Widget build(BuildContext context) {
     Provider.of<MVProvider>(context).screenHeightAppbarless =

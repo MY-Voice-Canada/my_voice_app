@@ -20,12 +20,8 @@ void main() async {
 class MVApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final MVUser? user = Provider.of<MVUser?>(context);
-    print("\nUser Status:");
-    print(user);
-
     return StreamProvider<MVUser?>.value(
-      value: MVAuth.userStream,
+      value: MVAuth().userStream,
       initialData: null,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -34,9 +30,18 @@ class MVApp extends StatelessWidget {
           primaryColor: HexColor("139DA4"),
           fontFamily: "RobotoMono",
         ),
-        home: user != null ? MVASplashScreen() : MVHome(),
+        home: MVWrapper(),
       ),
     );
+  }
+}
+
+class MVWrapper extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final MVUser? user = Provider.of<MVUser?>(context);
+    print(user);
+    return user == null ? MVSplashScreen() : MVHome();
   }
 }
 

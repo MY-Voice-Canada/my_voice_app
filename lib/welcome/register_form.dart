@@ -20,20 +20,18 @@ class _RState extends State<RForm> {
   final _nameController = TextEditingController();
   late bool _passwordVisible;
 
+  String _errorMessage = "";
+
   @override
   void initState() {
     _passwordVisible = false;
     super.initState();
   }
 
-  void _submitSI() {
-    //Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => MVHome()));
-  }
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: Provider.of<MVProvider>(context).screenHeightAppbarless / 2.8,
+      height: Provider.of<MVProvider>(context).screenHeightAppbarless / 2.5,
       width: Provider.of<MVProvider>(context).screenWidth * 0.90,
       child: Form(
         key: _formKey,
@@ -94,7 +92,15 @@ class _RState extends State<RForm> {
                         _nameController.text,
                         _emailController.text,
                         _passwordController.text);
+                    if (user != null) {
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (context) => MVHome()));
+                    } else {
+                      setState(() {
+                        _errorMessage = "Could not register. Try again.";
+                      });
                     }
+                  }
                 },
                 child: Text(
                   "Create account",
@@ -106,6 +112,10 @@ class _RState extends State<RForm> {
                 ),
               ),
             ),
+            Text(
+              _errorMessage,
+              style: TextStyle(color: Colors.red, fontSize: 12.0),
+            )
           ],
         ),
       ),

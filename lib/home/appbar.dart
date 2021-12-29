@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:my_voice_app/home/home_widget.dart';
+import 'package:my_voice_app/services/auth.dart';
+import 'package:my_voice_app/welcome/splashscreen.dart';
 import './search.dart';
 import './favourites.dart';
 import './settings.dart';
@@ -37,13 +39,16 @@ AppBar getMVAppBar(BuildContext context) {
             context, MaterialPageRoute(builder: (context) => MVFavs())),
       ),
       IconButton(
-        icon: Icon(
-          Icons.settings,
-          color: Colors.white,
-        ),
-        onPressed: () => Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => MVSettings())),
-      )
+          icon: Icon(
+            Icons.settings,
+            color: Colors.white,
+          ),
+          onPressed: () async {
+            await MVAuth.signOut();
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => MVSplashScreen()));
+            //Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => MVSettings())),
+          })
     ],
   );
 }

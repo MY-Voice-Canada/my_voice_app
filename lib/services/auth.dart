@@ -5,13 +5,13 @@ import 'package:my_voice_app/models/user.dart';
 class MVAuth {
   static final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  static MVUser? _convertMVUser(User? user) {
+  static MVUser? _convertMVUser(User? user, [String? name]) {
     return user != null
-        ? MVUser(uid: user.uid, displayName: user.displayName)
+        ? MVUser(uid: user.uid, displayName: name ?? user.displayName ?? "User")
         : null;
   }
 
-  static Stream<MVUser?> get userStream {
+  Stream<MVUser?> get userStream {
     return _auth.authStateChanges().map(_convertMVUser);
   }
 
@@ -22,10 +22,31 @@ class MVAuth {
           email: email, password: password);
       User? user = res.user;
       user?.updateDisplayName(name);
+      return _convertMVUser(user, name);
+    } catch (e) {
+      print("Error time:");
+      print(e.toString());
+      return null;
+    }
+  }
+
+  static Future<MVUser?> signInEP(String email, String password) async {
+    try {
+      UserCredential res = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+      User? user = res.user;
       return _convertMVUser(user);
     } catch (e) {
       print(e.toString());
       return null;
+    }
+  }
+
+  static Future<void> signOut() async {
+    try {
+      return await _auth.signOut();
+    } catch (e) {
+      print(e.toString());
     }
   }
 }

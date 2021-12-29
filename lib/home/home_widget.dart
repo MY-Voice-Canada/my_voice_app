@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_voice_app/models/user.dart';
 import 'package:provider/provider.dart';
 
 import '../main.dart';
@@ -47,60 +48,64 @@ class _MVHomeState extends State<MVHome> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: getMVAppBar(context),
-      bottomNavigationBar: BottomNavigationBar(
-        onTap: this._onBottomNavChange,
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Theme.of(context).primaryColor,
-        //selectedLabelStyle: TextStyle(color: Colors.white),
-        currentIndex: this._currentIndex,
-        items: [
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home,
-                color: _selectedIcon(0),
-              ),
-              label: "Home"),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.menu_book_rounded,
-                color: _selectedIcon(1),
-              ),
-              label: "Read"),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.ondemand_video_rounded,
-                color: _selectedIcon(2),
-              ),
-              label: "Watch"),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.textsms_rounded,
-                color: _selectedIcon(3),
-              ),
-              label: "Ask"),
-          BottomNavigationBarItem(
-              icon: Icon(
-                Icons.add_circle_outline,
-                color: _selectedIcon(4),
-              ),
-              label: "Get Involved"),
-        ],
-      ),
-      body: PageView(
-        controller: this._pageController,
-        onPageChanged: (i) {
-          setState(() => this._currentIndex = i);
-        },
-        children: [
-          HomePage(),
-          ReadPage(),
-          WatchPage(),
-          GIPage(),
-          JAPage(),
-        ],
-      ),
-    );
+    final MVUser? user = Provider.of<MVUser?>(context);
+
+    return user == null
+        ? SizedBox.shrink()
+        : Scaffold(
+            appBar: getMVAppBar(context),
+            bottomNavigationBar: BottomNavigationBar(
+              onTap: this._onBottomNavChange,
+              type: BottomNavigationBarType.fixed,
+              backgroundColor: Theme.of(context).primaryColor,
+              //selectedLabelStyle: TextStyle(color: Colors.white),
+              currentIndex: this._currentIndex,
+              items: [
+                BottomNavigationBarItem(
+                    icon: Icon(
+                      Icons.home,
+                      color: _selectedIcon(0),
+                    ),
+                    label: "Home"),
+                BottomNavigationBarItem(
+                    icon: Icon(
+                      Icons.menu_book_rounded,
+                      color: _selectedIcon(1),
+                    ),
+                    label: "Read"),
+                BottomNavigationBarItem(
+                    icon: Icon(
+                      Icons.ondemand_video_rounded,
+                      color: _selectedIcon(2),
+                    ),
+                    label: "Watch"),
+                BottomNavigationBarItem(
+                    icon: Icon(
+                      Icons.textsms_rounded,
+                      color: _selectedIcon(3),
+                    ),
+                    label: "Ask"),
+                BottomNavigationBarItem(
+                    icon: Icon(
+                      Icons.add_circle_outline,
+                      color: _selectedIcon(4),
+                    ),
+                    label: "Get Involved"),
+              ],
+            ),
+            body: PageView(
+              controller: this._pageController,
+              onPageChanged: (i) {
+                setState(() => this._currentIndex = i);
+              },
+              children: [
+                HomePage(),
+                ReadPage(),
+                WatchPage(),
+                GIPage(),
+                JAPage(),
+              ],
+            ),
+          );
   }
 }

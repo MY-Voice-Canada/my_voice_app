@@ -19,7 +19,7 @@ class MVASignIn extends StatelessWidget {
             left: Provider.of<MVProvider>(context).screenWidth / 32,
             child: TextButton(
               onPressed: () => Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => MVASplashScreen())),
+                  MaterialPageRoute(builder: (context) => MVSplashScreen())),
               child: Text(
                 "<",
                 style: TextStyle(
@@ -50,9 +50,8 @@ class MVASignIn extends StatelessWidget {
           ),
           Center(
             child: SizedBox(
-              height:
-                  Provider.of<MVProvider>(context).screenHeightAppbarless /
-                      0.75,
+              height: Provider.of<MVProvider>(context).screenHeightAppbarless /
+                  0.75,
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

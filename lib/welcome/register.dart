@@ -19,7 +19,7 @@ class MVARegister extends StatelessWidget {
             left: Provider.of<MVProvider>(context).screenWidth / 32,
             child: TextButton(
               onPressed: () => Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => MVASplashScreen())),
+                  MaterialPageRoute(builder: (context) => MVSplashScreen())),
               child: Text(
                 "<",
                 style: TextStyle(

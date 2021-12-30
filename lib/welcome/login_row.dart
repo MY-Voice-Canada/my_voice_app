@@ -41,7 +41,7 @@ class LoginRow extends StatelessWidget {
           onPressed: this.registered
               ? () => {}
               : () => Navigator.pushReplacement(context,
-                  MaterialPageRoute(builder: (context) => MVARegister())),
+                  MaterialPageRoute(builder: (context) => MVRegister())),
           child: Text(
             "Register",
             style: TextStyle(

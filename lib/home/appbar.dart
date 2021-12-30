@@ -43,12 +43,8 @@ AppBar getMVAppBar(BuildContext context) {
             Icons.settings,
             color: Colors.white,
           ),
-          onPressed: () async {
-            await MVAuth.signOut();
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => MVSplashScreen()));
-            //Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => MVSettings())),
-          })
+          onPressed: () => Navigator.of(context).pushReplacement(
+              MaterialPageRoute(builder: (context) => MVSettings())))
     ],
   );
 }

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
+import 'package:my_voice_app/models/dummy_article.dart';
 import 'package:my_voice_app/models/user.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +18,15 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final MVUser user = Provider.of<MVUser?>(context)!;
 
-    return Text("Hello, " + user.displayName, style: TextStyle(fontSize: 48));
+    return SingleChildScrollView(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        children: [
+          Text("Hello, " + user.displayName, style: TextStyle(fontSize: 48)),
+          Divider(color: Colors.black,),
+          TempArticle(),
+        ],
+      ),
+    );
   }
 }

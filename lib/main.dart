@@ -47,9 +47,6 @@ class MVWrapper extends StatelessWidget {
 }
 
 class MVProvider extends ChangeNotifier {
-  bool isLoading = false;
-
   late double screenHeightAppbarless;
   late double screenWidth;
-  double buttonFontSize = 40;
 }

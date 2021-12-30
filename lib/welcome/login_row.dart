@@ -8,8 +8,9 @@ import './register.dart';
 class LoginRow extends StatelessWidget {
   bool signedIn;
   bool registered;
+  double? buttonSize;
 
-  LoginRow({required this.signedIn, required this.registered});
+  LoginRow({required this.signedIn, required this.registered, this.buttonSize});
 
   @override
   Widget build(BuildContext context) {
@@ -27,14 +28,14 @@ class LoginRow extends StatelessWidget {
               color: Theme.of(context)
                   .primaryColor
                   .withOpacity(this.signedIn ? 0.5 : 1),
-              fontSize: Provider.of<MVProvider>(context).buttonFontSize,
+              fontSize: buttonSize ?? 24,
             ),
           ),
         ),
         Text(
           " | ",
           style: TextStyle(
-            fontSize: Provider.of<MVProvider>(context).buttonFontSize,
+            fontSize: buttonSize ?? 24,
           ),
         ),
         TextButton(
@@ -48,7 +49,7 @@ class LoginRow extends StatelessWidget {
               color: Theme.of(context)
                   .primaryColor
                   .withOpacity(this.registered ? 0.5 : 1),
-              fontSize: Provider.of<MVProvider>(context).buttonFontSize,
+              fontSize: buttonSize ?? 24,
             ),
           ),
         ),

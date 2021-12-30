@@ -37,6 +37,7 @@ class _MVSplashScreenState extends State<MVSplashScreen> {
                   LoginRow(
                     signedIn: false,
                     registered: false,
+                    buttonSize: 40,
                   ),
                   TextButton(
                       onPressed: () async {

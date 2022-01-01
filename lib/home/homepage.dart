@@ -79,11 +79,12 @@ class _HomePageState extends State<HomePage> {
                     child: Image.asset(
                       "assets/images/article_banner.png",
                       height: 114.0,
+                      fit: BoxFit.fill,
                     ),
                   ),
                 ],
               ),
-              Container(
+              /*Container(
                 height: 750.0,
                 child: ListView.builder(
                   itemCount: widget.snapshot.data?.length,
@@ -108,7 +109,7 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ),
-              ),
+              ),*/
             ]);
     } else
       return MVLoading();

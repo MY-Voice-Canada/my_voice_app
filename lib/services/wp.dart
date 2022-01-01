@@ -8,7 +8,7 @@ class MVWP {
   static Future<List> getAllPosts() async {
     try {
       var response = await http.get(Uri.parse(_baseUrl));
-      print(jsonDecode(response.body));
+      //print("\"${jsonDecode(response.body)[1]["content"]["rendered"]}\"".replaceAll("\n", ""));
       if (response.statusCode == 200)
         return jsonDecode(response.body);
       else

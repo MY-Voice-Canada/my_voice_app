@@ -3,9 +3,13 @@ import 'package:provider/provider.dart';
 
 import '../main.dart';
 import '../welcome/splashscreen.dart';
-import './appbar.dart';
+import '../models/appbar.dart';
 
 class GIPage extends StatefulWidget {
+  final snapshot;
+
+  GIPage({required this.snapshot});
+
   @override
   _GIPageState createState() => _GIPageState();
 }

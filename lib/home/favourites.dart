@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:my_voice_app/models/background_image.dart';
 import 'package:provider/provider.dart';
 
 import '../main.dart';
 import '../welcome/splashscreen.dart';
-import './appbar.dart';
+import '../models/appbar.dart';
 
 class MVFavs extends StatefulWidget {
   @override
@@ -13,10 +14,13 @@ class MVFavs extends StatefulWidget {
 class _MVFavsState extends State<MVFavs> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: getMVAppBar(context),
-      body: Center(
-        child: Text("Favourites"),
+    return MVBackground(
+      child: Scaffold(
+        backgroundColor: Colors.transparent,
+        appBar: getMVAppBar(context),
+        body: Center(
+          child: Text("Favourites"),
+        ),
       ),
     );
   }

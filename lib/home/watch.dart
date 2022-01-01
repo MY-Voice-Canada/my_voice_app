@@ -3,9 +3,13 @@ import 'package:provider/provider.dart';
 
 import '../main.dart';
 import '../welcome/splashscreen.dart';
-import './appbar.dart';
+import '../models/appbar.dart';
 
 class WatchPage extends StatefulWidget {
+  final snapshot;
+
+  WatchPage({required this.snapshot});
+
   @override
   _WatchPageState createState() => _WatchPageState();
 }

@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:my_voice_app/home/home_widget.dart';
 import 'package:my_voice_app/services/auth.dart';
 import 'package:my_voice_app/welcome/splashscreen.dart';
-import './search.dart';
-import './favourites.dart';
-import './settings.dart';
+import '../home/search.dart';
+import '../home/favourites.dart';
+import '../home/settings.dart';
 
 AppBar getMVAppBar(BuildContext context) {
   return AppBar(

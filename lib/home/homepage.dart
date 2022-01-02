@@ -57,7 +57,7 @@ class _HomePageState extends State<HomePage> {
                           child: RichText(
                             text: TextSpan(
                                 style: TextStyle(
-                                    fontSize: 72,
+                                    fontSize: 56,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: "RobotoMono"),
                                 children: [
@@ -68,7 +68,7 @@ class _HomePageState extends State<HomePage> {
                                       text: "\n${user.displayName}",
                                       style: TextStyle(
                                           color:
-                                              Theme.of(context).primaryColor)),
+                                              Theme.of(context).primaryColor, fontSize: 48),),
                                 ]),
                           ),
                         ),

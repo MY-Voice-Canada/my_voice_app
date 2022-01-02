@@ -43,9 +43,8 @@ class _MVRegisterState extends State<MVRegister> {
             body: Stack(
               children: [
                 Positioned(
-                  top: Provider.of<MVProvider>(context).screenHeightAppbarless /
-                      20,
-                  left: Provider.of<MVProvider>(context).screenWidth / 32,
+                  top: Provider.of<MVP>(context).screenHeightAppbarless / 20,
+                  left: Provider.of<MVP>(context).screenWidth / 32,
                   child: TextButton(
                     onPressed: () => Navigator.pushReplacement(
                         context,
@@ -62,10 +61,9 @@ class _MVRegisterState extends State<MVRegister> {
                 ),
                 Center(
                   child: OverflowBox(
-                    maxWidth: Provider.of<MVProvider>(context).screenWidth * 2,
+                    maxWidth: Provider.of<MVP>(context).screenWidth * 2,
                     child: Container(
-                      width:
-                          Provider.of<MVProvider>(context).screenWidth * 1.23,
+                      width: Provider.of<MVP>(context).screenWidth * 1.23,
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
                           begin: Alignment.topCenter,
@@ -82,21 +80,18 @@ class _MVRegisterState extends State<MVRegister> {
                 ),
                 Center(
                   child: SizedBox(
-                    height: Provider.of<MVProvider>(context)
-                            .screenHeightAppbarless /
-                        0.75,
+                    height:
+                        Provider.of<MVP>(context).screenHeightAppbarless / 0.75,
                     child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           LoginRow(signedIn: false, registered: true),
                           SizedBox(height: 20.0),
                           SizedBox(
-                            height: Provider.of<MVProvider>(context)
+                            height: Provider.of<MVP>(context)
                                     .screenHeightAppbarless /
                                 2.5,
-                            width:
-                                Provider.of<MVProvider>(context).screenWidth *
-                                    0.90,
+                            width: Provider.of<MVP>(context).screenWidth * 0.90,
                             child: Form(
                               key: _formKey,
                               child: Column(
@@ -151,9 +146,9 @@ class _MVRegisterState extends State<MVRegister> {
                                     height: 10.0,
                                   ),
                                   Container(
-                                    width: Provider.of<MVProvider>(context)
-                                            .screenWidth *
-                                        0.90,
+                                    width:
+                                        Provider.of<MVP>(context).screenWidth *
+                                            0.90,
                                     height: 60.0,
                                     decoration: BoxDecoration(
                                       color: HexColor("FCB831"),

@@ -13,7 +13,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(ChangeNotifierProvider(
-    create: (_) => MVProvider(),
+    create: (_) => MVP(),
     child: MVApp(),
   ));
 }
@@ -46,7 +46,15 @@ class MVWrapper extends StatelessWidget {
   }
 }
 
-class MVProvider extends ChangeNotifier {
+class MVP extends ChangeNotifier {
+  //For ReadPage
+  bool readView = false;
+  dynamic readImage;
+  dynamic readTitle;
+  dynamic readContent;
+  dynamic readAuthor;
+  dynamic readCategory;
+
   late double screenHeightAppbarless;
   late double screenWidth;
 }

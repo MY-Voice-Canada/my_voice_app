@@ -32,8 +32,8 @@ class _RState extends State<RForm> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: Provider.of<MVProvider>(context).screenHeightAppbarless / 2.5,
-      width: Provider.of<MVProvider>(context).screenWidth * 0.90,
+      height: Provider.of<MVP>(context).screenHeightAppbarless / 2.5,
+      width: Provider.of<MVP>(context).screenWidth * 0.90,
       child: Form(
         key: _formKey,
         child: Column(
@@ -79,7 +79,7 @@ class _RState extends State<RForm> {
               height: 10.0,
             ),
             Container(
-              width: Provider.of<MVProvider>(context).screenWidth * 0.90,
+              width: Provider.of<MVP>(context).screenWidth * 0.90,
               height: 60.0,
               decoration: BoxDecoration(
                 color: HexColor("FCB831"),

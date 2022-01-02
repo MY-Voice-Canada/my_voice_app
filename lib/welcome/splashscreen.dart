@@ -18,22 +18,21 @@ class _MVSplashScreenState extends State<MVSplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Provider.of<MVProvider>(context).screenHeightAppbarless =
+    Provider.of<MVP>(context).screenHeightAppbarless =
         (MediaQuery.of(context).size.height -
             MediaQuery.of(context).padding.top);
-    Provider.of<MVProvider>(context).screenWidth =
-        MediaQuery.of(context).size.width;
+    Provider.of<MVP>(context).screenWidth = MediaQuery.of(context).size.width;
 
     return _isLoading
         ? MVLoading()
         : Scaffold(
             body: Center(
                 child: Container(
-              height: Provider.of<MVProvider>(context).screenHeightAppbarless,
+              height: Provider.of<MVP>(context).screenHeightAppbarless,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
-                  Image.asset("assets/images/new_logo.png"),
+                  Image.asset("assets/images/logo.png"),
                   LoginRow(
                     signedIn: false,
                     registered: false,

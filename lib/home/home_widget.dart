@@ -48,6 +48,11 @@ class _MVHomeState extends State<MVHome> {
     return this._currentIndex == i ? Colors.white : Colors.grey[800];
   }
 
+  void changePage(int i) {
+    _pageController.animateToPage(i,
+        duration: Duration(milliseconds: 200), curve: Curves.easeIn);
+  }
+
   @override
   Widget build(BuildContext context) {
     final MVUser? user = Provider.of<MVUser?>(context);
@@ -107,6 +112,7 @@ class _MVHomeState extends State<MVHome> {
                       children: [
                         HomePage(
                           snapshot: snapshot,
+                          changePage: changePage,
                         ),
                         ReadPage(
                           snapshot: snapshot,

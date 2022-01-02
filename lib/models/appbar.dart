@@ -14,7 +14,7 @@ AppBar getMVAppBar(BuildContext context) {
           context, MaterialPageRoute(builder: (context) => MVHome())),
       child: Row(
         children: [
-          Image.asset("./assets/images/new_logo.png", height: 50),
+          Image.asset("./assets/images/logo.png", height: 50),
           SizedBox(width: 10),
           Text("MY Voice Canada"),
         ],

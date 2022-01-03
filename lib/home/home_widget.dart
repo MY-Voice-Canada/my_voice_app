@@ -25,7 +25,7 @@ class _MVHomeState extends State<MVHome> {
   @override
   void initState() {
     super.initState();
-    this._pageController = PageController();
+    _pageController = PageController();
   }
 
   @override
@@ -36,16 +36,15 @@ class _MVHomeState extends State<MVHome> {
 
   void _onBottomNavChange(int i) {
     setState(() {
-      this._currentIndex = i;
+      _currentIndex = i;
 
       _pageController.animateToPage(i,
           duration: Duration(milliseconds: 500), curve: Curves.easeOut);
-      //print(this._currentIndex);
     });
   }
 
   Color? _selectedIcon(int i) {
-    return this._currentIndex == i ? Colors.white : Colors.grey[800];
+    return _currentIndex == i ? Colors.white : Colors.grey[800];
   }
 
   void changePage(int i) {
@@ -66,11 +65,11 @@ class _MVHomeState extends State<MVHome> {
                     backgroundColor: Colors.transparent,
                     appBar: getMVAppBar(context),
                     bottomNavigationBar: BottomNavigationBar(
-                      onTap: this._onBottomNavChange,
+                      onTap: _onBottomNavChange,
                       type: BottomNavigationBarType.fixed,
                       backgroundColor: Theme.of(context).primaryColor,
                       //selectedLabelStyle: TextStyle(color: Colors.white),
-                      currentIndex: this._currentIndex,
+                      currentIndex: _currentIndex,
                       items: [
                         BottomNavigationBarItem(
                             icon: Icon(
@@ -105,9 +104,9 @@ class _MVHomeState extends State<MVHome> {
                       ],
                     ),
                     body: PageView(
-                      controller: this._pageController,
+                      controller: _pageController,
                       onPageChanged: (i) {
-                        setState(() => this._currentIndex = i);
+                        setState(() => _currentIndex = i);
                       },
                       children: [
                         HomePage(

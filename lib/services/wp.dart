@@ -27,7 +27,6 @@ class MVWP {
 
       List<dynamic> posts = List.filled(responses.length, dynamic);
 
-      print("ALL RESPONSES RECEIVED");
       for (int i = 0; i < responses.length; i++) {
         if (responses[i].statusCode == 200) {
           posts[i] = jsonDecode(responses[i].body);

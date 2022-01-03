@@ -52,102 +52,96 @@ class _ReadPageState extends State<ReadPage> {
         ),
       );
     } else if (widget.snapshot.hasData) {
-      return widget.snapshot.data?.length == 0
-          ? Center(child: Text("No articles available at the moment."))
-          : Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              SizedBox(
-                height: 10.0,
-              ),
-              Card(
-                margin: EdgeInsets.symmetric(horizontal: 20.0),
-                child: Container(
-                  padding: EdgeInsets.only(left: 10.0),
-                  alignment: Alignment.centerLeft,
-                  width: double.infinity,
-                  height: 240.0,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("assets/images/home_header.png"),
-                        fit: BoxFit.fill),
-                  ),
-                  child: Padding(
-                    padding: EdgeInsets.symmetric(vertical: 24.0),
-                    child: RichText(
-                      text: TextSpan(
+      return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+        SizedBox(
+          height: 10.0,
+        ),
+        Card(
+          margin: EdgeInsets.symmetric(horizontal: 20.0),
+          child: Container(
+            padding: EdgeInsets.only(left: 10.0),
+            alignment: Alignment.centerLeft,
+            width: double.infinity,
+            height: 240.0,
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("assets/images/home_header.png"),
+                  fit: BoxFit.fill),
+            ),
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 24.0),
+              child: RichText(
+                text: TextSpan(
+                    style: TextStyle(
+                        fontSize: 56,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "RobotoMono"),
+                    children: [
+                      TextSpan(
+                          text: "Read Our",
+                          style: TextStyle(color: Colors.black)),
+                      TextSpan(
+                          text: "\nYouth-crafted Articles",
                           style: TextStyle(
-                              fontSize: 56,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: "RobotoMono"),
-                          children: [
-                            TextSpan(
-                                text: "Read Our",
-                                style: TextStyle(color: Colors.black)),
-                            TextSpan(
-                                text: "\nYouth-crafted Articles",
-                                style: TextStyle(
-                                    color: Theme.of(context).primaryColor,
-                                    fontSize: 36)),
-                          ]),
-                    ),
-                  ),
-                ),
+                              color: Theme.of(context).primaryColor,
+                              fontSize: 36)),
+                    ]),
               ),
-              SizedBox(
-                height: 20.0,
-              ),
-              Expanded(
-                child: ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: widget.snapshot.data.length,
-                    itemBuilder: (context, i) => i != 0
-                        ? GestureDetector(
-                            onTap: () {
-                              Provider.of<MVP>(context, listen: false)
-                                  .readView = true;
-                              Provider.of<MVP>(context, listen: false)
-                                  .readImage = widget.snapshot.data[i]
-                                      ["_embedded"]["wp:featuredmedia"][0]
-                                  ["source_url"];
-                              Provider.of<MVP>(context, listen: false)
-                                      .readTitle =
-                                  widget.snapshot.data[i]["title"]["rendered"];
-                              Provider.of<MVP>(context, listen: false)
-                                      .readContent =
-                                  widget.snapshot.data[i]["content"]
-                                      ["rendered"];
-                              setState(() {});
-                            },
-                            child: Card(
-                              child: ListTile(
-                                  leading: SizedBox(
-                                    width: 150.0,
-                                    child: Image.network(
-                                        widget.snapshot.data[i]["_embedded"]
-                                                ["wp:featuredmedia"][0]
-                                            ["source_url"],
-                                        fit: BoxFit.fill),
-                                  ),
-                                  title: Html(
-                                      data: "<h2>" +
-                                          widget.snapshot
-                                              .data[i]["title"]["rendered"]
-                                              .toString() +
-                                          "</h2>"),
-                                  subtitle: Html(
-                                      data: widget.snapshot
-                                              .data[i]["content"]["rendered"]
-                                              .toString()
-                                              .replaceAll("\n", "")
-                                              .replaceAll("<p>", "")
-                                              .replaceAll("</p>", "")
-                                              .replaceAll("&nbsp;", "")
-                                              .substring(0, 100) +
-                                          "...")),
+            ),
+          ),
+        ),
+        SizedBox(
+          height: 20.0,
+        ),
+        Expanded(
+          child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: widget.snapshot.data.allPosts.length,
+              itemBuilder: (context, i) => i != 0
+                  ? GestureDetector(
+                      onTap: () {
+                        Provider.of<MVP>(context, listen: false).readView =
+                            true;
+                        Provider.of<MVP>(context, listen: false).readImage =
+                            widget.snapshot.data.allPosts[i]["_embedded"]
+                                ["wp:featuredmedia"][0]["source_url"];
+                        Provider.of<MVP>(context, listen: false).readTitle =
+                            widget.snapshot.data.allPosts[i]["title"]["rendered"];
+                        Provider.of<MVP>(context, listen: false).readContent =
+                            widget.snapshot.data.allPosts[i]["content"]["rendered"];
+                        setState(() {});
+                      },
+                      child: Card(
+                        child: ListTile(
+                            leading: SizedBox(
+                              width: 150.0,
+                              child: Image.network(
+                                  widget.snapshot.data.allPosts[i]["_embedded"]
+                                      ["wp:featuredmedia"][0]["source_url"],
+                                  fit: BoxFit.fill),
                             ),
-                          )
-                        : SizedBox.shrink()),
-              ),
-            ]);
+                            title: Html(
+                                data: "<h2>" +
+                                    widget.snapshot.data
+                                        .allPosts[i]["title"]["rendered"]
+                                        .toString() +
+                                    "</h2>"),
+                            subtitle: Html(
+                                data: widget
+                                        .snapshot.data
+                                        .allPosts[i]["content"]["rendered"]
+                                        .toString()
+                                        .replaceAll("\n", "")
+                                        .replaceAll("<p>", "")
+                                        .replaceAll("</p>", "")
+                                        .replaceAll("&nbsp;", "")
+                                        .substring(0, 100) +
+                                    "...")),
+                      ),
+                    )
+                  : SizedBox.shrink()),
+        ),
+      ]);
     } else
       return MVLoading();
   }

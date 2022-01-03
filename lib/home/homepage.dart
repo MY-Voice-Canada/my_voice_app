@@ -30,99 +30,97 @@ class _HomePageState extends State<HomePage> {
     final MVUser user = Provider.of<MVUser?>(context)!;
 
     if (widget.snapshot.hasData) {
-      return widget.snapshot.data?.length == 0
-          ? Center(child: Text("No posts available at the moment."))
-          : SingleChildScrollView(
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 10.0,
-                    ),
-                    Card(
-                      margin: EdgeInsets.symmetric(horizontal: 20.0),
-                      child: Container(
-                        padding: EdgeInsets.only(left: 10.0),
-                        alignment: Alignment.centerLeft,
-                        width: double.infinity,
-                        height: 240.0,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image:
-                                  AssetImage("assets/images/home_header.png"),
-                              fit: BoxFit.fill),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 24.0),
-                          child: RichText(
-                            text: TextSpan(
-                                style: TextStyle(
-                                    fontSize: 56,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: "RobotoMono"),
-                                children: [
-                                  TextSpan(
-                                      text: "Welcome,",
-                                      style: TextStyle(color: Colors.black)),
-                                  TextSpan(
-                                      text: "\n${user.displayName}",
-                                      style: TextStyle(
-                                          color:
-                                              Theme.of(context).primaryColor, fontSize: 48),),
-                                ]),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    ArticleSubTab(
-                      data: widget.snapshot.data,
-                      changePage: widget.changePage,
-                    ),
-                    SizedBox(height: 30.0),
-                    VideoSubTab(
-                      data: widget.snapshot.data,
-                      changePage: widget.changePage,
-                    ),
-                    SizedBox(height: 660.0),
-                    GestureDetector(
-                      onTap: () {
-                        widget.changePage(4);
-                      },
-                      child: Row(
-                        children: [
-                          Expanded(
-                            flex: 3,
-                            child: Container(
-                              height: 114.0,
-                              color: Theme.of(context).primaryColor,
-                              child: Center(
-                                child: Text(
-                                  "Events",
+      return SingleChildScrollView(
+        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          SizedBox(
+            height: 10.0,
+          ),
+          Card(
+            margin: EdgeInsets.symmetric(horizontal: 20.0),
+            child: Column(children: [
+              /*Container(
+                          padding: EdgeInsets.only(left: 10.0),
+                          height: 120.0,
+                          child: Padding(
+                            padding: EdgeInsets.symmetric(vertical: 24.0),
+                            child: RichText(
+                              text: TextSpan(
                                   style: TextStyle(
+                                      fontSize: 54,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.white,
-                                      fontSize: 30),
-                                  textAlign: TextAlign.center,
-                                ),
-                              ),
+                                      fontFamily: "RobotoMono"),
+                                  children: [
+                                    TextSpan(
+                                        text: "Welcome, ",
+                                        style: TextStyle(color: Colors.black)),
+                                    TextSpan(
+                                      text: "${user.displayName}",
+                                      style: TextStyle(
+                                        color: Theme.of(context)
+                                            .secondaryHeaderColor,
+                                      ),
+                                    ),
+                                  ]),
                             ),
                           ),
-                          Expanded(
-                            flex: 7,
-                            child: Image.asset(
-                              "assets/images/event_banner.png",
-                              height: 114.0,
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                        ],
+                        ),*/
+              Image.asset(
+                "assets/images/magazine_banner.png",
+                height: 300.0,
+                width: Provider.of<MVP>(context).screenWidth,
+                fit: BoxFit.contain,
+              )
+            ]),
+          ),
+          SizedBox(
+            height: 30.0,
+          ),
+          ArticleSubTab(
+            data: widget.snapshot.data.allPosts,
+            changePage: widget.changePage,
+          ),
+          SizedBox(height: 30.0),
+          VideoSubTab(
+            data: widget.snapshot.data.allPosts,
+            changePage: widget.changePage,
+          ),
+          SizedBox(height: 660.0),
+          GestureDetector(
+            onTap: () {
+              widget.changePage(4);
+            },
+            child: Row(
+              children: [
+                Expanded(
+                  flex: 3,
+                  child: Container(
+                    height: 114.0,
+                    color: Theme.of(context).primaryColor,
+                    child: Center(
+                      child: Text(
+                        "Events",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            fontSize: 30),
+                        textAlign: TextAlign.center,
                       ),
                     ),
-                  ]),
-            );
+                  ),
+                ),
+                Expanded(
+                  flex: 7,
+                  child: Image.asset(
+                    "assets/images/event_banner.png",
+                    height: 114.0,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ]),
+      );
     } else
       return MVLoading();
   }

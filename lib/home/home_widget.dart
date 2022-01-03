@@ -59,8 +59,8 @@ class _MVHomeState extends State<MVHome> {
 
     return user == null
         ? SizedBox.shrink()
-        : FutureBuilder<List>(
-            future: MVWP.getAllPosts(),
+        : FutureBuilder<MVWPContent>(
+            future: MVWP.getContent(),
             builder: (context, snapshot) => MVBackground(
                   child: Scaffold(
                     backgroundColor: Colors.transparent,
@@ -98,10 +98,10 @@ class _MVHomeState extends State<MVHome> {
                             label: "Ask"),
                         BottomNavigationBarItem(
                             icon: Icon(
-                              Icons.add_circle_outline,
+                              Icons.calendar_today_rounded,
                               color: _selectedIcon(4),
                             ),
-                            label: "Get Involved"),
+                            label: "Join"),
                       ],
                     ),
                     body: PageView(

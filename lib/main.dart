@@ -29,6 +29,7 @@ class MVApp extends StatelessWidget {
         title: "MY Voice App",
         theme: ThemeData(
           primaryColor: HexColor("1BCFC9"),
+          secondaryHeaderColor: HexColor("F5416C"),
           fontFamily: "RobotoMono",
         ),
         home: MVWrapper(),

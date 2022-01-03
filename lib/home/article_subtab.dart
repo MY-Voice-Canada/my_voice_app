@@ -83,10 +83,22 @@ class ArticleSubTab extends StatelessWidget {
                       fit: BoxFit.fill,
                     ),
                   ),
+                  Text(data[0]["_embedded"]["wp:term"][0][0]["name"]
+                      .toString()
+                      .replaceAll("&amp;", "&")),
                   Html(
                       data: "<h1>" +
                           data[0]["title"]["rendered"].toString() +
                           "</h1>"),
+                  Html(
+                      data: data[0]["content"]["rendered"]
+                              .toString()
+                              .replaceAll("\n", "")
+                              .replaceAll("<p>", "")
+                              .replaceAll("</p>", "")
+                              .replaceAll("&nbsp;", "")
+                              .substring(0, 230) +
+                          "...")
                 ],
               ),
             ),

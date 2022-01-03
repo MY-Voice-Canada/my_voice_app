@@ -28,7 +28,7 @@ class CategorySubTab extends StatelessWidget {
               fontSize: 24.0),
           SizedBox(height: 20.0),
           SizedBox(
-            height: 575.0,
+            height: 875.0,
             child: GridView.builder(
               physics: NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
@@ -37,7 +37,7 @@ class CategorySubTab extends StatelessWidget {
                 crossAxisSpacing: 20,
                 mainAxisSpacing: 20,
               ),
-              itemCount: 4,
+              itemCount: 6,
               itemBuilder: (context, i) => GestureDetector(
                 onTap: () {
                   Provider.of<MVP>(context, listen: false).enableReadView(data[i]);

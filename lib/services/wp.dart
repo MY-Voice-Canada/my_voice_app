@@ -34,6 +34,7 @@ class MVWP {
           return Future.error("Server error");
       }
 
+      print("Synced with website");
       return MVWPContent(
         allPosts: posts[0],
         cwPosts: posts[1],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:my_voice_app/models/category_text.dart';
 import 'package:my_voice_app/models/loading.dart';
 import 'package:provider/provider.dart';
 
@@ -24,8 +25,10 @@ class _ReadPageState extends State<ReadPage> {
         child: Card(
           margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Container(
+              ClipRRect(
+                borderRadius: BorderRadius.circular(10.0),
                 child: Image.network(
                   Provider.of<MVP>(context).readImage,
                   height: 250.0,
@@ -33,11 +36,24 @@ class _ReadPageState extends State<ReadPage> {
                   fit: BoxFit.fill,
                 ),
               ),
+              SizedBox(
+                height: 15.0,
+              ),
+              MVCategoryText(Provider.of<MVP>(context).readCategory),
+              SizedBox(height: 5.0,),
               Html(
+                  style: {
+                    "h1": Style(fontSize: FontSize(56.0)),
+                  },
                   data: "<h1>" +
                       Provider.of<MVP>(context).readTitle.toString() +
                       "</h1>"),
-              Html(data: Provider.of<MVP>(context).readContent.toString()),
+              Html(
+                style: {
+                  "body": Style(fontSize: FontSize(20.0)),
+                },
+                data: Provider.of<MVP>(context).readContent.toString(),
+              ),
               SizedBox(height: 100.0),
               ElevatedButton(
                   onPressed: () {
@@ -106,29 +122,43 @@ class _ReadPageState extends State<ReadPage> {
                             widget.snapshot.data.allPosts[i]["_embedded"]
                                 ["wp:featuredmedia"][0]["source_url"];
                         Provider.of<MVP>(context, listen: false).readTitle =
-                            widget.snapshot.data.allPosts[i]["title"]["rendered"];
+                            widget.snapshot.data.allPosts[i]["title"]
+                                ["rendered"];
                         Provider.of<MVP>(context, listen: false).readContent =
-                            widget.snapshot.data.allPosts[i]["content"]["rendered"];
+                            widget.snapshot.data.allPosts[i]["content"]
+                                ["rendered"];
+                        Provider.of<MVP>(context, listen: false).readCategory =
+                            widget.snapshot.data.allPosts[i]["_embedded"]
+                                ["wp:term"][0][0]["name"];
                         setState(() {});
                       },
                       child: Card(
                         child: ListTile(
                             leading: SizedBox(
                               width: 150.0,
-                              child: Image.network(
-                                  widget.snapshot.data.allPosts[i]["_embedded"]
-                                      ["wp:featuredmedia"][0]["source_url"],
-                                  fit: BoxFit.fill),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(5.0),
+                                child: Image.network(
+                                    widget.snapshot.data.allPosts[i]
+                                            ["_embedded"]["wp:featuredmedia"][0]
+                                        ["source_url"],
+                                    fit: BoxFit.fill),
+                              ),
                             ),
                             title: Html(
+                                style: {
+                                  "body": Style(fontSize: FontSize(32.0)),
+                                },
                                 data: "<h2>" +
                                     widget.snapshot.data
                                         .allPosts[i]["title"]["rendered"]
                                         .toString() +
                                     "</h2>"),
                             subtitle: Html(
-                                data: widget
-                                        .snapshot.data
+                                style: {
+                                  "body": Style(fontSize: FontSize(18.0)),
+                                },
+                                data: widget.snapshot.data
                                         .allPosts[i]["content"]["rendered"]
                                         .toString()
                                         .replaceAll("\n", "")

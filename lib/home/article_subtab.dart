@@ -72,6 +72,8 @@ class ArticleSubTab extends StatelessWidget {
                     data[0]["title"]["rendered"];
                 Provider.of<MVP>(context, listen: false).readContent =
                     data[0]["content"]["rendered"];
+                Provider.of<MVP>(context, listen: false).readCategory =
+                    data[0]["_embedded"]["wp:term"][0][0]["name"];
                 changePage(1);
               },
               child: Column(
@@ -135,6 +137,9 @@ class ArticleSubTab extends StatelessWidget {
                                 data[i]["title"]["rendered"];
                             Provider.of<MVP>(context, listen: false)
                                 .readContent = data[i]["content"]["rendered"];
+                            Provider.of<MVP>(context, listen: false)
+                                    .readCategory =
+                                data[i]["_embedded"]["wp:term"][0][0]["name"];
                             changePage(1);
                           },
                           child: SizedBox(

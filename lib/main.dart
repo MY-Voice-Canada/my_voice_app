@@ -30,7 +30,7 @@ class MVApp extends StatelessWidget {
         theme: ThemeData(
           primaryColor: HexColor("1BCFC9"),
           secondaryHeaderColor: HexColor("F5416C"),
-          fontFamily: "RobotoMono",
+          fontFamily: "Raleway",
         ),
         home: MVWrapper(),
       ),

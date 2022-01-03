@@ -26,6 +26,7 @@ dependencies:
   provider: ^6.0.0
   hexcolor: ^2.0.5
   cupertino_icons: ^1.0.2
+  auto_size_text: ^3.0.0
   firebase_auth: ^3.3.4
   cloud_firestore: ^3.1.5
   flutter_phoenix: ^1.0.0
@@ -62,13 +63,19 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
+    - family: Raleway
+      fonts:
+        - asset: assets/fonts/Raleway-Regular.ttf
+        - asset: assets/fonts/Raleway-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Raleway-Italic.ttf
+          style: italic
+
     - family: RobotoMono
       fonts:
         - asset: assets/fonts/RobotoMono-Medium.ttf
         - asset: assets/fonts/RobotoMono-Bold.ttf
           weight: 700
-        - asset: assets/fonts/RobotoMono-ExtraLight.ttf
-          weight: 200
         - asset: assets/fonts/RobotoMono-Italic.ttf
           style: italic
 

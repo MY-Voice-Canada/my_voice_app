@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class MVBackground extends StatelessWidget {
-  final child;
+  final Widget child;
 
-  MVBackground({this.child});
+  MVBackground({required this.child});
 
   @override
   Widget build(BuildContext context) {
@@ -12,8 +12,7 @@ class MVBackground extends StatelessWidget {
         decoration: BoxDecoration(
             image: DecorationImage(
                 colorFilter: ColorFilter.mode(
-                    Colors.grey.withOpacity(0.2),
-                    BlendMode.saturation),
+                    Colors.grey.withOpacity(0.2), BlendMode.saturation),
                 repeat: ImageRepeat.repeat,
                 image: AssetImage("assets/images/sprinkles_background.png"))));
   }

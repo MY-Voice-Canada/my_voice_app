@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:my_voice_app/models/category_text.dart';
 import 'package:provider/provider.dart';
 
 import '../main.dart';
@@ -74,16 +75,25 @@ class ArticleSubTab extends StatelessWidget {
                 changePage(1);
               },
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
-                    child: Image.network(
-                      data[0]["_embedded"]["wp:featuredmedia"][0]["source_url"],
-                      height: 250.0,
-                      width: Provider.of<MVP>(context).screenWidth,
-                      fit: BoxFit.fill,
+                    margin: EdgeInsets.symmetric(horizontal: 5.0),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(12.0),
+                      child: Image.network(
+                        data[0]["_embedded"]["wp:featuredmedia"][0]
+                            ["source_url"],
+                        height: 250.0,
+                        width: Provider.of<MVP>(context).screenWidth,
+                        fit: BoxFit.fill,
+                      ),
                     ),
                   ),
-                  Text(data[0]["_embedded"]["wp:term"][0][0]["name"]
+                  SizedBox(
+                    height: 15.0,
+                  ),
+                  MVCategoryText(data[0]["_embedded"]["wp:term"][0][0]["name"]
                       .toString()
                       .replaceAll("&amp;", "&")),
                   Html(
@@ -91,6 +101,11 @@ class ArticleSubTab extends StatelessWidget {
                           data[0]["title"]["rendered"].toString() +
                           "</h1>"),
                   Html(
+                      style: {
+                        "body": Style(
+                          fontSize: FontSize(18.0),
+                        )
+                      },
                       data: data[0]["content"]["rendered"]
                               .toString()
                               .replaceAll("\n", "")
@@ -125,31 +140,62 @@ class ArticleSubTab extends StatelessWidget {
                           child: SizedBox(
                             width: 250.0,
                             child: Card(
-                              child: ListTile(
-                                  title: SizedBox(
+                              clipBehavior: Clip.antiAlias,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  SizedBox(
                                     width: 250.0,
                                     height: 150.0,
-                                    child: Image.network(
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.circular(10.0),
+                                      child: Image.network(
                                         data[i]["_embedded"]["wp:featuredmedia"]
                                             [0]["source_url"],
-                                        fit: BoxFit.fill),
+                                        fit: BoxFit.fill,
+                                      ),
+                                    ),
                                   ),
-                                  subtitle: data[i]["title"]["rendered"]
-                                              .toString()
-                                              .length >
-                                          50
-                                      ? Html(
-                                          data: "<h2>" +
-                                              data[i]["title"]["rendered"]
+                                  SizedBox(
+                                    height: 10.0,
+                                  ),
+                                  MVCategoryText(data[i]["_embedded"]["wp:term"]
+                                      [0][0]["name"]),
+                                  ClipRect(
+                                    child: SizedBox(
+                                      height: 100.0,
+                                      child: data[i]["title"]["rendered"]
                                                   .toString()
-                                                  .substring(0, 47) +
-                                              "..."
-                                                  "</h2>")
-                                      : Html(
-                                          data: "<h2>" +
-                                              data[i]["title"]["rendered"]
-                                                  .toString() +
-                                              "</h2>")),
+                                                  .length >
+                                              50
+                                          ? Html(
+                                              style: {
+                                                  "body": Style(
+                                                    margin: EdgeInsets.zero,
+                                                    padding: EdgeInsets.zero,
+                                                  )
+                                                },
+                                              data: "<h2>" +
+                                                  data[i]["title"]["rendered"]
+                                                      .toString()
+                                                      .substring(0, 47) +
+                                                  "..."
+                                                      "</h2>")
+                                          : Html(
+                                              style: {
+                                                  "body": Style(
+                                                    margin: EdgeInsets.zero,
+                                                    padding: EdgeInsets.zero,
+                                                  )
+                                                },
+                                              data: "<h2>" +
+                                                  data[i]["title"]["rendered"]
+                                                      .toString() +
+                                                  "</h2>"),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         )

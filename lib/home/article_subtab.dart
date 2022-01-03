@@ -19,39 +19,34 @@ class ArticleSubTab extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          GestureDetector(
-            onTap: () {
-              changePage(1);
-            },
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 3,
-                  child: Container(
-                    height: 114.0,
-                    color: HexColor("FF3E62"),
-                    child: Center(
-                      child: Text(
-                        "Articles",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 30),
-                        textAlign: TextAlign.center,
-                      ),
+          Row(
+            children: [
+              Expanded(
+                flex: 3,
+                child: Container(
+                  height: 114.0,
+                  color: HexColor("FF3E62"),
+                  child: Center(
+                    child: Text(
+                      "Articles",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontSize: 30),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),
-                Expanded(
-                  flex: 7,
-                  child: Image.asset(
-                    "assets/images/article_banner.png",
-                    height: 114.0,
-                    fit: BoxFit.fill,
-                  ),
+              ),
+              Expanded(
+                flex: 7,
+                child: Image.asset(
+                  "assets/images/article_banner.png",
+                  height: 114.0,
+                  fit: BoxFit.fill,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
           Container(
             height: 10.0,

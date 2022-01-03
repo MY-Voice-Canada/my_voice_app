@@ -38,32 +38,6 @@ class _HomePageState extends State<HomePage> {
           Card(
             margin: EdgeInsets.symmetric(horizontal: 20.0),
             child: Column(children: [
-              /*Container(
-                          padding: EdgeInsets.only(left: 10.0),
-                          height: 120.0,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(vertical: 24.0),
-                            child: RichText(
-                              text: TextSpan(
-                                  style: TextStyle(
-                                      fontSize: 54,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: "RobotoMono"),
-                                  children: [
-                                    TextSpan(
-                                        text: "Welcome, ",
-                                        style: TextStyle(color: Colors.black)),
-                                    TextSpan(
-                                      text: "${user.displayName}",
-                                      style: TextStyle(
-                                        color: Theme.of(context)
-                                            .secondaryHeaderColor,
-                                      ),
-                                    ),
-                                  ]),
-                            ),
-                          ),
-                        ),*/
               Image.asset(
                 "assets/images/magazine_banner.png",
                 height: 300.0,
@@ -85,39 +59,34 @@ class _HomePageState extends State<HomePage> {
             changePage: widget.changePage,
           ),
           SizedBox(height: 660.0),
-          GestureDetector(
-            onTap: () {
-              widget.changePage(4);
-            },
-            child: Row(
-              children: [
-                Expanded(
-                  flex: 3,
-                  child: Container(
-                    height: 114.0,
-                    color: Theme.of(context).primaryColor,
-                    child: Center(
-                      child: Text(
-                        "Events",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            fontSize: 30),
-                        textAlign: TextAlign.center,
-                      ),
+          Row(
+            children: [
+              Expanded(
+                flex: 3,
+                child: Container(
+                  height: 114.0,
+                  color: Theme.of(context).primaryColor,
+                  child: Center(
+                    child: Text(
+                      "Events",
+                      style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                          fontSize: 30),
+                      textAlign: TextAlign.center,
                     ),
                   ),
                 ),
-                Expanded(
-                  flex: 7,
-                  child: Image.asset(
-                    "assets/images/event_banner.png",
-                    height: 114.0,
-                    fit: BoxFit.fill,
-                  ),
+              ),
+              Expanded(
+                flex: 7,
+                child: Image.asset(
+                  "assets/images/event_banner.png",
+                  height: 114.0,
+                  fit: BoxFit.fill,
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ]),
       );

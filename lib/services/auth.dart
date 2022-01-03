@@ -22,6 +22,7 @@ class MVAuth {
           email: email, password: password);
       User? user = res.user;
       user?.updateDisplayName(name);
+      await user?.sendEmailVerification();
       return _convertMVUser(user);
     } catch (e) {
       print(e.toString());

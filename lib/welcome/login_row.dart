@@ -29,6 +29,7 @@ class LoginRow extends StatelessWidget {
                   .primaryColor
                   .withOpacity(this.signedIn ? 0.5 : 1),
               fontSize: buttonSize ?? 24,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),
@@ -50,6 +51,7 @@ class LoginRow extends StatelessWidget {
                   .primaryColor
                   .withOpacity(this.registered ? 0.5 : 1),
               fontSize: buttonSize ?? 24,
+              fontWeight: FontWeight.bold,
             ),
           ),
         ),

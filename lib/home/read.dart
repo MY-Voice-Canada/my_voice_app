@@ -1,3 +1,5 @@
+import 'package:hexcolor/hexcolor.dart';
+import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:my_voice_app/models/category_text.dart';
@@ -28,6 +30,13 @@ class _ReadPageState extends State<ReadPage> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(
+                height: 5.0,
+              ),
+              MVCategoryText(Provider.of<MVP>(context).readCategory),
+              SizedBox(
+                height: 20.0,
+              ),
               ClipRRect(
                 borderRadius: BorderRadius.circular(10.0),
                 child: Image.network(
@@ -40,28 +49,88 @@ class _ReadPageState extends State<ReadPage> {
               SizedBox(
                 height: 20.0,
               ),
-              MVCategoryText(Provider.of<MVP>(context).readCategory),
               Html(
                   style: {
-                    "h1": Style(fontSize: FontSize(56.0)),
+                    "h1": Style(
+                      fontSize: FontSize(56.0),
+                      margin: EdgeInsets.zero,
+                    ),
                   },
                   data: "<h1>" +
                       Provider.of<MVP>(context).readTitle.toString() +
                       "</h1>"),
+              SizedBox(
+                height: 15.0,
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 10.0),
+                child: Row(
+                  children: [
+                    RichText(
+                      text: TextSpan(
+                        style: TextStyle(
+                          color: Theme.of(context).secondaryHeaderColor,
+                          fontSize: 18.0,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: Provider.of<MVP>(context)
+                                    .readAuthor
+                                    .toString()
+                                    .toUpperCase() +
+                                " " * 15,
+                          ),
+                          TextSpan(
+                            text: DateFormat("MMMM d, y")
+                                .format(Provider.of<MVP>(context).readDate!)
+                                .toUpperCase(),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 20.0,
+              ),
               Html(
                 style: {
-                  "body": Style(fontSize: FontSize(20.0)),
+                  "body": Style(
+                    fontSize: FontSize(20.0),
+                    textAlign: TextAlign.start,
+                  )
                 },
                 data: Provider.of<MVP>(context).readContent.toString(),
               ),
-              SizedBox(height: 100.0),
-              ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      Provider.of<MVP>(context, listen: false).readView = false;
-                    });
-                  },
-                  child: Text("Go Back")),
+              SizedBox(height: 50.0),
+              Center(
+                child: ElevatedButton(
+                    style: ButtonStyle(
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15.0),
+                        ),
+                      ),
+                      backgroundColor: MaterialStateProperty.all(
+                          Theme.of(context).secondaryHeaderColor),
+                      overlayColor:
+                          MaterialStateProperty.all(HexColor("FFBF3B")),
+                    ),
+                    onPressed: () {
+                      setState(() {
+                        Provider.of<MVP>(context, listen: false).readView =
+                            false;
+                      });
+                    },
+                    child: Text(
+                      "Read Something Else",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20.0
+                      ),
+                    )),
+              ),
               SizedBox(height: 20.0),
             ],
           ),
@@ -117,21 +186,36 @@ class _ReadPageState extends State<ReadPage> {
               notifyParent: () => setState(() {}),
               data: widget.snapshot.data.cwPosts,
             ),
+            SizedBox(
+              height: 20.0,
+            ),
             CategorySubTab(
               notifyParent: () => setState(() {}),
               data: widget.snapshot.data.fthPosts,
+            ),
+            SizedBox(
+              height: 20.0,
             ),
             CategorySubTab(
               notifyParent: () => setState(() {}),
               data: widget.snapshot.data.fftPosts,
             ),
+            SizedBox(
+              height: 20.0,
+            ),
             CategorySubTab(
               notifyParent: () => setState(() {}),
               data: widget.snapshot.data.iiPosts,
             ),
+            SizedBox(
+              height: 20.0,
+            ),
             CategorySubTab(
               notifyParent: () => setState(() {}),
               data: widget.snapshot.data.laePosts,
+            ),
+            SizedBox(
+              height: 20.0,
             ),
           ],
         ),

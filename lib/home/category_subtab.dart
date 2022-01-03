@@ -21,8 +21,11 @@ class CategorySubTab extends StatelessWidget {
             thickness: 3.0,
             color: Theme.of(context).secondaryHeaderColor,
           ),
-          SizedBox(height: 10.0,),
-          MVCategoryText(data[0]["_embedded"]["wp:term"][0][0]["name"], fontSize: 24.0),
+          SizedBox(
+            height: 10.0,
+          ),
+          MVCategoryText(data[0]["_embedded"]["wp:term"][0][0]["name"],
+              fontSize: 24.0),
           SizedBox(height: 20.0),
           SizedBox(
             height: 575.0,
@@ -37,15 +40,7 @@ class CategorySubTab extends StatelessWidget {
               itemCount: 4,
               itemBuilder: (context, i) => GestureDetector(
                 onTap: () {
-                  Provider.of<MVP>(context, listen: false).readView = true;
-                  Provider.of<MVP>(context, listen: false).readImage =
-                      data[i]["_embedded"]["wp:featuredmedia"][0]["source_url"];
-                  Provider.of<MVP>(context, listen: false).readTitle =
-                      data[i]["title"]["rendered"];
-                  Provider.of<MVP>(context, listen: false).readContent =
-                      data[i]["content"]["rendered"];
-                  Provider.of<MVP>(context, listen: false).readCategory =
-                      data[i]["_embedded"]["wp:term"][0][0]["name"];
+                  Provider.of<MVP>(context, listen: false).enableReadView(data[i]);
                   notifyParent();
                 },
                 child: Center(
@@ -71,33 +66,33 @@ class CategorySubTab extends StatelessWidget {
                         child: SizedBox(
                           height: 100.0,
                           width: 250.0,
-                          child:
-                              data[i]["title"]["rendered"].toString().length >
-                                      60
-                                  ? Html(
-                                      style: {
-                                          "body": Style(
-                                            margin: EdgeInsets.zero,
-                                            padding: EdgeInsets.zero,
-                                          )
-                                        },
-                                      data: "<h2>" +
-                                          data[i]["title"]["rendered"]
-                                              .toString()
-                                              .substring(0, 60) +
-                                          "..."
-                                              "</h2>")
-                                  : Html(
-                                      style: {
-                                          "body": Style(
-                                            margin: EdgeInsets.zero,
-                                            padding: EdgeInsets.zero,
-                                          )
-                                        },
-                                      data: "<h2>" +
-                                          data[i]["title"]["rendered"]
-                                              .toString() +
-                                          "</h2>"),
+                          child: data[i]["title"]["rendered"]
+                                      .toString()
+                                      .length >
+                                  60
+                              ? Html(
+                                  style: {
+                                      "body": Style(
+                                        margin: EdgeInsets.zero,
+                                        padding: EdgeInsets.zero,
+                                      )
+                                    },
+                                  data: "<h2>" +
+                                      data[i]["title"]["rendered"]
+                                          .toString()
+                                          .substring(0, 60) +
+                                      "..."
+                                          "</h2>")
+                              : Html(
+                                  style: {
+                                      "body": Style(
+                                        margin: EdgeInsets.zero,
+                                        padding: EdgeInsets.zero,
+                                      )
+                                    },
+                                  data: "<h2>" +
+                                      data[i]["title"]["rendered"].toString() +
+                                      "</h2>"),
                         ),
                       ),
                     ],

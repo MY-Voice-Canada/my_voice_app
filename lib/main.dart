@@ -53,8 +53,19 @@ class MVP extends ChangeNotifier {
   dynamic readImage;
   dynamic readTitle;
   dynamic readContent;
-  dynamic readAuthor;
   dynamic readCategory;
+  dynamic readAuthor;
+  DateTime? readDate;
+
+  void enableReadView(dynamic article) {
+    readView = true;
+    readImage = article["_embedded"]["wp:featuredmedia"][0]["source_url"];
+    readTitle = article["title"]["rendered"];
+    readContent = article["content"]["rendered"];
+    readCategory = article["_embedded"]["wp:term"][0][0]["name"];
+    readAuthor = article["_embedded"]["author"][0]["name"];
+    readDate = DateTime.parse(article["date"]);
+  }
 
   late double screenHeightAppbarless;
   late double screenWidth;

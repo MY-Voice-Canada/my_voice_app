@@ -60,15 +60,7 @@ class ArticleSubTab extends StatelessWidget {
           SizedBox(height: 10.0),
           GestureDetector(
             onTap: () {
-              Provider.of<MVP>(context, listen: false).readView = true;
-              Provider.of<MVP>(context, listen: false).readImage =
-                  data[0]["_embedded"]["wp:featuredmedia"][0]["source_url"];
-              Provider.of<MVP>(context, listen: false).readTitle =
-                  data[0]["title"]["rendered"];
-              Provider.of<MVP>(context, listen: false).readContent =
-                  data[0]["content"]["rendered"];
-              Provider.of<MVP>(context, listen: false).readCategory =
-                  data[0]["_embedded"]["wp:term"][0][0]["name"];
+              Provider.of<MVP>(context, listen: false).enableReadView(data[0]);
               changePage(1);
             },
             child: Column(
@@ -118,21 +110,12 @@ class ArticleSubTab extends StatelessWidget {
             height: 300.0,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: data.length,
-              itemBuilder: (context, i) => i != 0 && i <= 10
+              itemCount: 10,
+              itemBuilder: (context, i) => i != 0
                   ? GestureDetector(
                       onTap: () {
-                        Provider.of<MVP>(context, listen: false).readView =
-                            true;
-                        Provider.of<MVP>(context, listen: false).readImage =
-                            data[i]["_embedded"]["wp:featuredmedia"][0]
-                                ["source_url"];
-                        Provider.of<MVP>(context, listen: false).readTitle =
-                            data[i]["title"]["rendered"];
-                        Provider.of<MVP>(context, listen: false).readContent =
-                            data[i]["content"]["rendered"];
-                        Provider.of<MVP>(context, listen: false).readCategory =
-                            data[i]["_embedded"]["wp:term"][0][0]["name"];
+                        Provider.of<MVP>(context, listen: false)
+                            .enableReadView(data[i]);
                         changePage(1);
                       },
                       child: SizedBox(

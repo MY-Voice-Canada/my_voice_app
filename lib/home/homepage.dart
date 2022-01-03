@@ -122,6 +122,6 @@ class _HomePageState extends State<HomePage> {
         ]),
       );
     } else
-      return MVLoading();
+      return MVLoading(message: "Count your blessings while we're loading...");
   }
 }

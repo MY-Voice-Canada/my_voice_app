@@ -48,7 +48,6 @@ class MVWP {
         frnJAs: posts[9],
         giJAs: posts[10],
         lifJAs: posts[11],
-        socJAs: posts[12],
       );
     } catch (e) {
       print(e.toString());
@@ -71,7 +70,6 @@ class MVWPContent {
   final dynamic frnJAs;
   final dynamic giJAs;
   final dynamic lifJAs;
-  final dynamic socJAs;
 
   MVWPContent({
     this.allPosts,
@@ -86,6 +84,5 @@ class MVWPContent {
     this.frnJAs,
     this.giJAs,
     this.lifJAs,
-    this.socJAs,
   });
 }

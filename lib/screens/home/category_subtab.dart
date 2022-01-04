@@ -7,8 +7,9 @@ import 'package:provider/provider.dart';
 class CategorySubTab extends StatelessWidget {
   final Function notifyParent;
   late final dynamic data;
+  final bool? ja;
 
-  CategorySubTab({required this.notifyParent, required this.data});
+  CategorySubTab({required this.notifyParent, required this.data, this.ja});
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +19,13 @@ class CategorySubTab extends StatelessWidget {
         children: [
           Divider(
             thickness: 3.0,
-            color: Theme.of(context).secondaryHeaderColor,
+            color: ja != null? Colors.black : Provider.of(context).secondaryHeaderColor,
           ),
           SizedBox(
             height: 10.0,
           ),
           MVCategoryText(data[0]["_embedded"]["wp:term"][0][0]["name"],
-              fontSize: 24.0),
+              fontSize: 24.0, blackVersion: ja != null? true : null),
           SizedBox(height: 20.0),
           SizedBox(
             height: 875.0,
@@ -39,7 +40,11 @@ class CategorySubTab extends StatelessWidget {
               itemCount: 6,
               itemBuilder: (context, i) => GestureDetector(
                 onTap: () {
-                  Provider.of<MVP>(context, listen: false).enableReadView(data[i]);
+                  ja != null
+                      ? Provider.of<MVP>(context, listen: false)
+                          .enableJAView(data[i])
+                      : Provider.of<MVP>(context, listen: false)
+                          .enableReadView(data[i]);
                   notifyParent();
                 },
                 child: Center(

@@ -10,7 +10,6 @@ import 'package:my_voice_app/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -50,7 +49,26 @@ class MVWrapper extends StatelessWidget {
 }
 
 class MVP extends ChangeNotifier {
-  // For ReadPage:
+  // For JAPage:
+  bool jaView = false;
+  dynamic jaImage;
+  dynamic jaTitle;
+  dynamic jaContent;
+  dynamic jaCategory;
+  dynamic jaAuthor;
+  DateTime? jaDate;
+
+  void enableJAView(dynamic question) {
+    jaView = true;
+    jaImage = question["_embedded"]["wp:featuredmedia"][0]["source_url"];
+    jaTitle = question["title"]["rendered"];
+    jaContent = question["content"]["rendered"];
+    jaCategory = question["_embedded"]["wp:term"][0][0]["name"];
+    jaAuthor = question["_embedded"]["author"][0]["name"];
+    jaDate = DateTime.parse(question["date"]);
+  }
+
+// For ReadPage:
   bool readView = false;
   dynamic readImage;
   dynamic readTitle;

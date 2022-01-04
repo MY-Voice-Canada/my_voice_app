@@ -139,10 +139,10 @@ class _MVHomeState extends State<MVHome> {
                       snapshot: snapshot,
                     ),
                     WatchPage(),
-                    GIPage(
+                    JAPage(
                       snapshot: snapshot,
                     ),
-                    JAPage(
+                    GIPage(
                       snapshot: snapshot,
                     ),
                   ],

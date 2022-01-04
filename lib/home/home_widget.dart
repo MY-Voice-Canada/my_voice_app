@@ -23,7 +23,6 @@ class MVHome extends StatefulWidget {
 class _MVHomeState extends State<MVHome> {
   int _currentIndex = 0;
   late PageController _pageController;
-  Channel? channel;
 
   @override
   void initState() {
@@ -35,9 +34,7 @@ class _MVHomeState extends State<MVHome> {
   _initChannel() async {
     Channel channel =
         await MVYT.instance.fetchChannel(channelId: "UC9szM33a4gomsN0KT7rr6Ag");
-    setState(() {
-      this.channel = channel;
-    });
+    Provider.of<MVP>(context, listen: false).channel = channel;
   }
 
   @override
@@ -73,73 +70,72 @@ class _MVHomeState extends State<MVHome> {
         : FutureBuilder<MVWPContent>(
             future: MVWP.getContent(),
             builder: (context, snapshot) => MVBackground(
-                  child: Scaffold(
-                    backgroundColor: Colors.transparent,
-                    appBar: getMVAppBar(context),
-                    bottomNavigationBar: BottomNavigationBar(
-                      onTap: _onBottomNavChange,
-                      type: BottomNavigationBarType.fixed,
-                      backgroundColor: Theme.of(context).primaryColor,
-                      //selectedLabelStyle: TextStyle(color: Colors.white),
-                      currentIndex: _currentIndex,
-                      items: [
-                        BottomNavigationBarItem(
-                            icon: Icon(
-                              Icons.home,
-                              color: _selectedIcon(0),
-                            ),
-                            label: "Home"),
-                        BottomNavigationBarItem(
-                            icon: Icon(
-                              Icons.menu_book_rounded,
-                              color: _selectedIcon(1),
-                            ),
-                            label: "Read"),
-                        BottomNavigationBarItem(
-                            icon: Icon(
-                              Icons.ondemand_video_rounded,
-                              color: _selectedIcon(2),
-                            ),
-                            label: "Watch"),
-                        BottomNavigationBarItem(
-                            icon: Icon(
-                              Icons.textsms_rounded,
-                              color: _selectedIcon(3),
-                            ),
-                            label: "Ask"),
-                        BottomNavigationBarItem(
-                            icon: Icon(
-                              Icons.calendar_today_rounded,
-                              color: _selectedIcon(4),
-                            ),
-                            label: "Join"),
-                      ],
+              child: Scaffold(
+                backgroundColor: Colors.transparent,
+                appBar: getMVAppBar(context),
+                bottomNavigationBar: BottomNavigationBar(
+                  onTap: _onBottomNavChange,
+                  type: BottomNavigationBarType.fixed,
+                  backgroundColor: Theme.of(context).primaryColor,
+                  //selectedLabelStyle: TextStyle(color: Colors.white),
+                  currentIndex: _currentIndex,
+                  items: [
+                    BottomNavigationBarItem(
+                        icon: Icon(
+                          Icons.home,
+                          color: _selectedIcon(0),
+                        ),
+                        label: "Home"),
+                    BottomNavigationBarItem(
+                        icon: Icon(
+                          Icons.menu_book_rounded,
+                          color: _selectedIcon(1),
+                        ),
+                        label: "Read"),
+                    BottomNavigationBarItem(
+                        icon: Icon(
+                          Icons.ondemand_video_rounded,
+                          color: _selectedIcon(2),
+                        ),
+                        label: "Watch"),
+                    BottomNavigationBarItem(
+                        icon: Icon(
+                          Icons.textsms_rounded,
+                          color: _selectedIcon(3),
+                        ),
+                        label: "Ask"),
+                    BottomNavigationBarItem(
+                        icon: Icon(
+                          Icons.calendar_today_rounded,
+                          color: _selectedIcon(4),
+                        ),
+                        label: "Join"),
+                  ],
+                ),
+                body: PageView(
+                  controller: _pageController,
+                  onPageChanged: (i) {
+                    setState(() => _currentIndex = i);
+                  },
+                  children: [
+                    HomePage(
+                      snapshot: snapshot,
+                      changePage: changePage,
                     ),
-                    body: PageView(
-                      controller: _pageController,
-                      onPageChanged: (i) {
-                        setState(() => _currentIndex = i);
-                      },
-                      children: [
-                        HomePage(
-                          snapshot: snapshot,
-                          changePage: changePage,
-                        ),
-                        ReadPage(
-                          snapshot: snapshot,
-                        ),
-                        WatchPage(
-                          channel: channel,
-                        ),
-                        GIPage(
-                          snapshot: snapshot,
-                        ),
-                        JAPage(
-                          snapshot: snapshot,
-                        ),
-                      ],
+                    ReadPage(
+                      snapshot: snapshot,
                     ),
-                  ),
-                ));
+                    WatchPage(),
+                    GIPage(
+                      snapshot: snapshot,
+                    ),
+                    JAPage(
+                      snapshot: snapshot,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
   }
 }

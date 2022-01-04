@@ -1,26 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:my_voice_app/main.dart';
-import 'package:my_voice_app/models/appbar.dart';
-import 'package:my_voice_app/models/background_image.dart';
+import 'package:my_voice_app/models/video.dart';
+import 'package:provider/provider.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class MVTheatre extends StatefulWidget {
-  final String videoId;
+  final Video video;
 
-  MVTheatre({required this.videoId});
+  MVTheatre({required this.video});
 
   @override
-  _MVTheatreState createState() => _MVTheatreState();
+  MVTheatreState createState() => MVTheatreState();
 }
 
-class _MVTheatreState extends State<MVTheatre> {
+class MVTheatreState extends State<MVTheatre> {
   late YoutubePlayerController _controller;
 
-  @override
   void initState() {
     super.initState();
     _controller = YoutubePlayerController(
-      initialVideoId: widget.videoId,
+      initialVideoId: widget.video.id,
       flags: YoutubePlayerFlags(
         mute: false,
         autoPlay: true,
@@ -30,18 +29,12 @@ class _MVTheatreState extends State<MVTheatre> {
 
   @override
   Widget build(BuildContext context) {
-    return MVBackground(
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: getMVAppBar(context),
-        body: YoutubePlayer(
-          controller: _controller,
-          showVideoProgressIndicator: true,
-          onReady: () {
-            print('Player is ready.');
-          },
-        ),
-      ),
+    return YoutubePlayer(
+      controller: _controller,
+      showVideoProgressIndicator: true,
+      onReady: () {
+        print('Player is ready.');
+      },
     );
   }
 }

@@ -1,32 +1,33 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:my_voice_app/home/theatre.dart';
+import 'package:my_voice_app/models/background_image.dart';
 import 'package:my_voice_app/models/channel.dart';
 import 'package:my_voice_app/models/loading.dart';
 import 'package:my_voice_app/models/video.dart';
 import 'package:my_voice_app/services/yt.dart';
 import 'package:provider/provider.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 import '../main.dart';
 import '../welcome/splashscreen.dart';
 import '../models/appbar.dart';
 
 class WatchPage extends StatefulWidget {
-  Channel? channel;
-
-  WatchPage({required this.channel});
-
   @override
   _WatchPageState createState() => _WatchPageState();
 }
 
 class _WatchPageState extends State<WatchPage> {
+  Video? watchVideo;
+
   _buildVideo(Video video) {
     return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (_) => MVTheatre(videoId: video.id),
-        ),
+      onTap: () => setState(
+        () {
+          watchVideo = video;
+          Provider.of<MVP>(context, listen: false).watchView = true;
+        },
       ),
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
@@ -66,15 +67,65 @@ class _WatchPageState extends State<WatchPage> {
 
   @override
   Widget build(BuildContext context) {
-    return widget.channel == null
+    Channel? channel = Provider.of<MVP>(context).channel;
+    return channel == null
         ? MVLoading(
             message: "Count your blessings while we're loading...",
           )
-        : ListView.builder(
-            itemCount: widget.channel!.videos!.length,
-            itemBuilder: (context, i) {
-              return _buildVideo(widget.channel!.videos![i]);
-            },
-          );
+        : Provider.of<MVP>(context).watchView
+            ? MVBackground(
+                child: Scaffold(
+                  backgroundColor: Colors.transparent,
+                  body: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Card(
+                        child: Column(
+                          children: [
+                            MVTheatre(video: watchVideo!),
+                            Padding(
+                              padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+                              child: Text(watchVideo!.title, style: TextStyle(fontSize: 36.0, fontWeight: FontWeight.bold),),
+                            ),
+                          ],
+                        ),
+                      ),
+                      SizedBox(height: 50.0),
+                      Center(
+                        child: ElevatedButton(
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(15.0),
+                                ),
+                              ),
+                              backgroundColor: MaterialStateProperty.all(
+                                  Theme.of(context).secondaryHeaderColor),
+                              overlayColor:
+                                  MaterialStateProperty.all(HexColor("FFBF3B")),
+                            ),
+                            onPressed: () => setState(
+                                  () {
+                                    Provider.of<MVP>(context, listen: false)
+                                        .watchView = false;
+                                  },
+                                ),
+                            child: Text(
+                              "Watch Something Else",
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 20.0),
+                            )),
+                      ),
+                      SizedBox(height: 20.0),
+                    ],
+                  ),
+                ),
+              )
+            : ListView.builder(
+                itemCount: channel.videos!.length,
+                itemBuilder: (context, i) {
+                  return _buildVideo(channel.videos![i]);
+                },
+              );
   }
 }

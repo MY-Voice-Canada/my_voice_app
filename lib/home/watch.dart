@@ -19,13 +19,11 @@ class WatchPage extends StatefulWidget {
 }
 
 class _WatchPageState extends State<WatchPage> {
-  Video? watchVideo;
-
   _buildVideo(Video video) {
     return GestureDetector(
       onTap: () => setState(
         () {
-          watchVideo = video;
+          Provider.of<MVP>(context, listen: false).watchVideo = video;
           Provider.of<MVP>(context, listen: false).watchView = true;
         },
       ),
@@ -79,17 +77,7 @@ class _WatchPageState extends State<WatchPage> {
                   body: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Card(
-                        child: Column(
-                          children: [
-                            MVTheatre(video: watchVideo!),
-                            Padding(
-                              padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-                              child: Text(watchVideo!.title, style: TextStyle(fontSize: 36.0, fontWeight: FontWeight.bold),),
-                            ),
-                          ],
-                        ),
-                      ),
+                      MVTheatre(video: Provider.of<MVP>(context).watchVideo!),
                       SizedBox(height: 50.0),
                       Center(
                         child: ElevatedButton(

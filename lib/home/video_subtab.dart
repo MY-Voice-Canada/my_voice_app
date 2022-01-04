@@ -52,27 +52,26 @@ class VideoSubTab extends StatelessWidget {
               color: Colors.white,
             ),
             Text(
-              "HIGHLIGHTS",
+              "RECENT",
               style: TextStyle(color: Colors.grey),
               textAlign: TextAlign.left,
             ),
             SizedBox(height: 10.0),
             GestureDetector(
               onTap: () {
-                Provider.of<MVP>(context, listen: false).readView = true;
-                Provider.of<MVP>(context, listen: false).readImage =
-                    data[0]["_embedded"]["wp:featuredmedia"][0]["source_url"];
-                Provider.of<MVP>(context, listen: false).readTitle =
-                    data[0]["title"]["rendered"];
-                Provider.of<MVP>(context, listen: false).readContent =
-                    data[0]["content"]["rendered"];
-                changePage(1);
+                Provider.of<MVP>(context, listen: false).watchView = true;
+                Provider.of<MVP>(context, listen: false).watchVideo =
+                    Provider.of<MVP>(context, listen: false).channel!.videos![0];
+                changePage(2);
               },
               child: Column(
                 children: [
                   Container(
                     child: Image.network(
-                      data[0]["_embedded"]["wp:featuredmedia"][0]["source_url"],
+                      Provider.of<MVP>(context)
+                          .channel!
+                          .videos![0]
+                          .thumbnailUrl,
                       height: 250.0,
                       width: Provider.of<MVP>(context).screenWidth,
                       fit: BoxFit.fill,
@@ -80,7 +79,7 @@ class VideoSubTab extends StatelessWidget {
                   ),
                   Html(
                       data: "<h1>" +
-                          data[0]["title"]["rendered"].toString() +
+                          Provider.of<MVP>(context).channel!.videos![0].title +
                           "</h1>"),
                 ],
               ),
@@ -90,20 +89,18 @@ class VideoSubTab extends StatelessWidget {
               height: 300.0,
               child: ListView.builder(
                   scrollDirection: Axis.horizontal,
-                  itemCount: data.length,
-                  itemBuilder: (context, i) => i != 0 && i <= 10
+                  itemCount: 10,
+                  itemBuilder: (context, i) => i != 0
                       ? GestureDetector(
                           onTap: () {
-                            Provider.of<MVP>(context, listen: false).readView =
+                            Provider.of<MVP>(context, listen: false).watchView =
                                 true;
-                            Provider.of<MVP>(context, listen: false).readImage =
-                                data[i]["_embedded"]["wp:featuredmedia"][0]
-                                    ["source_url"];
-                            Provider.of<MVP>(context, listen: false).readTitle =
-                                data[i]["title"]["rendered"];
                             Provider.of<MVP>(context, listen: false)
-                                .readContent = data[i]["content"]["rendered"];
-                            changePage(1);
+                                    .watchVideo =
+                                Provider.of<MVP>(context, listen: 
+                                false).channel!.videos![i];
+
+                            changePage(2);
                           },
                           child: SizedBox(
                             width: 250.0,
@@ -113,25 +110,33 @@ class VideoSubTab extends StatelessWidget {
                                     width: 250.0,
                                     height: 150.0,
                                     child: Image.network(
-                                        data[i]["_embedded"]["wp:featuredmedia"]
-                                            [0]["source_url"],
+                                        Provider.of<MVP>(context)
+                                            .channel!
+                                            .videos![i]
+                                            .thumbnailUrl,
                                         fit: BoxFit.fill),
                                   ),
-                                  subtitle: data[i]["title"]["rendered"]
-                                              .toString()
+                                  subtitle: Provider.of<MVP>(context)
+                                              .channel!
+                                              .videos![i]
+                                              .title
                                               .length >
                                           50
                                       ? Html(
                                           data: "<h2>" +
-                                              data[i]["title"]["rendered"]
-                                                  .toString()
+                                              Provider.of<MVP>(context)
+                                                  .channel!
+                                                  .videos![i]
+                                                  .title
                                                   .substring(0, 47) +
                                               "..."
                                                   "</h2>")
                                       : Html(
                                           data: "<h2>" +
-                                              data[i]["title"]["rendered"]
-                                                  .toString() +
+                                              Provider.of<MVP>(context)
+                                                  .channel!
+                                                  .videos![i]
+                                                  .title +
                                               "</h2>")),
                             ),
                           ),

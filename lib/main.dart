@@ -71,6 +71,7 @@ class MVP extends ChangeNotifier {
 
   // For WatchPage:
   Channel? channel;
+  Video? watchVideo;
   bool watchView = false;
 
   late double screenHeightAppbarless;

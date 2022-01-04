@@ -29,12 +29,25 @@ class MVTheatreState extends State<MVTheatre> {
 
   @override
   Widget build(BuildContext context) {
-    return YoutubePlayer(
-      controller: _controller,
-      showVideoProgressIndicator: true,
-      onReady: () {
-        print('Player is ready.');
-      },
+    return Card(
+      child: Column(
+        children: [
+          YoutubePlayer(
+            controller: _controller,
+            showVideoProgressIndicator: true,
+            onReady: () {
+              print('Player is ready.');
+            },
+          ),
+          Padding(
+            padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+            child: Text(
+              widget.video.title,
+              style: TextStyle(fontSize: 36.0, fontWeight: FontWeight.bold),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

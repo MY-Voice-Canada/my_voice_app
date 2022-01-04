@@ -1,34 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:hexcolor/hexcolor.dart';
+import 'package:my_voice_app/main.dart';
 import 'package:my_voice_app/models/category_text.dart';
 import 'package:provider/provider.dart';
 
-import '../main.dart';
-
-class CategorySubTab extends StatelessWidget {
+class PlaylistSubTab extends StatelessWidget {
   final Function notifyParent;
-  late final dynamic data;
+  final String? playlistName;
 
-  CategorySubTab({required this.notifyParent, required this.data});
+  PlaylistSubTab({required this.notifyParent, this.playlistName});
 
   @override
   Widget build(BuildContext context) {
+    final videos = playlistName == null
+        ? Provider.of<MVP>(context).channel!.videos!
+        : Provider.of<MVP>(context).playlists![playlistName]!;
+
     return Card(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Divider(
             thickness: 3.0,
-            color: Theme.of(context).secondaryHeaderColor,
+            color: HexColor("FFBF3B"),
           ),
           SizedBox(
             height: 10.0,
           ),
-          MVCategoryText(data[0]["_embedded"]["wp:term"][0][0]["name"],
-              fontSize: 24.0),
+          MVCategoryText(
+            playlistName ?? "Miscellaneous",
+            fontSize: 24.0,
+            yellowVersion: true,
+          ),
           SizedBox(height: 20.0),
           SizedBox(
-            height: 875.0,
+            height: playlistName == null? 1750.0 : 875.0,
             child: GridView.builder(
               physics: NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
@@ -37,10 +44,12 @@ class CategorySubTab extends StatelessWidget {
                 crossAxisSpacing: 20,
                 mainAxisSpacing: 20,
               ),
-              itemCount: 6,
+              itemCount: playlistName == null? 12 : 6,
               itemBuilder: (context, i) => GestureDetector(
                 onTap: () {
-                  Provider.of<MVP>(context, listen: false).enableReadView(data[i]);
+                  Provider.of<MVP>(context, listen: false).watchView = true;
+                  Provider.of<MVP>(context, listen: false).watchVideo =
+                      videos[i];
                   notifyParent();
                 },
                 child: Center(
@@ -53,8 +62,7 @@ class CategorySubTab extends StatelessWidget {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10.0),
                           child: Image.network(
-                            data[i]["_embedded"]["wp:featuredmedia"][0]
-                                ["source_url"],
+                            videos[i].thumbnailUrl,
                             fit: BoxFit.fill,
                           ),
                         ),
@@ -66,10 +74,7 @@ class CategorySubTab extends StatelessWidget {
                         child: SizedBox(
                           height: 100.0,
                           width: 250.0,
-                          child: data[i]["title"]["rendered"]
-                                      .toString()
-                                      .length >
-                                  60
+                          child: videos[i].title.length > 60
                               ? Html(
                                   style: {
                                       "body": Style(
@@ -78,21 +83,15 @@ class CategorySubTab extends StatelessWidget {
                                       )
                                     },
                                   data: "<h2>" +
-                                      data[i]["title"]["rendered"]
-                                          .toString()
-                                          .substring(0, 60) +
+                                      videos[i].title.substring(0, 60) +
                                       "..."
                                           "</h2>")
-                              : Html(
-                                  style: {
-                                      "body": Style(
-                                        margin: EdgeInsets.zero,
-                                        padding: EdgeInsets.zero,
-                                      )
-                                    },
-                                  data: "<h2>" +
-                                      data[i]["title"]["rendered"].toString() +
-                                      "</h2>"),
+                              : Html(style: {
+                                  "body": Style(
+                                    margin: EdgeInsets.zero,
+                                    padding: EdgeInsets.zero,
+                                  )
+                                }, data: "<h2>" + videos[i].title + "</h2>"),
                         ),
                       ),
                     ],

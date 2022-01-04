@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-
-import '../main.dart';
-import './sign_in.dart';
-import './register.dart';
+import 'package:my_voice_app/screens/welcome/register.dart';
+import 'package:my_voice_app/screens/welcome/sign_in.dart';
 
 class LoginRow extends StatelessWidget {
   bool signedIn;

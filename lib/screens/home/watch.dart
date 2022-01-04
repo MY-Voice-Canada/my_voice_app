@@ -1,19 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:my_voice_app/home/playlist_subtab.dart';
-import 'package:my_voice_app/home/theatre.dart';
+import 'package:my_voice_app/main.dart';
 import 'package:my_voice_app/models/background_image.dart';
 import 'package:my_voice_app/models/channel.dart';
 import 'package:my_voice_app/models/loading.dart';
 import 'package:my_voice_app/models/video.dart';
-import 'package:my_voice_app/services/yt.dart';
+import 'package:my_voice_app/screens/home/playlist_subtab.dart';
+import 'package:my_voice_app/screens/home/theatre.dart';
 import 'package:provider/provider.dart';
-import 'package:youtube_player_flutter/youtube_player_flutter.dart';
-
-import '../main.dart';
-import '../welcome/splashscreen.dart';
-import '../models/appbar.dart';
-import 'category_subtab.dart';
 
 class WatchPage extends StatefulWidget {
   @override

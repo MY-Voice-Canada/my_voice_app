@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:my_voice_app/main.dart';
 import 'package:my_voice_app/models/category_text.dart';
 import 'package:provider/provider.dart';
-
-import '../main.dart';
 
 class ArticleSubTab extends StatelessWidget {
   final Function changePage;

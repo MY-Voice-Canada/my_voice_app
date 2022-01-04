@@ -2,14 +2,11 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:my_voice_app/main.dart';
 import 'package:my_voice_app/models/category_text.dart';
 import 'package:my_voice_app/models/loading.dart';
+import 'package:my_voice_app/screens/home/category_subtab.dart';
 import 'package:provider/provider.dart';
-
-import '../main.dart';
-import '../welcome/splashscreen.dart';
-import '../models/appbar.dart';
-import 'category_subtab.dart';
 
 class ReadPage extends StatefulWidget {
   final snapshot;

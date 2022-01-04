@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_voice_app/main.dart';
 import 'package:my_voice_app/models/video.dart';
-import 'package:provider/provider.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class MVTheatre extends StatefulWidget {

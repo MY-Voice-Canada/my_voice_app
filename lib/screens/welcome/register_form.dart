@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
+import 'package:my_voice_app/main.dart';
+import 'package:my_voice_app/screens/home/home_widget.dart';
+import 'package:my_voice_app/screens/welcome/form_decor.dart';
 import 'package:my_voice_app/services/auth.dart';
-import 'package:my_voice_app/welcome/form_decor.dart';
 import 'package:provider/provider.dart';
 import 'package:hexcolor/hexcolor.dart';
-
-import '../main.dart';
-import '../home/home_widget.dart';
 
 class RForm extends StatefulWidget {
   @override

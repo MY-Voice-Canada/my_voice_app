@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:my_voice_app/home/home_widget.dart';
+import 'package:my_voice_app/main.dart';
 import 'package:my_voice_app/models/background_image.dart';
 import 'package:my_voice_app/models/loading.dart';
+import 'package:my_voice_app/screens/home/home_widget.dart';
+import 'package:my_voice_app/screens/welcome/form_decor.dart';
+import 'package:my_voice_app/screens/welcome/login_row.dart';
+import 'package:my_voice_app/screens/welcome/splashscreen.dart';
 import 'package:my_voice_app/services/auth.dart';
-import 'package:my_voice_app/welcome/form_decor.dart';
 import 'package:provider/provider.dart';
 import 'package:hexcolor/hexcolor.dart';
-
-import '../main.dart';
-import './splashscreen.dart';
-import './login_row.dart';
-import './register_form.dart';
 
 class MVRegister extends StatefulWidget {
   @override

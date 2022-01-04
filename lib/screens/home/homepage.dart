@@ -1,18 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_html/flutter_html.dart';
-import 'package:flutter_phoenix/flutter_phoenix.dart';
-import 'package:hexcolor/hexcolor.dart';
-import 'package:my_voice_app/home/article_subtab.dart';
-import 'package:my_voice_app/home/read.dart';
-import 'package:my_voice_app/home/video_subtab.dart';
+import 'package:my_voice_app/main.dart';
 import 'package:my_voice_app/models/loading.dart';
 import 'package:my_voice_app/models/user.dart';
-import 'package:my_voice_app/services/wp.dart';
+import 'package:my_voice_app/screens/home/article_subtab.dart';
+import 'package:my_voice_app/screens/home/video_subtab.dart';
 import 'package:provider/provider.dart';
-
-import '../main.dart';
-import '../welcome/splashscreen.dart';
-import '../models/appbar.dart';
 
 class HomePage extends StatefulWidget {
   final Function changePage;

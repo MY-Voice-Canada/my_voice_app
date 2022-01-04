@@ -1,20 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:my_voice_app/main.dart';
 import 'package:my_voice_app/models/background_image.dart';
 import 'package:my_voice_app/models/channel.dart';
 import 'package:my_voice_app/models/user.dart';
 import 'package:my_voice_app/models/video.dart';
+import 'package:my_voice_app/screens/home/get_involved.dart';
+import 'package:my_voice_app/screens/home/homepage.dart';
+import 'package:my_voice_app/screens/home/just_ask.dart';
+import 'package:my_voice_app/screens/home/read.dart';
+import 'package:my_voice_app/screens/home/watch.dart';
+import 'package:my_voice_app/screens/upper/appbar.dart';
 import 'package:my_voice_app/services/wp.dart';
 import 'package:my_voice_app/services/yt.dart';
 import 'package:provider/provider.dart';
-
-import '../main.dart';
-import '../welcome/splashscreen.dart';
-import '../models/appbar.dart';
-import './homepage.dart';
-import './read.dart';
-import './watch.dart';
-import './just_ask.dart';
-import './get_involved.dart';
 
 class MVHome extends StatefulWidget {
   @override

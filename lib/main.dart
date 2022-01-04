@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:my_voice_app/home/home_widget.dart';
 import 'package:my_voice_app/models/channel.dart';
 import 'package:my_voice_app/models/user.dart';
 import 'package:my_voice_app/models/video.dart';
+import 'package:my_voice_app/screens/home/home_widget.dart';
+import 'package:my_voice_app/screens/welcome/splashscreen.dart';
 import 'package:my_voice_app/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 
-import './welcome/splashscreen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

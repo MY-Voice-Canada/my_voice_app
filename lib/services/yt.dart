@@ -11,7 +11,6 @@ class MVYT {
   static final MVYT instance = MVYT._instantiate();
 
   final String _baseUrl = "www.googleapis.com";
-  String _nextPageToken = "";
 
   Future<Channel> fetchChannel({required String channelId}) async {
     Map<String, String> parameters = {
@@ -44,7 +43,6 @@ class MVYT {
       "part": "snippet",
       "playlistId": playlistId,
       "maxResults": "20",
-      "pageToken": _nextPageToken,
       "key": YOUTUBE_API_KEY,
     };
 
@@ -62,7 +60,6 @@ class MVYT {
     if (response.statusCode == 200) {
       dynamic data = json.decode(response.body);
 
-      _nextPageToken = data["nextPageToken"] ?? "";
       List<dynamic> videosJson = data["items"];
       List<Video> videos = [];
 

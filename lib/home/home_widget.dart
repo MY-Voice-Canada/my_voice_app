@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_voice_app/models/background_image.dart';
 import 'package:my_voice_app/models/channel.dart';
 import 'package:my_voice_app/models/user.dart';
+import 'package:my_voice_app/models/video.dart';
 import 'package:my_voice_app/services/wp.dart';
 import 'package:my_voice_app/services/yt.dart';
 import 'package:provider/provider.dart';
@@ -34,7 +35,21 @@ class _MVHomeState extends State<MVHome> {
   _initChannel() async {
     Channel channel =
         await MVYT.instance.fetchChannel(channelId: "UC9szM33a4gomsN0KT7rr6Ag");
+    Map<String, List<Video>> playlists = {};
+    await MVYT.instance
+        .fetchVideos(playlistId: "PLnpXzeyF9i1Aab_h91tFnblETtqfIhFin")
+        .then((value) => playlists["Race Against Racism"] = value);
+    await MVYT.instance
+        .fetchVideos(playlistId: "PLnpXzeyF9i1Cbgw5qc1XeIfKNWhlCxN04")
+        .then((value) => playlists["Candid Convos"] = value);
+    await MVYT.instance
+        .fetchVideos(playlistId: "PLnpXzeyF9i1CUsSK2JjmLjxG0hBSn_WuC")
+        .then((value) => playlists["The MY Voice Show"] = value);
+    await MVYT.instance
+        .fetchVideos(playlistId: "PLnpXzeyF9i1BQCGig_5tnRUryxKMPUOBj")
+        .then((value) => playlists["Connecting The World"] = value);
     Provider.of<MVP>(context, listen: false).channel = channel;
+    Provider.of<MVP>(context, listen: false).playlists = playlists;
   }
 
   @override

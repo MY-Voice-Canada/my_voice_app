@@ -71,6 +71,7 @@ class MVP extends ChangeNotifier {
 
   // For WatchPage:
   Channel? channel;
+  Map<String, List<Video>>? playlists;
   Video? watchVideo;
   bool watchView = false;
 

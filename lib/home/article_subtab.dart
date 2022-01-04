@@ -151,7 +151,7 @@ class ArticleSubTab extends StatelessWidget {
                                           50
                                       ? Html(
                                           style: {
-                                              "body": Style(
+                                              "h2": Style(
                                                 margin: EdgeInsets.zero,
                                                 padding: EdgeInsets.zero,
                                               )
@@ -164,7 +164,7 @@ class ArticleSubTab extends StatelessWidget {
                                                   "</h2>")
                                       : Html(
                                           style: {
-                                              "body": Style(
+                                              "h2": Style(
                                                 margin: EdgeInsets.zero,
                                                 padding: EdgeInsets.zero,
                                               )

@@ -94,9 +94,6 @@ class VideoSubTab extends StatelessWidget {
               scrollDirection: Axis.horizontal,
               itemCount: 4,
               itemBuilder: (context, i) {
-                print(Provider.of<MVP>(context)
-                    .playlists!["Race Against Racism"]!);
-
                 String playlistName = "";
                 switch (i) {
                   case 0:
@@ -148,12 +145,13 @@ class VideoSubTab extends StatelessWidget {
                                           .title
                                           .length >
                                       55
-                                  ? Html(style: {
-                                              "h2": Style(
-                                                margin: EdgeInsets.zero,
-                                                padding: EdgeInsets.zero,
-                                              )
-                                            },
+                                  ? Html(
+                                      style: {
+                                          "h2": Style(
+                                            margin: EdgeInsets.zero,
+                                            padding: EdgeInsets.zero,
+                                          )
+                                        },
                                       data: "<h2>" +
                                           Provider.of<MVP>(context)
                                               .playlists![playlistName]![i]
@@ -161,12 +159,13 @@ class VideoSubTab extends StatelessWidget {
                                               .substring(0, 52) +
                                           "..."
                                               "</h2>")
-                                  : Html(style: {
-                                              "h2": Style(
-                                                margin: EdgeInsets.zero,
-                                                padding: EdgeInsets.zero,
-                                              )
-                                            },
+                                  : Html(
+                                      style: {
+                                          "h2": Style(
+                                            margin: EdgeInsets.zero,
+                                            padding: EdgeInsets.zero,
+                                          )
+                                        },
                                       data: "<h2>" +
                                           Provider.of<MVP>(context)
                                               .playlists![playlistName]![i]

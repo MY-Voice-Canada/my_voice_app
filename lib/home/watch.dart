@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:my_voice_app/home/playlist_subtab.dart';
 import 'package:my_voice_app/home/theatre.dart';
 import 'package:my_voice_app/models/background_image.dart';
 import 'package:my_voice_app/models/channel.dart';
@@ -12,6 +13,7 @@ import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 import '../main.dart';
 import '../welcome/splashscreen.dart';
 import '../models/appbar.dart';
+import 'category_subtab.dart';
 
 class WatchPage extends StatefulWidget {
   @override
@@ -109,11 +111,89 @@ class _WatchPageState extends State<WatchPage> {
                   ),
                 ),
               )
-            : ListView.builder(
-                itemCount: channel.videos!.length,
-                itemBuilder: (context, i) {
-                  return _buildVideo(channel.videos![i]);
-                },
+            : SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    Card(
+                      margin: EdgeInsets.symmetric(horizontal: 20.0),
+                      child: Container(
+                        padding: EdgeInsets.only(left: 10.0),
+                        alignment: Alignment.centerLeft,
+                        width: double.infinity,
+                        height: 240.0,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image:
+                                  AssetImage("assets/images/home_header.png"),
+                              fit: BoxFit.fill),
+                        ),
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 24.0),
+                          child: RichText(
+                            text: TextSpan(
+                                style: TextStyle(
+                                    fontSize: 56,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: "RobotoMono"),
+                                children: [
+                                  TextSpan(
+                                      text: "Watch Our",
+                                      style: TextStyle(color: Colors.black)),
+                                  TextSpan(
+                                      text: "\nYouth-directed Videos",
+                                      style: TextStyle(
+                                          color: Theme.of(context)
+                                              .secondaryHeaderColor,
+                                          fontSize: 36)),
+                                ]),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    PlaylistSubTab(
+                      notifyParent: () => setState(() {}),
+                      playlistName: "Race Against Racism",
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    PlaylistSubTab(
+                      notifyParent: () => setState(() {}),
+                      playlistName: "Candid Convos",
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    PlaylistSubTab(
+                      notifyParent: () => setState(() {}),
+                      playlistName: "The MY Voice Show",
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    PlaylistSubTab(
+                      notifyParent: () => setState(() {}),
+                      playlistName: "Connecting The World",
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                    PlaylistSubTab(
+                      notifyParent: () => setState(() {}),
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                    ),
+                  ],
+                ),
               );
   }
 }

@@ -1,4 +1,4 @@
-import 'package:flutter_youtube_api/models/video_model.dart';
+import 'package:my_voice_app/models/video.dart';
 
 class Channel {
   final String id;
@@ -7,15 +7,15 @@ class Channel {
   final String subscriberCount;
   final String videoCount;
   final String uploadPlaylistId;
-  List<Video> videos;
+  List<Video>? videos;
 
   Channel({
-    this.id,
-    this.title,
-    this.profilePictureUrl,
-    this.subscriberCount,
-    this.videoCount,
-    this.uploadPlaylistId,
+    required this.id,
+    required this.title,
+    required this.profilePictureUrl,
+    required this.subscriberCount,
+    required this.videoCount,
+    required this.uploadPlaylistId,
     this.videos,
   });
 

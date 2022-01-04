@@ -31,7 +31,7 @@ class MVWP {
         if (responses[i].statusCode == 200) {
           posts[i] = jsonDecode(responses[i].body);
         } else
-          return Future.error("Server error");
+          return Future.error("Server error.");
       }
 
       print("Synced with website");

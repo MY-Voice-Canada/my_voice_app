@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:my_voice_app/models/background_image.dart';
+import 'package:my_voice_app/models/channel.dart';
 import 'package:my_voice_app/models/user.dart';
 import 'package:my_voice_app/services/wp.dart';
+import 'package:my_voice_app/services/yt.dart';
 import 'package:provider/provider.dart';
 
 import '../main.dart';
@@ -21,11 +23,21 @@ class MVHome extends StatefulWidget {
 class _MVHomeState extends State<MVHome> {
   int _currentIndex = 0;
   late PageController _pageController;
+  Channel? channel;
 
   @override
   void initState() {
     super.initState();
+    _initChannel();
     _pageController = PageController();
+  }
+
+  _initChannel() async {
+    Channel channel =
+        await MVYT.instance.fetchChannel(channelId: "UC9szM33a4gomsN0KT7rr6Ag");
+    setState(() {
+      this.channel = channel;
+    });
   }
 
   @override
@@ -117,7 +129,7 @@ class _MVHomeState extends State<MVHome> {
                           snapshot: snapshot,
                         ),
                         WatchPage(
-                          snapshot: snapshot,
+                          channel: channel,
                         ),
                         GIPage(
                           snapshot: snapshot,

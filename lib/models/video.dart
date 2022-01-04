@@ -5,10 +5,10 @@ class Video {
   final String channelTitle;
 
   Video({
-    this.id,
-    this.title,
-    this.thumbnailUrl,
-    this.channelTitle,
+    required this.id,
+    required this.title,
+    required this.thumbnailUrl,
+    required this.channelTitle,
   });
 
   factory Video.fromMap(Map<String, dynamic> snippet) {

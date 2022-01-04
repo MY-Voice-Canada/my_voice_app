@@ -43,7 +43,7 @@ class MVYT {
     Map<String, String> parameters = {
       "part": "snippet",
       "playlistId": playlistId,
-      "maxResults": "8",
+      "maxResults": "20",
       "pageToken": _nextPageToken,
       "key": YOUTUBE_API_KEY,
     };
@@ -67,7 +67,7 @@ class MVYT {
       List<Video> videos = [];
 
       videosJson.forEach(
-          (videoJson) => videos.add(Video.fromMap(videoJson["snippet"])));
+          (videoJson) => videos.add(Video.fromMap(videoJson)));
 
       return videos;
     } else {

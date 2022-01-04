@@ -48,7 +48,12 @@ class MVWrapper extends StatelessWidget {
   }
 }
 
+enum MVCTVersion { pink, yellow, black, green }
+
 class MVP extends ChangeNotifier {
+  late double screenHeightAppbarless;
+  late double screenWidth;
+
   // For JAPage:
   bool jaView = false;
   dynamic jaImage;
@@ -92,7 +97,4 @@ class MVP extends ChangeNotifier {
   Map<String, List<Video>>? playlists;
   Video? watchVideo;
   bool watchView = false;
-
-  late double screenHeightAppbarless;
-  late double screenWidth;
 }

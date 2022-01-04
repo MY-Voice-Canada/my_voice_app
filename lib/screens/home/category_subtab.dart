@@ -19,13 +19,16 @@ class CategorySubTab extends StatelessWidget {
         children: [
           Divider(
             thickness: 3.0,
-            color: ja != null? Colors.black : Provider.of(context).secondaryHeaderColor,
+            color: ja != null
+                ? Colors.black
+                : Theme.of(context).secondaryHeaderColor,
           ),
           SizedBox(
             height: 10.0,
           ),
           MVCategoryText(data[0]["_embedded"]["wp:term"][0][0]["name"],
-              fontSize: 24.0, blackVersion: ja != null? true : null),
+              fontSize: 24.0,
+              version: ja != null ? MVCTVersion.black : MVCTVersion.pink),
           SizedBox(height: 20.0),
           SizedBox(
             height: 875.0,

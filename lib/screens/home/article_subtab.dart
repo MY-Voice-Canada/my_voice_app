@@ -80,9 +80,12 @@ class ArticleSubTab extends StatelessWidget {
                 SizedBox(
                   height: 15.0,
                 ),
-                MVCategoryText(data[0]["_embedded"]["wp:term"][0][0]["name"]
-                    .toString()
-                    .replaceAll("&amp;", "&")),
+                MVCategoryText(
+                  data[0]["_embedded"]["wp:term"][0][0]["name"]
+                      .toString()
+                      .replaceAll("&amp;", "&"),
+                  version: MVCTVersion.pink,
+                ),
                 Html(
                     data: "<h1>" +
                         data[0]["title"]["rendered"].toString() +
@@ -139,8 +142,10 @@ class ArticleSubTab extends StatelessWidget {
                               SizedBox(
                                 height: 10.0,
                               ),
-                              MVCategoryText(data[i]["_embedded"]["wp:term"][0]
-                                  [0]["name"]),
+                              MVCategoryText(
+                                data[i]["_embedded"]["wp:term"][0][0]["name"],
+                                version: MVCTVersion.pink,
+                              ),
                               ClipRect(
                                 child: SizedBox(
                                   height: 100.0,

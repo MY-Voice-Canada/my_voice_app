@@ -78,7 +78,10 @@ class VideoSubTab extends StatelessWidget {
                 SizedBox(
                   height: 15.0,
                 ),
-                MVCategoryText("Latest", yellowVersion: true),
+                MVCategoryText(
+                  "Latest",
+                  version: MVCTVersion.yellow,
+                ),
                 Html(
                     data: "<h1>" +
                         Provider.of<MVP>(context).channel!.videos![0].title +
@@ -135,7 +138,8 @@ class VideoSubTab extends StatelessWidget {
                           SizedBox(
                             height: 10.0,
                           ),
-                          MVCategoryText(playlistName, yellowVersion: true),
+                          MVCategoryText(playlistName,
+                              version: MVCTVersion.yellow),
                           ClipRect(
                             child: SizedBox(
                               height: 100.0,

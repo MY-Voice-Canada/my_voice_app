@@ -31,11 +31,11 @@ class PlaylistSubTab extends StatelessWidget {
           MVCategoryText(
             playlistName ?? "Miscellaneous",
             fontSize: 24.0,
-            yellowVersion: true,
+            version: MVCTVersion.yellow,
           ),
           SizedBox(height: 20.0),
           SizedBox(
-            height: playlistName == null? 1750.0 : 875.0,
+            height: playlistName == null ? 1750.0 : 875.0,
             child: GridView.builder(
               physics: NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
@@ -44,7 +44,7 @@ class PlaylistSubTab extends StatelessWidget {
                 crossAxisSpacing: 20,
                 mainAxisSpacing: 20,
               ),
-              itemCount: playlistName == null? 12 : 6,
+              itemCount: playlistName == null ? 12 : 6,
               itemBuilder: (context, i) => GestureDetector(
                 onTap: () {
                   Provider.of<MVP>(context, listen: false).watchView = true;

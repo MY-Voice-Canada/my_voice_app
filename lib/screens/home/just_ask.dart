@@ -30,7 +30,10 @@ class _JAPageState extends State<JAPage> {
               SizedBox(
                 height: 5.0,
               ),
-              MVCategoryText(Provider.of<MVP>(context).jaCategory, blackVersion: true,),
+              MVCategoryText(
+                Provider.of<MVP>(context).jaCategory,
+                version: MVCTVersion.black,
+              ),
               SizedBox(
                 height: 20.0,
               ),
@@ -109,8 +112,7 @@ class _JAPageState extends State<JAPage> {
                           borderRadius: BorderRadius.circular(15.0),
                         ),
                       ),
-                      backgroundColor: MaterialStateProperty.all(
-                          Colors.black),
+                      backgroundColor: MaterialStateProperty.all(Colors.black),
                       overlayColor:
                           MaterialStateProperty.all(HexColor("FFBF3B")),
                     ),
@@ -164,9 +166,8 @@ class _JAPageState extends State<JAPage> {
                               style: TextStyle(color: Colors.black)),
                           TextSpan(
                               text: "\nYouth-made Articles",
-                              style: TextStyle(
-                                  color: Colors.black,
-                                  fontSize: 36)),
+                              style:
+                                  TextStyle(color: Colors.black, fontSize: 36)),
                         ]),
                   ),
                 ),

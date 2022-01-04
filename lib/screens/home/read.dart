@@ -30,7 +30,10 @@ class _ReadPageState extends State<ReadPage> {
               SizedBox(
                 height: 5.0,
               ),
-              MVCategoryText(Provider.of<MVP>(context).readCategory),
+              MVCategoryText(
+                Provider.of<MVP>(context).readCategory,
+                version: MVCTVersion.pink,
+              ),
               SizedBox(
                 height: 20.0,
               ),
@@ -122,10 +125,7 @@ class _ReadPageState extends State<ReadPage> {
                     },
                     child: Text(
                       "Read Something Else",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0
-                      ),
+                      style: TextStyle(color: Colors.white, fontSize: 20.0),
                     )),
               ),
               SizedBox(height: 20.0),

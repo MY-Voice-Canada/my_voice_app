@@ -7,7 +7,11 @@ class MVAuth {
 
   static MVUser? _convertMVUser(User? user) {
     return user != null
-        ? MVUser(uid: user.uid, displayName: user.displayName ?? "User")
+        ? MVUser(
+            uid: user.uid,
+            displayName: user.displayName ?? "User",
+            email: user.email ?? "anon@anon.com",
+          )
         : null;
   }
 

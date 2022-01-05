@@ -5,7 +5,9 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:my_voice_app/main.dart';
 import 'package:my_voice_app/models/category_text.dart';
 import 'package:my_voice_app/models/loading.dart';
+import 'package:my_voice_app/models/user.dart';
 import 'package:my_voice_app/screens/home/category_subtab.dart';
+import 'package:my_voice_app/services/db.dart';
 import 'package:provider/provider.dart';
 
 class JAPage extends StatefulWidget {
@@ -20,6 +22,8 @@ class JAPage extends StatefulWidget {
 class _JAPageState extends State<JAPage> {
   @override
   Widget build(BuildContext context) {
+    MVUser user = Provider.of<MVUser?>(context)!;
+
     if (Provider.of<MVP>(context).jaView) {
       return SingleChildScrollView(
         child: Card(
@@ -140,38 +144,14 @@ class _JAPageState extends State<JAPage> {
             SizedBox(
               height: 10.0,
             ),
-            Card(
-              margin: EdgeInsets.symmetric(horizontal: 20.0),
-              child: Container(
-                padding: EdgeInsets.only(left: 10.0),
-                alignment: Alignment.centerLeft,
-                width: double.infinity,
-                height: 240.0,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("assets/images/home_header.png"),
-                      fit: BoxFit.fill),
-                ),
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 24.0),
-                  child: RichText(
-                    text: TextSpan(
-                        style: TextStyle(
-                            fontSize: 56,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: "RobotoMono"),
-                        children: [
-                          TextSpan(
-                              text: "Read Our",
-                              style: TextStyle(color: Colors.black)),
-                          TextSpan(
-                              text: "\nYouth-made Articles",
-                              style:
-                                  TextStyle(color: Colors.black, fontSize: 36)),
-                        ]),
-                  ),
-                ),
-              ),
+            TextButton(
+              onPressed: () {
+                MVDB(uid: user.uid).addUserQuestion(
+                    name: user.displayName,
+                    email: user.email,
+                    question: "What is 9+10?");
+              },
+              child: Text("Ask Question"),
             ),
             SizedBox(
               height: 20.0,

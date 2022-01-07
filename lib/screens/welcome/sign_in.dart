@@ -156,7 +156,7 @@ class _MVSignInState extends State<MVSignIn> {
                                             }
                                           },
                                           child: Text(
-                                            "Create account",
+                                            "Sign in",
                                             style: TextStyle(
                                               fontSize: 18.0,
                                               color: Colors.grey[800],

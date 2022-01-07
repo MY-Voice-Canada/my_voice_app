@@ -59,11 +59,12 @@ class _MVSignInState extends State<MVSignIn> {
                       height: Provider.of<MVP>(context).screenHeightAppbarless /
                           0.75,
                       child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            LoginRow(signedIn: true, registered: false),
-                            SizedBox(height: 20),
-                            Stack(children: [
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          LoginRow(signedIn: true, registered: false),
+                          SizedBox(height: 20),
+                          Stack(
+                            children: [
                               SizedBox(
                                 height: Provider.of<MVP>(context)
                                         .screenHeightAppbarless /
@@ -173,24 +174,22 @@ class _MVSignInState extends State<MVSignIn> {
                                   ),
                                 ),
                               ),
-                            ])
-                          ]),
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 225.0,
-                    left: Provider.of<MVP>(context).screenWidth / 2.0 - 90.0,
-                    child: TextButton(
-                      onPressed: () => Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MVSplashScreen())),
-                      child: Text(
-                        "← Go Back",
-                        style: TextStyle(
-                          color: Theme.of(context).secondaryHeaderColor,
-                          fontSize: 24,
-                        ),
+                            ],
+                          ),
+                          TextButton(
+                            onPressed: () => Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MVSplashScreen())),
+                            child: Text(
+                              "← Go Back",
+                              style: TextStyle(
+                                color: Theme.of(context).secondaryHeaderColor,
+                                fontSize: 24,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

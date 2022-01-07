@@ -60,143 +60,137 @@ class _MVRegisterState extends State<MVRegister> {
                       height: Provider.of<MVP>(context).screenHeightAppbarless /
                           0.75,
                       child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            LoginRow(signedIn: false, registered: true),
-                            SizedBox(height: 20.0),
-                            SizedBox(
-                              height: Provider.of<MVP>(context)
-                                      .screenHeightAppbarless /
-                                  2.5,
-                              width:
-                                  Provider.of<MVP>(context).screenWidth * 0.90,
-                              child: Form(
-                                key: _formKey,
-                                child: Column(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    TextFormField(
-                                        validator: (_) =>
-                                            _nameController.text.isEmpty
-                                                ? "Please enter your name!"
-                                                : null,
-                                        controller: _nameController,
-                                        decoration: formDecoration.copyWith(
-                                            hintText: "Name")),
-                                    TextFormField(
-                                        validator: (_) => !RegExp(
-                                                    r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                                                .hasMatch(_emailController.text)
-                                            ? "Please enter a valid email!"
-                                            : null,
-                                        controller: _emailController,
-                                        keyboardType:
-                                            TextInputType.emailAddress,
-                                        decoration: formDecoration.copyWith(
-                                            hintText: "Email")),
-                                    TextFormField(
-                                      validator: (_) => _passwordController
-                                                  .text.length <
-                                              6
-                                          ? "Please enter a password with at least 6 characters!"
-                                          : null,
-                                      controller: _passwordController,
-                                      keyboardType: TextInputType.text,
-                                      obscureText: !_passwordVisible,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          LoginRow(signedIn: false, registered: true),
+                          SizedBox(height: 20.0),
+                          SizedBox(
+                            height: Provider.of<MVP>(context)
+                                    .screenHeightAppbarless /
+                                2.5,
+                            width: Provider.of<MVP>(context).screenWidth * 0.90,
+                            child: Form(
+                              key: _formKey,
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  TextFormField(
+                                      validator: (_) =>
+                                          _nameController.text.isEmpty
+                                              ? "Please enter your name!"
+                                              : null,
+                                      controller: _nameController,
                                       decoration: formDecoration.copyWith(
-                                        hintText: "Password",
-                                        suffixIcon: IconButton(
-                                          icon: Icon(
-                                            _passwordVisible
-                                                ? Icons.visibility
-                                                : Icons.visibility_off,
-                                          ),
-                                          onPressed: () {
-                                            setState(() {
-                                              _passwordVisible =
-                                                  !_passwordVisible;
-                                            });
-                                          },
+                                          hintText: "Name")),
+                                  TextFormField(
+                                      validator: (_) => !RegExp(
+                                                  r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                                              .hasMatch(_emailController.text)
+                                          ? "Please enter a valid email!"
+                                          : null,
+                                      controller: _emailController,
+                                      keyboardType: TextInputType.emailAddress,
+                                      decoration: formDecoration.copyWith(
+                                          hintText: "Email")),
+                                  TextFormField(
+                                    validator: (_) => _passwordController
+                                                .text.length <
+                                            6
+                                        ? "Please enter a password with at least 6 characters!"
+                                        : null,
+                                    controller: _passwordController,
+                                    keyboardType: TextInputType.text,
+                                    obscureText: !_passwordVisible,
+                                    decoration: formDecoration.copyWith(
+                                      hintText: "Password",
+                                      suffixIcon: IconButton(
+                                        icon: Icon(
+                                          _passwordVisible
+                                              ? Icons.visibility
+                                              : Icons.visibility_off,
                                         ),
-                                      ),
-                                    ),
-                                    SizedBox(
-                                      height: 10.0,
-                                    ),
-                                    Container(
-                                      width: Provider.of<MVP>(context)
-                                              .screenWidth *
-                                          0.90,
-                                      height: 60.0,
-                                      decoration: BoxDecoration(
-                                        color: HexColor("FCB831"),
-                                        border: Border.all(color: Colors.grey),
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(50)),
-                                      ),
-                                      child: TextButton(
-                                        onPressed: () async {
-                                          if (_formKey.currentState!
-                                              .validate()) {
-                                            setState(() {
-                                              _isLoading = true;
-                                            });
-                                            dynamic user =
-                                                await MVAuth.registerNEP(
-                                                    _nameController.text,
-                                                    _emailController.text,
-                                                    _passwordController.text);
-                                            if (user == null) {
-                                              _isLoading = false;
-                                              setState(() {
-                                                _errorMessage =
-                                                    "Could not register. Try again.";
-                                              });
-                                            } else
-                                              Navigator.of(context)
-                                                  .pushReplacement(
-                                                      MaterialPageRoute(
-                                                          builder: (context) =>
-                                                              MVHome()));
-                                          }
+                                        onPressed: () {
+                                          setState(() {
+                                            _passwordVisible =
+                                                !_passwordVisible;
+                                          });
                                         },
-                                        child: Text(
-                                          "Create account",
-                                          style: TextStyle(
-                                            fontSize: 18.0,
-                                            color: Colors.grey[800],
-                                            fontWeight: FontWeight.w200,
-                                          ),
+                                      ),
+                                    ),
+                                  ),
+                                  SizedBox(
+                                    height: 10.0,
+                                  ),
+                                  Container(
+                                    width:
+                                        Provider.of<MVP>(context).screenWidth *
+                                            0.90,
+                                    height: 60.0,
+                                    decoration: BoxDecoration(
+                                      color: HexColor("FCB831"),
+                                      border: Border.all(color: Colors.grey),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(50)),
+                                    ),
+                                    child: TextButton(
+                                      onPressed: () async {
+                                        if (_formKey.currentState!.validate()) {
+                                          setState(() {
+                                            _isLoading = true;
+                                          });
+                                          dynamic user =
+                                              await MVAuth.registerNEP(
+                                                  _nameController.text,
+                                                  _emailController.text,
+                                                  _passwordController.text);
+                                          if (user == null) {
+                                            _isLoading = false;
+                                            setState(() {
+                                              _errorMessage =
+                                                  "Could not register. Try again.";
+                                            });
+                                          } else
+                                            Navigator.of(context)
+                                                .pushReplacement(
+                                                    MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            MVHome()));
+                                        }
+                                      },
+                                      child: Text(
+                                        "Create account",
+                                        style: TextStyle(
+                                          fontSize: 18.0,
+                                          color: Colors.grey[800],
+                                          fontWeight: FontWeight.w200,
                                         ),
                                       ),
                                     ),
-                                    Text(
-                                      _errorMessage,
-                                      style: TextStyle(
-                                          color: Colors.red, fontSize: 12.0),
-                                    )
-                                  ],
-                                ),
+                                  ),
+                                  Text(
+                                    _errorMessage,
+                                    style: TextStyle(
+                                        color: Colors.red, fontSize: 12.0),
+                                  )
+                                ],
                               ),
-                            )
-                          ]),
-                    ),
-                  ),
-                  Positioned(
-                    bottom: 225.0,
-                    left: Provider.of<MVP>(context).screenWidth / 2.0 - 90.0,
-                    child: TextButton(
-                      onPressed: () => Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => MVSplashScreen())),
-                      child: Text(
-                        "← Go Back",
-                        style: TextStyle(
-                          color: Theme.of(context).secondaryHeaderColor,
-                          fontSize: 24,
-                        ),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () => Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => MVSplashScreen())),
+                            child: Text(
+                              "← Go Back",
+                              style: TextStyle(
+                                color: Theme.of(context).secondaryHeaderColor,
+                                fontSize: 24,
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
                   ),

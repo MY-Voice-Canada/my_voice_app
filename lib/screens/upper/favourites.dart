@@ -11,8 +11,6 @@ class _MVFavsState extends State<MVFavs> {
   @override
   Widget build(BuildContext context) {
     return MVBackground(
-      child: WillPopScope(
-        onWillPop: () async => false,
         child: Scaffold(
           backgroundColor: Colors.transparent,
           appBar: getMVAppBar(context),
@@ -20,7 +18,6 @@ class _MVFavsState extends State<MVFavs> {
             child: Text("Favourites"),
           ),
         ),
-      ),
     );
   }
 }

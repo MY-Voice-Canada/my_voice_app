@@ -7,14 +7,17 @@ class MVBackground extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: child,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          colorFilter: ColorFilter.mode(
-              Colors.grey.withOpacity(0.2), BlendMode.saturation),
-          repeat: ImageRepeat.repeat,
-          image: AssetImage("assets/images/sprinkles_background.png"),
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Container(
+        child: child,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            colorFilter: ColorFilter.mode(
+                Colors.grey.withOpacity(0.2), BlendMode.saturation),
+            repeat: ImageRepeat.repeat,
+            image: AssetImage("assets/images/sprinkles_background.png"),
+          ),
         ),
       ),
     );

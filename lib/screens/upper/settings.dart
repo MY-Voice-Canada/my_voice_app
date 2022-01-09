@@ -22,8 +22,6 @@ class _MVSettingsState extends State<MVSettings> {
     return _isLoading
         ? MVLoading()
         : MVBackground(
-            child: WillPopScope(
-              onWillPop: () async => false,
               child: Scaffold(
                 backgroundColor: Colors.transparent,
                 appBar: getMVAppBar(context),
@@ -84,7 +82,6 @@ class _MVSettingsState extends State<MVSettings> {
                   ],
                 ),
               ),
-            ),
           );
   }
 }

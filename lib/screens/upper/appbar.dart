@@ -8,8 +8,7 @@ AppBar getMVAppBar(BuildContext context) {
   return AppBar(
     automaticallyImplyLeading: false,
     title: GestureDetector(
-      onTap: () => Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => MVHome())),
+      onTap: () => Navigator.of(context).pushReplacementNamed("/home"),
       child: Row(
         children: [
           Image.asset("./assets/images/logo.png", height: 50),
@@ -25,24 +24,23 @@ AppBar getMVAppBar(BuildContext context) {
           Icons.search,
           color: Colors.white,
         ),
-        onPressed: () => Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => MVSearch())),
+        onPressed: () => Navigator.of(context).pushReplacementNamed("/search"),
       ),
       IconButton(
         icon: Icon(
           Icons.favorite,
           color: Colors.white,
         ),
-        onPressed: () => Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => MVFavs())),
+        onPressed: () => Navigator.of(context).pushReplacementNamed("/favs"),
       ),
       IconButton(
-          icon: Icon(
-            Icons.settings,
-            color: Colors.white,
-          ),
-          onPressed: () => Navigator.of(context).pushReplacement(
-              MaterialPageRoute(builder: (context) => MVSettings())))
+        icon: Icon(
+          Icons.settings,
+          color: Colors.white,
+        ),
+        onPressed: () =>
+            Navigator.of(context).pushReplacementNamed("/settings"),
+      ),
     ],
   );
 }

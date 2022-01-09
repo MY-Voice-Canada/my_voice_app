@@ -148,11 +148,7 @@ class _MVSignInState extends State<MVSignIn> {
                                                 });
                                               } else
                                                 Navigator.of(context)
-                                                    .pushReplacement(
-                                                        MaterialPageRoute(
-                                                            builder:
-                                                                (context) =>
-                                                                    MVHome()));
+                                                    .pushReplacementNamed("/home");
                                             }
                                           },
                                           child: Text(
@@ -177,10 +173,7 @@ class _MVSignInState extends State<MVSignIn> {
                             ],
                           ),
                           TextButton(
-                            onPressed: () => Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => MVSplashScreen())),
+                            onPressed: () => Navigator.of(context).pushReplacementNamed("/splash"),
                             child: Text(
                               "← Go Back",
                               style: TextStyle(

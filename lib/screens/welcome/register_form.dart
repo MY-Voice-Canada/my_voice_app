@@ -92,8 +92,7 @@ class _RState extends State<RForm> {
                         _emailController.text,
                         _passwordController.text);
                     if (user != null) {
-                      Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(builder: (context) => MVHome()));
+                      Navigator.of(context).pushReplacementNamed("/home");
                     } else {
                       setState(() {
                         _errorMessage = "Could not register. Try again.";

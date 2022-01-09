@@ -5,6 +5,11 @@ import 'package:my_voice_app/models/channel.dart';
 import 'package:my_voice_app/models/user.dart';
 import 'package:my_voice_app/models/video.dart';
 import 'package:my_voice_app/screens/home/home_widget.dart';
+import 'package:my_voice_app/screens/upper/favourites.dart';
+import 'package:my_voice_app/screens/upper/search.dart';
+import 'package:my_voice_app/screens/upper/settings.dart';
+import 'package:my_voice_app/screens/welcome/register.dart';
+import 'package:my_voice_app/screens/welcome/sign_in.dart';
 import 'package:my_voice_app/screens/welcome/splashscreen.dart';
 import 'package:my_voice_app/services/auth.dart';
 import 'package:provider/provider.dart';
@@ -32,6 +37,12 @@ class MVApp extends StatelessWidget {
         routes: {
           "/": (context) => MVWrapper(),
           "/home": (context) => MVHome(),
+          "/splash": (context) => MVSplashScreen(),
+          "/signin": (context) => MVSignIn(),
+          "/register": (context) => MVRegister(),
+          "/search": (context) => MVSearch(),
+          "/favs": (context) => MVFavs(),
+          "/settings": (context) => MVSettings(),
         },
         theme: ThemeData(
           primaryColor: HexColor("1BCFC9"),

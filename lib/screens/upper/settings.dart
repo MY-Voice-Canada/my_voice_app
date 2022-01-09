@@ -17,24 +17,22 @@ class _MVSettingsState extends State<MVSettings> {
     return _isLoading
         ? MVLoading()
         : MVBackground(
-          child: Scaffold(
-              backgroundColor: Colors.transparent,
-              appBar: getMVAppBar(context),
-              body: Center(
-                  child: TextButton(
-                      onPressed: () async {
-                        setState(() {
-                          _isLoading = true;
-                        });
-                        await MVAuth.signOut();
-                        setState(() {
-                          _isLoading = false;
-                        });
-                        Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => MVSplashScreen()));
-                        //Navigator.pushReplacement(context,MaterialPageRoute(builder: (context) => MVSettings())),
-                      },
-                      child: Text("Sign Out?")))),
-        );
+            child: Scaffold(
+                backgroundColor: Colors.transparent,
+                appBar: getMVAppBar(context),
+                body: Center(
+                    child: TextButton(
+                        onPressed: () async {
+                          setState(() {
+                            _isLoading = true;
+                          });
+                          await MVAuth.signOut();
+                          setState(() {
+                            _isLoading = false;
+                          });
+                          Navigator.of(context).pushReplacementNamed("/splash");
+                        },
+                        child: Text("Sign Out?")))),
+          );
   }
 }

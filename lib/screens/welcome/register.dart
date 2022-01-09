@@ -197,10 +197,7 @@ class _MVRegisterState extends State<MVRegister> {
                             ),
                           ),
                           TextButton(
-                            onPressed: () => Navigator.pushReplacement(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => MVSplashScreen())),
+                            onPressed: () => Navigator.of(context).pushReplacementNamed("/splash"),
                             child: Text(
                               "← Go Back",
                               style: TextStyle(

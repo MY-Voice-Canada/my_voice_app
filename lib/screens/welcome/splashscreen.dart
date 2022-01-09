@@ -50,9 +50,7 @@ class _MVSplashScreenState extends State<MVSplashScreen> {
                                 "Guest mode could not work.\nPlease use one of the options above instead or refresh the app.";
                           });
                         } else
-                          Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                  builder: (context) => MVHome()));
+                          Navigator.of(context).pushReplacementNamed("/home");
                       },
                       child: FittedBox(
                         child: Text(

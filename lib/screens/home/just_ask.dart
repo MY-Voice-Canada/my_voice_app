@@ -192,6 +192,8 @@ class _JAPageState extends State<JAPage> {
         ),
       );
     } else
-      return MVLoading(message: "Count your blessings while we're loading...");
+      return MVLoading(
+          message:
+              "Don't forget to count your blessings while we're loading...");
   }
 }

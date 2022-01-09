@@ -19,7 +19,8 @@ class _WatchPageState extends State<WatchPage> {
     Channel? channel = Provider.of<MVP>(context).channel;
     return channel == null
         ? MVLoading(
-            message: "Count your blessings while we're loading...",
+            message:
+                "Don't forget to count your blessings while we're loading...",
           )
         : Provider.of<MVP>(context).watchView
             ? MVBackground(

@@ -84,69 +84,72 @@ class _MVHomeState extends State<MVHome> {
         : FutureBuilder<MVWPContent>(
             future: MVWP.getContent(),
             builder: (context, snapshot) => MVBackground(
-              child: Scaffold(
-                backgroundColor: Colors.transparent,
-                appBar: getMVAppBar(context),
-                bottomNavigationBar: BottomNavigationBar(
-                  onTap: _onBottomNavChange,
-                  type: BottomNavigationBarType.fixed,
-                  backgroundColor: Theme.of(context).primaryColor,
-                  //selectedLabelStyle: TextStyle(color: Colors.white),
-                  currentIndex: _currentIndex,
-                  items: [
-                    BottomNavigationBarItem(
-                        icon: Icon(
-                          Icons.home,
-                          color: _selectedIcon(0),
-                        ),
-                        label: "Home"),
-                    BottomNavigationBarItem(
-                        icon: Icon(
-                          Icons.menu_book_rounded,
-                          color: _selectedIcon(1),
-                        ),
-                        label: "Read"),
-                    BottomNavigationBarItem(
-                        icon: Icon(
-                          Icons.ondemand_video_rounded,
-                          color: _selectedIcon(2),
-                        ),
-                        label: "Watch"),
-                    BottomNavigationBarItem(
-                        icon: Icon(
-                          Icons.textsms_rounded,
-                          color: _selectedIcon(3),
-                        ),
-                        label: "Ask"),
-                    BottomNavigationBarItem(
-                        icon: Icon(
-                          Icons.calendar_today_rounded,
-                          color: _selectedIcon(4),
-                        ),
-                        label: "Join"),
-                  ],
-                ),
-                body: PageView(
-                  controller: _pageController,
-                  onPageChanged: (i) {
-                    setState(() => _currentIndex = i);
-                  },
-                  children: [
-                    HomePage(
-                      snapshot: snapshot,
-                      changePage: changePage,
-                    ),
-                    ReadPage(
-                      snapshot: snapshot,
-                    ),
-                    WatchPage(),
-                    JAPage(
-                      snapshot: snapshot,
-                    ),
-                    GIPage(
-                      snapshot: snapshot,
-                    ),
-                  ],
+              child: WillPopScope(
+                onWillPop: () async => false,
+                child: Scaffold(
+                  backgroundColor: Colors.transparent,
+                  appBar: getMVAppBar(context),
+                  bottomNavigationBar: BottomNavigationBar(
+                    onTap: _onBottomNavChange,
+                    type: BottomNavigationBarType.fixed,
+                    backgroundColor: Theme.of(context).primaryColor,
+                    //selectedLabelStyle: TextStyle(color: Colors.white),
+                    currentIndex: _currentIndex,
+                    items: [
+                      BottomNavigationBarItem(
+                          icon: Icon(
+                            Icons.home,
+                            color: _selectedIcon(0),
+                          ),
+                          label: "Home"),
+                      BottomNavigationBarItem(
+                          icon: Icon(
+                            Icons.menu_book_rounded,
+                            color: _selectedIcon(1),
+                          ),
+                          label: "Read"),
+                      BottomNavigationBarItem(
+                          icon: Icon(
+                            Icons.ondemand_video_rounded,
+                            color: _selectedIcon(2),
+                          ),
+                          label: "Watch"),
+                      BottomNavigationBarItem(
+                          icon: Icon(
+                            Icons.textsms_rounded,
+                            color: _selectedIcon(3),
+                          ),
+                          label: "Ask"),
+                      BottomNavigationBarItem(
+                          icon: Icon(
+                            Icons.calendar_today_rounded,
+                            color: _selectedIcon(4),
+                          ),
+                          label: "Join"),
+                    ],
+                  ),
+                  body: PageView(
+                    controller: _pageController,
+                    onPageChanged: (i) {
+                      setState(() => _currentIndex = i);
+                    },
+                    children: [
+                      HomePage(
+                        snapshot: snapshot,
+                        changePage: changePage,
+                      ),
+                      ReadPage(
+                        snapshot: snapshot,
+                      ),
+                      WatchPage(),
+                      JAPage(
+                        snapshot: snapshot,
+                      ),
+                      GIPage(
+                        snapshot: snapshot,
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

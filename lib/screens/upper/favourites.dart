@@ -11,11 +11,14 @@ class _MVFavsState extends State<MVFavs> {
   @override
   Widget build(BuildContext context) {
     return MVBackground(
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: getMVAppBar(context),
-        body: Center(
-          child: Text("Favourites"),
+      child: WillPopScope(
+        onWillPop: () async => false,
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: getMVAppBar(context),
+          body: Center(
+            child: Text("Favourites"),
+          ),
         ),
       ),
     );

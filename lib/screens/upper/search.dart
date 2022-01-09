@@ -11,11 +11,14 @@ class _MVSearchState extends State<MVSearch> {
   @override
   Widget build(BuildContext context) {
     return MVBackground(
-      child: Scaffold(
-        backgroundColor: Colors.transparent,
-        appBar: getMVAppBar(context),
-        body: Center(
-          child: Text("Search"),
+      child: WillPopScope(
+        onWillPop: () async => false,
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: getMVAppBar(context),
+          body: Center(
+            child: Text("Search"),
+          ),
         ),
       ),
     );

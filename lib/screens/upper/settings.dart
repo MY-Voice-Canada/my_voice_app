@@ -22,64 +22,67 @@ class _MVSettingsState extends State<MVSettings> {
     return _isLoading
         ? MVLoading()
         : MVBackground(
-            child: Scaffold(
-              backgroundColor: Colors.transparent,
-              appBar: getMVAppBar(context),
-              body: Stack(
-                children: [
-                  OverflowBox(
-                    maxWidth: Provider.of<MVP>(context).screenWidth * 1.2,
-                    child: Container(
-                      width: Provider.of<MVP>(context).screenWidth * 1.1,
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        shape: BoxShape.circle,
+            child: WillPopScope(
+              onWillPop: () async => false,
+              child: Scaffold(
+                backgroundColor: Colors.transparent,
+                appBar: getMVAppBar(context),
+                body: Stack(
+                  children: [
+                    OverflowBox(
+                      maxWidth: Provider.of<MVP>(context).screenWidth * 1.2,
+                      child: Container(
+                        width: Provider.of<MVP>(context).screenWidth * 1.1,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                        ),
                       ),
                     ),
-                  ),
-                  Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "Hello, ${user?.displayName}",
-                          style: TextStyle(
-                            fontSize: 56.0,
-                            color: Theme.of(context).primaryColor,
-                          ),
-                        ),
-                        SizedBox(height: 100.0,),
-                        Text("More settings will be added soon...", style: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),),
-                        SizedBox(height: 150.0,),
-                        TextButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all(
-                                Theme.of(context).primaryColor),
-                          ),
-                          onPressed: () async {
-                            setState(() {
-                              _isLoading = true;
-                            });
-                            await MVAuth.signOut();
-                            setState(() {
-                              _isLoading = false;
-                            });
-                            Navigator.of(context)
-                                .pushReplacementNamed("/splash");
-                          },
-                          child: Text(
-                            "Sign out",
+                    Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            "Hello, ${user?.displayName}",
                             style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 24.0,
+                              fontSize: 56.0,
+                              color: Theme.of(context).primaryColor,
                             ),
                           ),
-                        ),
-                      ],
+                          SizedBox(height: 100.0,),
+                          Text("More settings will be added soon...", style: TextStyle(fontSize: 36.0, fontStyle: FontStyle.italic),),
+                          SizedBox(height: 150.0,),
+                          TextButton(
+                            style: ButtonStyle(
+                              backgroundColor: MaterialStateProperty.all(
+                                  Theme.of(context).primaryColor),
+                            ),
+                            onPressed: () async {
+                              setState(() {
+                                _isLoading = true;
+                              });
+                              await MVAuth.signOut();
+                              setState(() {
+                                _isLoading = false;
+                              });
+                              Navigator.of(context)
+                                  .pushReplacementNamed("/splash");
+                            },
+                            child: Text(
+                              "Sign out",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 24.0,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
+                  ],
+                ),
               ),
             ),
           );

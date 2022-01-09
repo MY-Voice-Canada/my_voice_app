@@ -6,6 +6,7 @@ import 'package:my_voice_app/screens/upper/settings.dart';
 
 AppBar getMVAppBar(BuildContext context) {
   return AppBar(
+    automaticallyImplyLeading: false,
     title: GestureDetector(
       onTap: () => Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => MVHome())),

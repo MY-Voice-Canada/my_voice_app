@@ -151,11 +151,30 @@ class _MVRegisterState extends State<MVRegister> {
                                                   "Could not register. Try again.";
                                             });
                                           } else
-                                            Navigator.of(context)
-                                                .pushReplacement(
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            MVHome()));
+                                            showDialog(
+                                              context: context,
+                                              builder: (context) => AlertDialog(
+                                                title: Text(
+                                                  "Your account has been registered!",
+                                                  style: TextStyle(
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Theme.of(context)
+                                                        .primaryColor,
+                                                  ),
+                                                ),
+                                                content: Text(
+                                                    "Please open your inbox and verify your email address to gain full access to all account-related features."),
+                                                actions: [
+                                                  TextButton(
+                                                    onPressed: () {
+                                                      Navigator.of(context)
+                                                          .popAndPushNamed("/home");
+                                                    },
+                                                    child: Text("OK"),
+                                                  ),
+                                                ],
+                                              ),
+                                            );
                                         }
                                       },
                                       child: Text(

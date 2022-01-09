@@ -28,12 +28,16 @@ class MVApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "MY Voice App",
+        initialRoute: "/",
+        routes: {
+          "/": (context) => MVWrapper(),
+          "/home": (context) => MVHome(),
+        },
         theme: ThemeData(
           primaryColor: HexColor("1BCFC9"),
           secondaryHeaderColor: HexColor("F5416C"),
           fontFamily: "Raleway",
         ),
-        home: MVWrapper(),
       ),
     );
   }

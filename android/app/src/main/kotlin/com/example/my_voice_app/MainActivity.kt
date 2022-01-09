@@ -1,4 +1,4 @@
-package com.example.my_voice_app
+package com.faizoo.my_voice_canada
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -5,7 +5,6 @@ import 'package:my_voice_app/models/background_image.dart';
 import 'package:my_voice_app/models/channel.dart';
 import 'package:my_voice_app/models/user.dart';
 import 'package:my_voice_app/models/video.dart';
-import 'package:my_voice_app/screens/home/get_involved.dart';
 import 'package:my_voice_app/screens/home/homepage.dart';
 import 'package:my_voice_app/screens/home/just_ask.dart';
 import 'package:my_voice_app/screens/home/read.dart';
@@ -115,11 +114,6 @@ class _MVHomeState extends State<MVHome> {
                             Icons.textsms_rounded,
                           ),
                           label: "Ask"),
-                      BottomNavigationBarItem(
-                          icon: Icon(
-                            Icons.calendar_today_rounded,
-                          ),
-                          label: "Join"),
                     ],
                   ),
                   body: PageView(
@@ -137,9 +131,6 @@ class _MVHomeState extends State<MVHome> {
                       ),
                       WatchPage(),
                       JAPage(
-                        snapshot: snapshot,
-                      ),
-                      GIPage(
                         snapshot: snapshot,
                       ),
                     ],

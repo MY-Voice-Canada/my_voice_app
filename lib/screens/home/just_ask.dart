@@ -144,14 +144,39 @@ class _JAPageState extends State<JAPage> {
             SizedBox(
               height: 10.0,
             ),
-            TextButton(
-              onPressed: () {
-                MVDB(uid: user.uid).addUserQuestion(
-                    name: user.displayName,
-                    email: user.email,
-                    question: "What is 9+10?");
-              },
-              child: Text("Ask Question"),
+            Card(
+              margin: EdgeInsets.symmetric(horizontal: 20.0),
+              child: Container(
+                padding: EdgeInsets.only(left: 10.0),
+                alignment: Alignment.centerLeft,
+                width: double.infinity,
+                height: 240.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                      image: AssetImage("assets/images/home_header.png"),
+                      fit: BoxFit.fill),
+                ),
+                child: Padding(
+                  padding: EdgeInsets.symmetric(vertical: 24.0),
+                  child: RichText(
+                    text: TextSpan(
+                        style: TextStyle(
+                            fontSize: 56,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: "RobotoMono"),
+                        children: [
+                          TextSpan(
+                              text: "Find Answers to",
+                              style: TextStyle(color: Colors.black)),
+                          TextSpan(
+                              text: "\nYOUR Questions",
+                              style: TextStyle(
+                                  color: Theme.of(context).secondaryHeaderColor,
+                                  fontSize: 36)),
+                        ]),
+                  ),
+                ),
+              ),
             ),
             SizedBox(
               height: 20.0,

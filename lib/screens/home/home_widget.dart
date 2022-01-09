@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:my_voice_app/main.dart';
 import 'package:my_voice_app/models/background_image.dart';
 import 'package:my_voice_app/models/channel.dart';
@@ -66,10 +67,6 @@ class _MVHomeState extends State<MVHome> {
     });
   }
 
-  Color? _selectedIcon(int i) {
-    return _currentIndex == i ? Colors.white : Colors.grey[800];
-  }
-
   void changePage(int i) {
     _pageController.animateToPage(i,
         duration: Duration(milliseconds: 200), curve: Curves.easeIn);
@@ -93,37 +90,34 @@ class _MVHomeState extends State<MVHome> {
                     onTap: _onBottomNavChange,
                     type: BottomNavigationBarType.fixed,
                     backgroundColor: Theme.of(context).primaryColor,
-                    //selectedLabelStyle: TextStyle(color: Colors.white),
+                    selectedIconTheme: IconThemeData(color: Colors.white),
+                    selectedItemColor: Colors.white,
                     currentIndex: _currentIndex,
                     items: [
                       BottomNavigationBarItem(
+                          backgroundColor: HexColor("FFBF3B"),
                           icon: Icon(
                             Icons.home,
-                            color: _selectedIcon(0),
                           ),
                           label: "Home"),
                       BottomNavigationBarItem(
                           icon: Icon(
                             Icons.menu_book_rounded,
-                            color: _selectedIcon(1),
                           ),
                           label: "Read"),
                       BottomNavigationBarItem(
                           icon: Icon(
                             Icons.ondemand_video_rounded,
-                            color: _selectedIcon(2),
                           ),
                           label: "Watch"),
                       BottomNavigationBarItem(
                           icon: Icon(
                             Icons.textsms_rounded,
-                            color: _selectedIcon(3),
                           ),
                           label: "Ask"),
                       BottomNavigationBarItem(
                           icon: Icon(
                             Icons.calendar_today_rounded,
-                            color: _selectedIcon(4),
                           ),
                           label: "Join"),
                     ],

@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:my_voice_app/screens/welcome/register.dart';
-import 'package:my_voice_app/screens/welcome/sign_in.dart';
 
 class LoginRow extends StatelessWidget {
-  bool signedIn;
-  bool registered;
-  double? buttonSize;
+  final bool signedIn;
+  final bool registered;
+  final double? buttonSize;
 
   LoginRow({required this.signedIn, required this.registered, this.buttonSize});
 

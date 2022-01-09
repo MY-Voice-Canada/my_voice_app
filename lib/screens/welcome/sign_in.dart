@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:my_voice_app/main.dart';
 import 'package:my_voice_app/models/background_image.dart';
 import 'package:my_voice_app/models/loading.dart';
-import 'package:my_voice_app/screens/home/home_widget.dart';
 import 'package:my_voice_app/screens/welcome/form_decor.dart';
 import 'package:my_voice_app/screens/welcome/login_row.dart';
-import 'package:my_voice_app/screens/welcome/splashscreen.dart';
 import 'package:my_voice_app/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -148,7 +146,8 @@ class _MVSignInState extends State<MVSignIn> {
                                                 });
                                               } else
                                                 Navigator.of(context)
-                                                    .pushReplacementNamed("/home");
+                                                    .pushReplacementNamed(
+                                                        "/home");
                                             }
                                           },
                                           child: Text(
@@ -173,7 +172,8 @@ class _MVSignInState extends State<MVSignIn> {
                             ],
                           ),
                           TextButton(
-                            onPressed: () => Navigator.of(context).pushReplacementNamed("/splash"),
+                            onPressed: () => Navigator.of(context)
+                                .pushReplacementNamed("/splash"),
                             child: Text(
                               "← Go Back",
                               style: TextStyle(

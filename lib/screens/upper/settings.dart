@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:my_voice_app/models/background_image.dart';
 import 'package:my_voice_app/models/loading.dart';
 import 'package:my_voice_app/screens/upper/appbar.dart';
-import 'package:my_voice_app/screens/welcome/splashscreen.dart';
 import 'package:my_voice_app/services/auth.dart';
 
 class MVSettings extends StatefulWidget {

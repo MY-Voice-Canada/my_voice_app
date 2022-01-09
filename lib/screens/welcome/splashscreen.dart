@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_voice_app/main.dart';
 import 'package:my_voice_app/models/loading.dart';
-import 'package:my_voice_app/screens/home/home_widget.dart';
 import 'package:my_voice_app/screens/welcome/login_row.dart';
 import 'package:my_voice_app/services/auth.dart';
 import 'package:provider/provider.dart';

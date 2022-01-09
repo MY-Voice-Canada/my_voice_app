@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:my_voice_app/main.dart';
 import 'package:my_voice_app/models/background_image.dart';
 import 'package:my_voice_app/models/loading.dart';
-import 'package:my_voice_app/screens/home/home_widget.dart';
 import 'package:my_voice_app/screens/welcome/form_decor.dart';
 import 'package:my_voice_app/screens/welcome/login_row.dart';
-import 'package:my_voice_app/screens/welcome/splashscreen.dart';
 import 'package:my_voice_app/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:hexcolor/hexcolor.dart';
@@ -166,9 +164,10 @@ class _MVRegisterState extends State<MVRegister> {
                                                     "Please open your inbox and verify your email address to gain full access to all account-related features."),
                                                 actions: [
                                                   TextButton(
-                                                    onPressed: () {
+                                                    onPressed: ()  {
                                                       Navigator.of(context)
-                                                          .popAndPushNamed("/home");
+                                                          .pushReplacementNamed(
+                                                              "/home");
                                                     },
                                                     child: Text("OK"),
                                                   ),
@@ -197,7 +196,8 @@ class _MVRegisterState extends State<MVRegister> {
                             ),
                           ),
                           TextButton(
-                            onPressed: () => Navigator.of(context).pushReplacementNamed("/splash"),
+                            onPressed: () => Navigator.of(context)
+                                .pushReplacementNamed("/splash"),
                             child: Text(
                               "← Go Back",
                               style: TextStyle(

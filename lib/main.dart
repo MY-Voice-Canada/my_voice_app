@@ -61,6 +61,7 @@ class MVWrapper extends StatelessWidget {
 enum MVCTVersion { pink, yellow, black, green }
 
 class MVP extends ChangeNotifier {
+  String? userName;
   late double screenHeightAppbarless;
   late double screenWidth;
 

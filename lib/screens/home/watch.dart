@@ -4,7 +4,6 @@ import 'package:my_voice_app/main.dart';
 import 'package:my_voice_app/models/background_image.dart';
 import 'package:my_voice_app/models/channel.dart';
 import 'package:my_voice_app/models/loading.dart';
-import 'package:my_voice_app/models/video.dart';
 import 'package:my_voice_app/screens/home/playlist_subtab.dart';
 import 'package:my_voice_app/screens/home/theatre.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +14,6 @@ class WatchPage extends StatefulWidget {
 }
 
 class _WatchPageState extends State<WatchPage> {
-
   @override
   Widget build(BuildContext context) {
     Channel? channel = Provider.of<MVP>(context).channel;

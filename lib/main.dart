@@ -58,7 +58,6 @@ class MVWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final MVUser? user = Provider.of<MVUser?>(context);
-    print(user);
     return Phoenix(child: user == null ? MVSplashScreen() : MVHome());
   }
 }

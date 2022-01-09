@@ -33,9 +33,7 @@ class MVTheatreState extends State<MVTheatre> {
           YoutubePlayer(
             controller: _controller,
             showVideoProgressIndicator: true,
-            onReady: () {
-              print('Player is ready.');
-            },
+            onReady: () {},
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),

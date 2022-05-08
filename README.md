@@ -1,4 +1,4 @@
-# MY Voice's Official App
+# MY Voice's Official App [BETA]
 
 Welcome to [MY Voice Canada's](https://www.myvoicecanada.com) official app! This _youth-made_ app allows you to read **articles from our magazine**, **ask questions that can be answered by professional youth councilors**, **connect with other Muslim adolescents nearby**, and much more!!! The rest of this document outlines the app and its technicalities, and contains some information about the team behind it...
 

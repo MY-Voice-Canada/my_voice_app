@@ -17,20 +17,6 @@ AppBar getMVAppBar(BuildContext context) {
     actions: [
       IconButton(
         icon: Icon(
-          Icons.search,
-          color: Colors.white,
-        ),
-        onPressed: () => Navigator.of(context).pushReplacementNamed("/search"),
-      ),
-      IconButton(
-        icon: Icon(
-          Icons.favorite,
-          color: Colors.white,
-        ),
-        onPressed: () => Navigator.of(context).pushReplacementNamed("/favs"),
-      ),
-      IconButton(
-        icon: Icon(
           Icons.settings,
           color: Colors.white,
         ),

@@ -33,8 +33,6 @@ class MVWP {
         } else
           return Future.error("Server error.");
       }
-
-      print("Synced with website");
       return MVWPContent(
         allPosts: posts[0],
         cwPosts: posts[1],
@@ -50,7 +48,6 @@ class MVWP {
         lifJAs: posts[11],
       );
     } catch (e) {
-      print(e.toString());
       return Future.error("Error fetching data");
     }
   }

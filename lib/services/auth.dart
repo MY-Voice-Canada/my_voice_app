@@ -29,7 +29,6 @@ class MVAuth {
       await user?.sendEmailVerification();
       return _convertMVUser(user);
     } catch (e) {
-      print(e.toString());
       return null;
     }
   }
@@ -40,7 +39,6 @@ class MVAuth {
       User? user = res.user;
       return _convertMVUser(user);
     } catch (e) {
-      print(e.toString());
       return null;
     }
   }
@@ -52,7 +50,6 @@ class MVAuth {
       User? user = res.user;
       return _convertMVUser(user);
     } catch (e) {
-      print(e.toString());
       return null;
     }
   }
@@ -61,7 +58,7 @@ class MVAuth {
     try {
       return await _auth.signOut();
     } catch (e) {
-      print(e.toString());
+      return null;
     }
   }
 }

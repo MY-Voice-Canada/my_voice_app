@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.my_voice_app">
+    package="com.faizoo.my_voice_canada">
+   <uses-permission android:name="android.permission.INTERNET"/>
    <application
-        android:label="my_voice_app"
+        android:label="MY Voice"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

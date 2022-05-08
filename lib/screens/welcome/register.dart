@@ -148,7 +148,11 @@ class _MVRegisterState extends State<MVRegister> {
                                               _errorMessage =
                                                   "Could not register. Try again.";
                                             });
-                                          } else
+                                          } else {
+                                            Provider.of<MVP>(context,
+                                                        listen: false)
+                                                    .userName =
+                                                _nameController.text;
                                             showDialog(
                                               context: context,
                                               builder: (context) => AlertDialog(
@@ -164,7 +168,7 @@ class _MVRegisterState extends State<MVRegister> {
                                                     "Please open your inbox and verify your email address to gain full access to all account-related features."),
                                                 actions: [
                                                   TextButton(
-                                                    onPressed: ()  {
+                                                    onPressed: () {
                                                       Navigator.of(context)
                                                           .pushReplacementNamed(
                                                               "/home");
@@ -174,6 +178,7 @@ class _MVRegisterState extends State<MVRegister> {
                                                 ],
                                               ),
                                             );
+                                          }
                                         }
                                       },
                                       child: Text(

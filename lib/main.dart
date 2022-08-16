@@ -16,15 +16,7 @@ import 'package:firebase_core/firebase_core.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(TestApp());
-}
-
-class TestApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return const Text(
-        "This should show an completely empty page with some text 👍");
-  }
+  runApp(MyVoiceApp());
 }
 
 Widget MyVoiceApp() => ChangeNotifierProvider(

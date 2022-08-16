@@ -35,6 +35,9 @@
 android
 ios
 pubspec.lock
+linux
+macos
+windows
 
 # Web related
 lib/generated_plugin_registrant.dart

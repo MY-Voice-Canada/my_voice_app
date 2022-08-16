@@ -98,7 +98,7 @@ class _MVHomeState extends State<MVHome> {
                           icon: Icon(
                             Icons.home,
                           ),
-                          label: "Home"),
+                          label: "Homie"),
                       BottomNavigationBarItem(
                           icon: Icon(
                             Icons.menu_book_rounded,

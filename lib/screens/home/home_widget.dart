@@ -88,17 +88,19 @@ class _MVHomeState extends State<MVHome> {
                   bottomNavigationBar: BottomNavigationBar(
                     onTap: _onBottomNavChange,
                     type: BottomNavigationBarType.fixed,
-                    backgroundColor: Theme.of(context).primaryColor,
-                    selectedIconTheme: IconThemeData(color: Colors.white),
+                    backgroundColor: Colors.black,
+                    selectedIconTheme: IconThemeData(color: Colors.amberAccent),
                     selectedItemColor: Colors.white,
+                    unselectedItemColor: Colors.white,
+                    unselectedIconTheme:
+                        IconThemeData(color: Colors.cyanAccent),
                     currentIndex: _currentIndex,
                     items: [
                       BottomNavigationBarItem(
-                          backgroundColor: HexColor("FFBF3B"),
                           icon: Icon(
                             Icons.home,
                           ),
-                          label: "Homie"),
+                          label: "Home"),
                       BottomNavigationBarItem(
                           icon: Icon(
                             Icons.menu_book_rounded,
@@ -114,6 +116,11 @@ class _MVHomeState extends State<MVHome> {
                             Icons.textsms_rounded,
                           ),
                           label: "Ask"),
+                      BottomNavigationBarItem(
+                          icon: Icon(
+                            Icons.groups,
+                          ),
+                          label: "Join")
                     ],
                   ),
                   body: PageView(

@@ -14,11 +14,14 @@ class CategorySubTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      margin: EdgeInsets.only(top: 0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Divider(
-            thickness: 3.0,
+            thickness: 5.0,
+            indent: 30,
+            endIndent: 290,
             color: ja != null
                 ? Colors.black
                 : Theme.of(context).secondaryHeaderColor,

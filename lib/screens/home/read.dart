@@ -143,34 +143,30 @@ class _ReadPageState extends State<ReadPage> {
               height: 10.0,
             ),
             Card(
-              margin: EdgeInsets.symmetric(horizontal: 20.0),
+              color: Colors.white,
+              elevation: 0,
+              margin: EdgeInsets.fromLTRB(20, 75, 20, 0),
               child: Container(
                 padding: EdgeInsets.only(left: 10.0),
                 alignment: Alignment.centerLeft,
                 width: double.infinity,
-                height: 240.0,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                       image: AssetImage("assets/images/home_header.png"),
                       fit: BoxFit.fill),
                 ),
                 child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 24.0),
+                  padding: EdgeInsets.fromLTRB(0, 24, 24, 0),
                   child: RichText(
                     text: TextSpan(
                         style: TextStyle(
-                            fontSize: 56,
+                            fontSize: 25,
                             fontWeight: FontWeight.bold,
                             fontFamily: "RobotoMono"),
                         children: [
                           TextSpan(
-                              text: "Read Our",
+                              text: "Editor's Picks",
                               style: TextStyle(color: Colors.black)),
-                          TextSpan(
-                              text: "\nYouth-made Articles",
-                              style: TextStyle(
-                                  color: Theme.of(context).secondaryHeaderColor,
-                                  fontSize: 36)),
                         ]),
                   ),
                 ),

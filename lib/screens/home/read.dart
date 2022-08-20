@@ -7,6 +7,7 @@ import 'package:my_voice_app/models/category_text.dart';
 import 'package:my_voice_app/models/loading.dart';
 import 'package:my_voice_app/screens/home/category_subtab.dart';
 import 'package:provider/provider.dart';
+import 'package:my_voice_app/screens/home/four_row_tiles.dart';
 
 class ReadPage extends StatefulWidget {
   final snapshot;
@@ -172,6 +173,9 @@ class _ReadPageState extends State<ReadPage> {
                 ),
               ),
             ),
+
+            FourTileCategory('dingDong'), //test
+
             SizedBox(
               height: 20.0,
             ),

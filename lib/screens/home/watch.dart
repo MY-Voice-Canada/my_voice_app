@@ -67,45 +67,6 @@ class _WatchPageState extends State<WatchPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 10.0,
-                    ),
-                    Card(
-                      margin: EdgeInsets.symmetric(horizontal: 20.0),
-                      child: Container(
-                        padding: EdgeInsets.only(left: 10.0),
-                        alignment: Alignment.centerLeft,
-                        width: double.infinity,
-                        height: 240.0,
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                              image:
-                                  AssetImage("assets/images/home_header.png"),
-                              fit: BoxFit.fill),
-                        ),
-                        child: Padding(
-                          padding: EdgeInsets.symmetric(vertical: 24.0),
-                          child: RichText(
-                            text: TextSpan(
-                                style: TextStyle(
-                                    fontSize: 56,
-                                    fontWeight: FontWeight.bold,
-                                    fontFamily: "RobotoMono"),
-                                children: [
-                                  TextSpan(
-                                      text: "Watch Our",
-                                      style: TextStyle(color: Colors.black)),
-                                  TextSpan(
-                                      text: "\nYouth-directed Videos",
-                                      style: TextStyle(
-                                          color: Theme.of(context)
-                                              .secondaryHeaderColor,
-                                          fontSize: 36)),
-                                ]),
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(
                       height: 20.0,
                     ),
                     PlaylistSubTab(
@@ -142,6 +103,12 @@ class _WatchPageState extends State<WatchPage> {
                     SizedBox(
                       height: 20.0,
                     ),
+                    Container(
+                        padding: EdgeInsets.all(20),
+                        margin: EdgeInsets.all(20),
+                        color: Colors.lightBlue,
+                        child: Text(
+                            'Subscribe to our youtube channel (MY Voice Canada) for more content like this!')),
                   ],
                 ),
               );

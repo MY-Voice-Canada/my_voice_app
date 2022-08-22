@@ -1,3 +1,5 @@
+import 'package:flutter/gestures.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:my_voice_app/main.dart';
@@ -104,11 +106,17 @@ class _WatchPageState extends State<WatchPage> {
                       height: 20.0,
                     ),
                     Container(
-                        padding: EdgeInsets.all(20),
-                        margin: EdgeInsets.all(20),
-                        color: Colors.lightBlue,
+                        padding: EdgeInsets.all(15),
+                        margin: EdgeInsets.all(15),
+                        alignment: Alignment.bottomRight,
+                        color: Color.fromARGB(255, 255, 236, 141),
                         child: Text(
-                            'Subscribe to our youtube channel (MY Voice Canada) for more content like this!')),
+                            'Subscribe to our youtube channel (MY Voice Canada) for more content like this!',
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 15.0,
+                              fontWeight: FontWeight.bold,
+                            ))),
                   ],
                 ),
               );

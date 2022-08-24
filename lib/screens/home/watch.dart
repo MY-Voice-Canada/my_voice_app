@@ -1,5 +1,5 @@
 import 'package:flutter/gestures.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:my_voice_app/main.dart';
@@ -69,36 +69,86 @@ class _WatchPageState extends State<WatchPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 20.0,
-                    ),
+                        height: 20.0,
+                        child: OutlinedButton(
+                          onPressed: () {
+                            // Respond to button press
+                          },
+                          child: Text("View All >",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 10.0,
+                                fontWeight: FontWeight.bold,
+                              )),
+                        )),
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),
                       playlistName: "Race Against Racism",
                     ),
                     SizedBox(
-                      height: 20.0,
-                    ),
+                        height: 20.0,
+                        child: OutlinedButton(
+                          onPressed: () {
+                            // Respond to button press
+                          },
+                          child: Text("View All >",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 10.0,
+                                fontWeight: FontWeight.bold,
+                              )),
+                        )),
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),
                       playlistName: "Candid Convos",
                     ),
                     SizedBox(
-                      height: 20.0,
-                    ),
+                        height: 20.0,
+                        child: OutlinedButton(
+                          onPressed: () {
+                            // Respond to button press
+                          },
+                          child: Text("View All >",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 10.0,
+                                fontWeight: FontWeight.bold,
+                              )),
+                        )),
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),
                       playlistName: "The MY Voice Show",
                     ),
                     SizedBox(
-                      height: 20.0,
-                    ),
+                        height: 20.0,
+                        child: OutlinedButton(
+                          onPressed: () {
+                            // Respond to button press
+                          },
+                          child: Text("View All >",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 10.0,
+                                fontWeight: FontWeight.bold,
+                              )),
+                        )),
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),
                       playlistName: "Connecting The World",
                     ),
                     SizedBox(
-                      height: 20.0,
-                    ),
+                        height: 20.0,
+                        child: OutlinedButton(
+                          onPressed: () {
+                            // Respond to button press
+                          },
+                          child: Text("View All >",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 10.0,
+                                fontWeight: FontWeight.bold,
+                              )),
+                        )),
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),
                     ),
@@ -106,17 +156,22 @@ class _WatchPageState extends State<WatchPage> {
                       height: 20.0,
                     ),
                     Container(
-                        padding: EdgeInsets.all(15),
-                        margin: EdgeInsets.all(15),
-                        alignment: Alignment.bottomRight,
-                        color: Color.fromARGB(255, 255, 236, 141),
-                        child: Text(
-                            'Subscribe to our youtube channel (MY Voice Canada) for more content like this!',
-                            style: TextStyle(
-                              color: Colors.black,
-                              fontSize: 15.0,
-                              fontWeight: FontWeight.bold,
-                            ))),
+                        child: Align(
+                      alignment: Alignment.bottomRight,
+                      child: SizedBox(
+                          height: 48.0,
+                          width: 308.0,
+                          child: Container(
+                              color: Color.fromARGB(255, 255, 236, 141),
+                              child: Text(
+                                  'Subscribe to our youtube channel (MY Voice Canada) for more content like this!',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 13.0,
+                                    fontWeight: FontWeight.bold,
+                                  )))),
+                    )),
                   ],
                 ),
               );

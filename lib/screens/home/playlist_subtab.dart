@@ -22,12 +22,22 @@ class PlaylistSubTab extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Divider(
-            thickness: 3.0,
+            thickness: 4.0,
             color: HexColor("FFBF3B"),
           ),
           SizedBox(
-            height: 10.0,
-          ),
+              height: 10.0,
+              child: OutlinedButton(
+                onPressed: () {
+                  // Respond to button press
+                },
+                child: Text("View All >",
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 11,
+                      fontWeight: FontWeight.bold,
+                    )),
+              )),
           MVCategoryText(
             playlistName ?? "Miscellaneous",
             fontSize: 24.0,
@@ -39,10 +49,10 @@ class PlaylistSubTab extends StatelessWidget {
             child: GridView.builder(
               physics: NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 500,
-                childAspectRatio: 1.05,
-                crossAxisSpacing: 20,
-                mainAxisSpacing: 20,
+                maxCrossAxisExtent: 380,
+                childAspectRatio: 2.0,
+                crossAxisSpacing: 13,
+                mainAxisSpacing: 13,
               ),
               itemCount: playlistName == null ? 12 : 6,
               itemBuilder: (context, i) => GestureDetector(
@@ -57,8 +67,8 @@ class PlaylistSubTab extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        width: 250.0,
-                        height: 150.0,
+                        width: 126.0,
+                        height: 100.0,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10.0),
                           child: Image.network(
@@ -68,12 +78,12 @@ class PlaylistSubTab extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 10.0,
+                        height: 8.0,
                       ),
                       ClipRect(
                         child: SizedBox(
                           height: 100.0,
-                          width: 250.0,
+                          width: 450.0,
                           child: videos[i].title.length > 60
                               ? Html(
                                   style: {

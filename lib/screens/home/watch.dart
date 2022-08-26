@@ -9,6 +9,7 @@ import 'package:my_voice_app/models/loading.dart';
 import 'package:my_voice_app/screens/home/playlist_subtab.dart';
 import 'package:my_voice_app/screens/home/theatre.dart';
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class WatchPage extends StatefulWidget {
   @override
@@ -69,86 +70,36 @@ class _WatchPageState extends State<WatchPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                        height: 20.0,
-                        child: OutlinedButton(
-                          onPressed: () {
-                            // Respond to button press
-                          },
-                          child: Text("View All >",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 10.0,
-                                fontWeight: FontWeight.bold,
-                              )),
-                        )),
+                      height: 20.0,
+                    ),
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),
                       playlistName: "Race Against Racism",
                     ),
                     SizedBox(
-                        height: 20.0,
-                        child: OutlinedButton(
-                          onPressed: () {
-                            // Respond to button press
-                          },
-                          child: Text("View All >",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 10.0,
-                                fontWeight: FontWeight.bold,
-                              )),
-                        )),
+                      height: 20.0,
+                    ),
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),
                       playlistName: "Candid Convos",
                     ),
                     SizedBox(
-                        height: 20.0,
-                        child: OutlinedButton(
-                          onPressed: () {
-                            // Respond to button press
-                          },
-                          child: Text("View All >",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 10.0,
-                                fontWeight: FontWeight.bold,
-                              )),
-                        )),
+                      height: 20.0,
+                    ),
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),
                       playlistName: "The MY Voice Show",
                     ),
                     SizedBox(
-                        height: 20.0,
-                        child: OutlinedButton(
-                          onPressed: () {
-                            // Respond to button press
-                          },
-                          child: Text("View All >",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 10.0,
-                                fontWeight: FontWeight.bold,
-                              )),
-                        )),
+                      height: 20.0,
+                    ),
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),
                       playlistName: "Connecting The World",
                     ),
                     SizedBox(
-                        height: 20.0,
-                        child: OutlinedButton(
-                          onPressed: () {
-                            // Respond to button press
-                          },
-                          child: Text("View All >",
-                              style: TextStyle(
-                                color: Colors.black,
-                                fontSize: 10.0,
-                                fontWeight: FontWeight.bold,
-                              )),
-                        )),
+                      height: 20.0,
+                    ),
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),
                     ),
@@ -159,18 +110,23 @@ class _WatchPageState extends State<WatchPage> {
                         child: Align(
                       alignment: Alignment.bottomRight,
                       child: SizedBox(
-                          height: 48.0,
+                          height: 42.0,
                           width: 308.0,
                           child: Container(
                               color: Color.fromARGB(255, 255, 236, 141),
-                              child: Text(
-                                  'Subscribe to our youtube channel (MY Voice Canada) for more content like this!',
-                                  textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 13.0,
-                                    fontWeight: FontWeight.bold,
-                                  )))),
+                              child: new InkWell(
+                                child: new Text(
+                                    'Subscribe to our youtube channel (MY Voice Canada) for more content like this!',
+                                    textAlign: TextAlign.center,
+                                    style: TextStyle(
+                                      color: Colors.black,
+                                      fontSize: 13.0,
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                                // ignore: deprecated_member_use
+                                onTap: () => launch(
+                                    'https://www.youtube.com/c/MYVoiceCanada'),
+                              ))),
                     )),
                   ],
                 ),

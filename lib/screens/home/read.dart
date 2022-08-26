@@ -8,6 +8,7 @@ import 'package:my_voice_app/models/loading.dart';
 import 'package:my_voice_app/screens/home/category_subtab.dart';
 import 'package:provider/provider.dart';
 import 'package:my_voice_app/screens/home/four_row_tiles.dart';
+import 'package:responsive_framework/responsive_framework.dart';
 
 class ReadPage extends StatefulWidget {
   final snapshot;

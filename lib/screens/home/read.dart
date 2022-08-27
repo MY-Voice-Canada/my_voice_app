@@ -32,9 +32,102 @@ class _ReadPageState extends State<ReadPage> {
               SizedBox(
                 height: 5.0,
               ),
-              MVCategoryText(
-                Provider.of<MVP>(context).readCategory,
-                version: MVCTVersion.pink,
+              // MVCategoryText(
+              //   Provider.of<MVP>(context).readCategory,
+              //   version: MVCTVersion.pink,
+              // ),
+              SizedBox(
+                height: 20.0,
+              ),
+
+              SizedBox(
+                height: 20.0,
+              ),
+              Html(
+                  style: {
+                    "h1": Style(
+                      fontSize: FontSize(22.0),
+                      margin: EdgeInsets.zero,
+                    ),
+                  },
+                  data: "<h1>" +
+                      Provider.of<MVP>(context).readTitle.toString() +
+                      "</h1>"),
+              Container(
+                margin: EdgeInsets.zero,
+                color: HexColor('FFFFFF'),
+                child: Divider(
+                  thickness: 3,
+                  indent: 10,
+                  endIndent: 240,
+                  color: HexColor('F5416C'),
+                ),
+              ),
+              SizedBox(
+                height: 10.0,
+              ),
+              Padding(
+                padding: EdgeInsets.only(left: 10.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      child: RichText(
+                        text: TextSpan(
+                          style: TextStyle(
+                            color: Theme.of(context).secondaryHeaderColor,
+                            fontSize: 18.0,
+                          ),
+                          children: [
+                            TextSpan(
+                              text: Provider.of<MVP>(context)
+                                      .readAuthor
+                                      .toString()
+                                      .toUpperCase() +
+                                  " " * 2,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                                color: HexColor('F5416C'),
+                              ),
+                            ),
+                            TextSpan(
+                                text: ' |  ',
+                                style: TextStyle(color: HexColor('000000'))),
+                            TextSpan(
+                              text: DateFormat("MMMM d, y")
+                                  .format(Provider.of<MVP>(context).readDate!)
+                                  .toUpperCase(),
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                                color: HexColor('F5416C'),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Row(
+                      children: [
+                        IconButton(
+                          padding: EdgeInsets.all(5),
+                          onPressed: null,
+                          icon: Image(
+                            image: AssetImage("assets/images/logo_icon.png"),
+                          ),
+                        ),
+                        IconButton(
+                          padding: EdgeInsets.all(5),
+                          onPressed: null,
+                          icon: Image(
+                            image: AssetImage("assets/images/logo_icon.png"),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
               SizedBox(
                 height: 20.0,
@@ -46,51 +139,6 @@ class _ReadPageState extends State<ReadPage> {
                   height: 250.0,
                   width: Provider.of<MVP>(context).screenWidth,
                   fit: BoxFit.fill,
-                ),
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              Html(
-                  style: {
-                    "h1": Style(
-                      fontSize: FontSize(56.0),
-                      margin: EdgeInsets.zero,
-                    ),
-                  },
-                  data: "<h1>" +
-                      Provider.of<MVP>(context).readTitle.toString() +
-                      "</h1>"),
-              SizedBox(
-                height: 15.0,
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 10.0),
-                child: Row(
-                  children: [
-                    RichText(
-                      text: TextSpan(
-                        style: TextStyle(
-                          color: Theme.of(context).secondaryHeaderColor,
-                          fontSize: 18.0,
-                        ),
-                        children: [
-                          TextSpan(
-                            text: Provider.of<MVP>(context)
-                                    .readAuthor
-                                    .toString()
-                                    .toUpperCase() +
-                                " " * 15,
-                          ),
-                          TextSpan(
-                            text: DateFormat("MMMM d, y")
-                                .format(Provider.of<MVP>(context).readDate!)
-                                .toUpperCase(),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
                 ),
               ),
               SizedBox(
@@ -174,8 +222,242 @@ class _ReadPageState extends State<ReadPage> {
                 ),
               ),
             ),
+            Container(
+              padding: EdgeInsets.all(10),
+              margin: EdgeInsets.zero,
+              color: HexColor('FFFFFF'),
+              child: Divider(
+                thickness: 5,
+                indent: 20,
+                endIndent: 260,
+                color: HexColor('F5416C'),
+              ),
+            ),
+            Column(
+              // from here begins the 3 boxes under 'editors picks' text
+              children: [
+                GestureDetector(
+                  onTap: null,
+                  child: Card(
+                    margin: EdgeInsets.zero,
+                    child: Column(
+                      children: [
+                        Container(
+                          child: Text(
+                            'Title of the Big Article',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                              color: HexColor('000000'),
+                            ),
+                          ),
+                        ),
+                        Text(
+                          'Category',
+                          textAlign: TextAlign.left,
+                          style: TextStyle(
+                            fontSize: 14,
+                            color: HexColor('F5416C'),
+                          ),
+                        ),
+                        Container(
+                          height: 200,
+                          width: 400,
+                          child: Card(
+                            child: Image.asset('assets/images/logo.png'),
+                            margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
+                          ),
+                        ),
+                        Container(
+                          padding: EdgeInsets.fromLTRB(5, 10, 5, 0),
+                          child: Text(
+                            'Little Summary of Big Pic',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                              fontSize: 13,
+                              color: HexColor('000000'),
+                            ),
+                          ),
+                        ),
+                        Row(
+                          children: [
+                            Column(
+                              children: [
+                                Container(
+                                  height: 100,
+                                  width: 175,
+                                  child: Card(
+                                    child:
+                                        Image.asset('assets/images/logo.png'),
+                                    margin: EdgeInsets.all(10),
+                                  ),
+                                ),
+                                Text(
+                                  'Category',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                    color: HexColor('F5416C'),
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.all(10),
+                                  child: Text(
+                                    'Smoll Title',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                      color: HexColor('000000'),
+                                    ),
+                                  ),
+                                ),
+                                Text(
+                                  'Little Summary of small Pic',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    color: HexColor('000000'),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Column(
+                              children: [
+                                Container(
+                                  height: 100,
+                                  width: 175,
+                                  child: Card(
+                                    child:
+                                        Image.asset('assets/images/logo.png'),
+                                    margin: EdgeInsets.all(10),
+                                  ),
+                                ),
+                                Text(
+                                  'Category',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    fontSize: 11,
+                                    color: HexColor('F5416C'),
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.all(10),
+                                  child: Text(
+                                    'Smoll Title',
+                                    textAlign: TextAlign.left,
+                                    style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 12,
+                                      color: HexColor('000000'),
+                                    ),
+                                  ),
+                                ),
+                                Text(
+                                  'Little Summary of small Pic',
+                                  textAlign: TextAlign.left,
+                                  style: TextStyle(
+                                    fontSize: 10,
+                                    color: HexColor('000000'),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
 
-            FourTileCategory('dingDong'), //test
+            Container(
+              margin: EdgeInsets.zero,
+              color: HexColor('FFFFFF'),
+              child: Divider(
+                thickness: 5,
+                indent: 20,
+                endIndent: 20,
+                color: HexColor('F5416C'),
+              ),
+            ),
+
+            FourTileCategory('Creative Writing', 'FFFFFF'), //test
+            FourTileCategory('Faith', 'D9D9D9'),
+            FourTileCategory('Food For Thought', 'FFFFFF'),
+            FourTileCategory('Inspiring Individuals', 'D9D9D9'),
+            FourTileCategory('Lifestyle & Entertainment', 'FFFFFF'),
+            FourTileCategory('News & Social Issues', 'D9D9D9'),
+
+            Card(
+              child: Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(top: 10),
+                    child: Text(
+                      'Random',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 21,
+                        color: HexColor('000000'),
+                      ),
+                    ),
+                  ),
+                  Divider(
+                    thickness: 4,
+                    indent: 20,
+                    endIndent: 250,
+                    color: HexColor('F5416C'),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 10),
+                    child: Text(
+                      'Title of the Big Article',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 15,
+                        color: HexColor('000000'),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(top: 10),
+                    child: Text(
+                      'Category',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 14,
+                        color: HexColor('F5416C'),
+                      ),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    height: 200,
+                    width: 400,
+                    child: Card(
+                      child: Image.asset('assets/images/logo.png'),
+                      margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
+                    ),
+                  ),
+                  Container(
+                    padding: EdgeInsets.all(10),
+                    child: Text(
+                      'Little Summary of Big Pic',
+                      textAlign: TextAlign.left,
+                      style: TextStyle(
+                        fontSize: 13,
+                        color: HexColor('000000'),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
 
             SizedBox(
               height: 20.0,

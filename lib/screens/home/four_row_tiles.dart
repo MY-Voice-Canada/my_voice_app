@@ -4,58 +4,69 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/foundation/key.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:flutter_html/shims/dart_ui_real.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 class FourTileCategory extends StatelessWidget {
   final String categoryName;
+  final String cardColor;
 
-  FourTileCategory(this.categoryName);
+  FourTileCategory(this.categoryName, this.cardColor);
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      margin: EdgeInsets.zero,
       child: Column(
         children: [
           Card(
+            margin: EdgeInsets.zero,
+            color: HexColor(cardColor),
+            elevation: 0,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  alignment: Alignment.centerLeft,
                   margin: EdgeInsets.all(10),
                   child: Text(
                     categoryName,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      color: Colors.black,
+                      fontSize: 21,
+                      color: HexColor('000000'),
                     ),
                   ),
                 ),
-                Container(
-                  alignment: Alignment.centerRight,
-                  child: Text(
-                    'View All >',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                      color: Colors.pink[300],
+                GestureDetector(
+                  onTap: null,
+                  child: Container(
+                    margin: EdgeInsets.all(10),
+                    child: Text(
+                      'View All >',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                        color: HexColor('F5416C'),
+                      ),
                     ),
                   ),
                 )
               ],
             ),
           ),
-          Card(
-            margin: EdgeInsets.all(0),
-            child: Row(
-              children: <Widget>[
-                Container(
-                    width: 100,
-                    height: 60,
+          GestureDetector(
+            onTap: null,
+            child: Card(
+              margin: EdgeInsets.zero,
+              color: HexColor(cardColor),
+              elevation: 0,
+              child: Row(
+                children: <Widget>[
+                  Container(
                     margin: EdgeInsets.symmetric(
                       vertical: 10,
-                      horizontal: 5,
+                      horizontal: 15,
                     ),
                     decoration: BoxDecoration(
                       border: Border.all(
@@ -64,28 +75,35 @@ class FourTileCategory extends StatelessWidget {
                       ),
                     ),
                     padding: EdgeInsets.all(10),
-                    child: Image.asset('logo_icon.png')),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'author',
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: Colors.pink[300],
-                      ),
+                    child: Container(
+                      height: 30,
+                      width: 60,
+                      child: Image.asset('assets/images/logo.png'),
                     ),
-                    Text(
-                      'This is the title of this neat article',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18,
-                        color: Colors.black,
+                  ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Text(
+                        'Anon Writer',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 9,
+                          color: HexColor('F5416C'),
+                        ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                      Text(
+                        'The Writing Style of William',
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 14,
+                          color: HexColor('000000'),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ],

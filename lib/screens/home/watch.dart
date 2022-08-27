@@ -108,7 +108,7 @@ class _WatchPageState extends State<WatchPage> {
                     ),
                     Container(
                         child: Align(
-                      alignment: Alignment.bottomRight,
+                      alignment: Alignment.centerRight,
                       child: SizedBox(
                           height: 42.0,
                           width: 308.0,

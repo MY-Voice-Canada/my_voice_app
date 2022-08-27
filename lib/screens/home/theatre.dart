@@ -39,7 +39,7 @@ class MVTheatreState extends State<MVTheatre> {
             padding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
             child: Text(
               widget.video.title,
-              style: TextStyle(fontSize: 36.0, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 34.0, fontWeight: FontWeight.bold),
             ),
           ),
         ],

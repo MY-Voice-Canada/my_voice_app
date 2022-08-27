@@ -26,33 +26,47 @@ class PlaylistSubTab extends StatelessWidget {
             color: HexColor("FFBF3B"),
           ),
           SizedBox(
-              height: 10.0,
-              child: OutlinedButton(
-                onPressed: () {
-                  // Respond to button press
-                },
-                child: Text("View All >",
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 11,
-                      fontWeight: FontWeight.bold,
-                    )),
-              )),
+            height: 10.0,
+            // child: OutlinedButton(
+            //   onPressed: () {
+            //     // Respond to button press
+            //   },
+            //   child: Text("View All >",
+            //       style: TextStyle(
+            //         color: Colors.black,
+            //         fontSize: 11,
+            //         fontWeight: FontWeight.bold,
+            //       )),
+            // )
+          ),
           MVCategoryText(
             playlistName ?? "Miscellaneous",
-            fontSize: 24.0,
+            fontSize: 18.2,
             version: MVCTVersion.yellow,
           ),
-          SizedBox(height: 20.0),
+          Container(
+            alignment: Alignment.topRight,
+            child: Text(
+              'View All >',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 14,
+                color: Colors.pink[300],
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 15.0,
+          ),
           SizedBox(
             height: playlistName == null ? 1750.0 : 875.0,
             child: GridView.builder(
               physics: NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 380,
-                childAspectRatio: 2.0,
-                crossAxisSpacing: 13,
-                mainAxisSpacing: 13,
+                maxCrossAxisExtent: 360,
+                childAspectRatio: 1.58,
+                crossAxisSpacing: 8.2,
+                mainAxisSpacing: 7,
               ),
               itemCount: playlistName == null ? 12 : 6,
               itemBuilder: (context, i) => GestureDetector(
@@ -67,8 +81,8 @@ class PlaylistSubTab extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        width: 126.0,
-                        height: 100.0,
+                        width: 197.0,
+                        height: 99.7,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10.0),
                           child: Image.network(
@@ -78,7 +92,7 @@ class PlaylistSubTab extends StatelessWidget {
                         ),
                       ),
                       SizedBox(
-                        height: 8.0,
+                        height: 5.0,
                       ),
                       ClipRect(
                         child: SizedBox(

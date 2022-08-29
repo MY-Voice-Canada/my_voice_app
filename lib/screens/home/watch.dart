@@ -70,41 +70,38 @@ class _WatchPageState extends State<WatchPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 20.0,
+                      height: 0,
                     ),
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),
                       playlistName: "Race Against Racism",
                     ),
                     SizedBox(
-                      height: 20.0,
+                      height: 0,
                     ),
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),
                       playlistName: "Candid Convos",
                     ),
                     SizedBox(
-                      height: 20.0,
+                      height: 0,
                     ),
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),
                       playlistName: "The MY Voice Show",
                     ),
                     SizedBox(
-                      height: 20.0,
+                      height: 0,
                     ),
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),
                       playlistName: "Connecting The World",
                     ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),
                     ),
                     SizedBox(
-                      height: 20.0,
+                      height: 0,
                     ),
                     Container(
                         child: Align(

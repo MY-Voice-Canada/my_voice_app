@@ -25,6 +25,12 @@ class MVCategoryText extends StatelessWidget {
       case MVCTVersion.green:
         categoryColor = HexColor("FFFFFF");
         break;
+      case MVCTVersion.white:
+        categoryColor = Colors.white;
+        break;
+      case MVCTVersion.transparent:
+        categoryColor = Colors.transparent;
+        break;
     }
 
     return Container(

@@ -59,7 +59,7 @@ class PlaylistSubTab extends StatelessWidget {
             height: 15.0,
           ),
           SizedBox(
-            height: playlistName == null ? 17500 : 875.0,
+            height: playlistName == null ? 1750.0 : 875.0,
             child: GridView.builder(
               physics: NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
@@ -81,8 +81,8 @@ class PlaylistSubTab extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        width: 125.0,
-                        height: 86,
+                        width: 80.0,
+                        height: 70.2,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10.0),
                           child: Image.network(

@@ -30,7 +30,9 @@ class FourTileCategory extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.all(10),
                   child: Text(
-                    categoryName,
+                    categoryName.length > 20
+                        ? categoryName.substring(0, 10) + '...'
+                        : categoryName,
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 21,

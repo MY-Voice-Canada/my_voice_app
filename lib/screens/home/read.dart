@@ -133,13 +133,21 @@ class _ReadPageState extends State<ReadPage> {
               SizedBox(
                 height: 20.0,
               ),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10.0),
-                child: Image.network(
-                  Provider.of<MVP>(context).readImage,
-                  height: 250.0,
-                  width: Provider.of<MVP>(context).screenWidth,
-                  fit: BoxFit.fill,
+              Container(
+                padding: EdgeInsets.all(1),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(10.0),
+                  child: Image.network(
+                    Provider.of<MVP>(context).readImage,
+                    height: 250.0,
+                    width: Provider.of<MVP>(context).screenWidth,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                decoration: BoxDecoration(
+                  border: Border.all(),
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(10.0),
                 ),
               ),
               SizedBox(

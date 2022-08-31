@@ -1,6 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:flutter/material.dart';
+import 'package:my_voice_app/models/category_text.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:my_voice_app/main.dart';
 import 'package:my_voice_app/models/background_image.dart';
@@ -17,6 +18,8 @@ class WatchPage extends StatefulWidget {
 }
 
 class _WatchPageState extends State<WatchPage> {
+  var playlistName;
+
   @override
   Widget build(BuildContext context) {
     Channel? channel = Provider.of<MVP>(context).channel;
@@ -70,6 +73,18 @@ class _WatchPageState extends State<WatchPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
+                      height: 350,
+                      width: 460,
+                      child: Container(
+                        color: Color.fromARGB(255, 187, 182, 182),
+                        child: MVCategoryText(
+                          playlistName ?? "Trending",
+                          fontSize: 19,
+                          version: MVCTVersion.transparent,
+                        ),
+                      ),
+                    ),
+                    SizedBox(
                       height: 0,
                     ),
                     PlaylistSubTab(
@@ -89,6 +104,18 @@ class _WatchPageState extends State<WatchPage> {
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),
                       playlistName: "The MY Voice Show",
+                    ),
+                    SizedBox(
+                      height: 350,
+                      width: 460,
+                      child: Container(
+                        color: Color.fromARGB(255, 187, 182, 182),
+                        child: MVCategoryText(
+                          playlistName ?? "For You",
+                          fontSize: 19,
+                          version: MVCTVersion.transparent,
+                        ),
+                      ),
                     ),
                     SizedBox(
                       height: 0,

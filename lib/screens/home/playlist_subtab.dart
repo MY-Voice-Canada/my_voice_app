@@ -41,7 +41,7 @@ class PlaylistSubTab extends StatelessWidget {
           ),
           MVCategoryText(
             playlistName ?? "Miscellaneous",
-            fontSize: 18.2,
+            fontSize: 19,
             version: MVCTVersion.yellow,
           ),
           Container(
@@ -65,7 +65,7 @@ class PlaylistSubTab extends StatelessWidget {
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: 360,
                 childAspectRatio: 1.58,
-                crossAxisSpacing: 8.2,
+                crossAxisSpacing: 7,
                 mainAxisSpacing: 7,
               ),
               itemCount: playlistName == null ? 12 : 6,
@@ -81,8 +81,8 @@ class PlaylistSubTab extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        width: 197.0,
-                        height: 99.7,
+                        width: 80.0,
+                        height: 70.2,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10.0),
                           child: Image.network(
@@ -90,9 +90,6 @@ class PlaylistSubTab extends StatelessWidget {
                             fit: BoxFit.fill,
                           ),
                         ),
-                      ),
-                      SizedBox(
-                        height: 5.0,
                       ),
                       ClipRect(
                         child: SizedBox(

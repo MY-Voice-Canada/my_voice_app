@@ -41,14 +41,28 @@ class FourTileCategory extends StatelessWidget {
                 GestureDetector(
                   onTap: null,
                   child: Container(
-                    margin: EdgeInsets.all(10),
-                    child: Text(
-                      'View All >',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12,
-                        color: HexColor('F5416C'),
-                      ),
+                    margin: EdgeInsets.all(5),
+                    child: Row(
+                      children: [
+                        Text(
+                          'View All ',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12,
+                            color: HexColor('000000'),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(bottom: 5),
+                          child: Text(
+                            ' >',
+                            style: TextStyle(
+                              fontSize: 23,
+                              color: HexColor('F5416C'),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 )
@@ -78,13 +92,15 @@ class FourTileCategory extends StatelessWidget {
                     child: Container(
                       height: 30,
                       width: 60,
-                      child: Image.asset('assets/images/logo.png'),
+                      child:
+                          Image.asset('assets/images/logo.png'), //ARTICLE IMAGE
                     ),
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
                       Text(
+                        // ARTICLE AUTHOR
                         'Anon Writer',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
@@ -93,6 +109,7 @@ class FourTileCategory extends StatelessWidget {
                         ),
                       ),
                       Text(
+                        // ARTICLE TITLE
                         'The Writing Style of William',
                         style: TextStyle(
                           fontWeight: FontWeight.bold,

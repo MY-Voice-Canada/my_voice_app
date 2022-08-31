@@ -6,6 +6,7 @@ import 'package:my_voice_app/main.dart';
 import 'package:my_voice_app/models/category_text.dart';
 import 'package:my_voice_app/models/loading.dart';
 import 'package:my_voice_app/screens/home/category_subtab.dart';
+import 'package:my_voice_app/screens/home/editorsPicksWidget.dart';
 import 'package:provider/provider.dart';
 import 'package:my_voice_app/screens/home/four_row_tiles.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -195,7 +196,7 @@ class _ReadPageState extends State<ReadPage> {
             Card(
               color: Colors.white,
               elevation: 0,
-              margin: EdgeInsets.fromLTRB(20, 75, 20, 0),
+              margin: EdgeInsets.fromLTRB(0, 0, 0, 0),
               child: Container(
                 padding: EdgeInsets.only(left: 10.0),
                 alignment: Alignment.centerLeft,
@@ -223,155 +224,18 @@ class _ReadPageState extends State<ReadPage> {
               ),
             ),
             Container(
-              padding: EdgeInsets.all(10),
+              padding: EdgeInsets.fromLTRB(10, 5, 0, 15),
               margin: EdgeInsets.zero,
               color: HexColor('FFFFFF'),
               child: Divider(
                 thickness: 5,
-                indent: 20,
+                indent: 0,
                 endIndent: 260,
                 color: HexColor('F5416C'),
               ),
             ),
-            Column(
-              // from here begins the 3 boxes under 'editors picks' text
-              children: [
-                GestureDetector(
-                  onTap: null,
-                  child: Card(
-                    margin: EdgeInsets.zero,
-                    child: Column(
-                      children: [
-                        Container(
-                          child: Text(
-                            'Title of the Big Article',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15,
-                              color: HexColor('000000'),
-                            ),
-                          ),
-                        ),
-                        Text(
-                          'Category',
-                          textAlign: TextAlign.left,
-                          style: TextStyle(
-                            fontSize: 14,
-                            color: HexColor('F5416C'),
-                          ),
-                        ),
-                        Container(
-                          height: 200,
-                          width: 400,
-                          child: Card(
-                            child: Image.asset('assets/images/logo.png'),
-                            margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.fromLTRB(5, 10, 5, 0),
-                          child: Text(
-                            'Little Summary of Big Pic',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              fontSize: 13,
-                              color: HexColor('000000'),
-                            ),
-                          ),
-                        ),
-                        Row(
-                          children: [
-                            Column(
-                              children: [
-                                Container(
-                                  height: 100,
-                                  width: 175,
-                                  child: Card(
-                                    child:
-                                        Image.asset('assets/images/logo.png'),
-                                    margin: EdgeInsets.all(10),
-                                  ),
-                                ),
-                                Text(
-                                  'Category',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    fontSize: 11,
-                                    color: HexColor('F5416C'),
-                                  ),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.all(10),
-                                  child: Text(
-                                    'Smoll Title',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 12,
-                                      color: HexColor('000000'),
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  'Little Summary of small Pic',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    color: HexColor('000000'),
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                Container(
-                                  height: 100,
-                                  width: 175,
-                                  child: Card(
-                                    child:
-                                        Image.asset('assets/images/logo.png'),
-                                    margin: EdgeInsets.all(10),
-                                  ),
-                                ),
-                                Text(
-                                  'Category',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    fontSize: 11,
-                                    color: HexColor('F5416C'),
-                                  ),
-                                ),
-                                Container(
-                                  padding: EdgeInsets.all(10),
-                                  child: Text(
-                                    'Smoll Title',
-                                    textAlign: TextAlign.left,
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 12,
-                                      color: HexColor('000000'),
-                                    ),
-                                  ),
-                                ),
-                                Text(
-                                  'Little Summary of small Pic',
-                                  textAlign: TextAlign.left,
-                                  style: TextStyle(
-                                    fontSize: 10,
-                                    color: HexColor('000000'),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-              ],
-            ),
+
+            EditorsPicks(),
 
             Container(
               margin: EdgeInsets.zero,

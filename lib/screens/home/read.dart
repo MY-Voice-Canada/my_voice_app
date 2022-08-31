@@ -243,7 +243,7 @@ class _ReadPageState extends State<ReadPage> {
               ),
             ),
 
-            EditorsPicks(),
+            EditorsPicks(widget.snapshot.data.allPosts),
 
             Container(
               margin: EdgeInsets.zero,
@@ -256,12 +256,18 @@ class _ReadPageState extends State<ReadPage> {
               ),
             ),
 
-            FourTileCategory('Creative Writing', 'FFFFFF'), //test
-            FourTileCategory('Faith', 'D9D9D9'),
-            FourTileCategory('Food For Thought', 'FFFFFF'),
-            FourTileCategory('Inspiring Individuals', 'D9D9D9'),
-            FourTileCategory('Lifestyle & Entertainment', 'FFFFFF'),
-            FourTileCategory('News & Social Issues', 'D9D9D9'),
+            FourTileCategory(
+                data: widget.snapshot.data.cwPosts, cardColor: 'FFFFFF'), //test
+            FourTileCategory(
+                data: widget.snapshot.data.fthPosts, cardColor: 'D9D9D9'),
+            FourTileCategory(
+                data: widget.snapshot.data.fftPosts,
+                cardColor: 'FFFFFF'), //test
+            FourTileCategory(
+                data: widget.snapshot.data.iiPosts, cardColor: 'D9D9D9'),
+            FourTileCategory(
+                data: widget.snapshot.data.laePosts,
+                cardColor: 'FFFFFF'), //test
 
             Card(
               child: Column(

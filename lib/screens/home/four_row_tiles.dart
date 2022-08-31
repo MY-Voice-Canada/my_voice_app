@@ -9,10 +9,11 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:responsive_framework/responsive_framework.dart';
 
 class FourTileCategory extends StatelessWidget {
-  final String categoryName;
   final String cardColor;
 
-  FourTileCategory(this.categoryName, this.cardColor);
+  late final dynamic data;
+
+  FourTileCategory({required this.data, required this.cardColor});
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +31,11 @@ class FourTileCategory extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.all(10),
                   child: Text(
-                    categoryName.length > 20
-                        ? categoryName.substring(0, 10) + '...'
-                        : categoryName,
+                    data[0]["_embedded"]["wp:term"][0][0]["name"].length > 25
+                        ? data[0]["_embedded"]["wp:term"][0][0]["name"]
+                                .substring(0, 10) +
+                            '...'
+                        : data[0]["_embedded"]["wp:term"][0][0]["name"],
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 21,
@@ -71,6 +74,9 @@ class FourTileCategory extends StatelessWidget {
               ],
             ),
           ),
+          // ListView(
+          //   children: [
+          //     for (var i = 0; i < 4; i++)
           GestureDetector(
             onTap: null,
             child: Card(
@@ -94,8 +100,11 @@ class FourTileCategory extends StatelessWidget {
                     child: Container(
                       height: 30,
                       width: 60,
-                      child:
-                          Image.asset('assets/images/logo.png'), //ARTICLE IMAGE
+                      child: Image.network(
+                        data[0]["_embedded"]["wp:featuredmedia"][0]
+                            ["source_url"],
+                        fit: BoxFit.fill,
+                      ), //ARTICLE IMAGE
                     ),
                   ),
                   Column(
@@ -103,7 +112,7 @@ class FourTileCategory extends StatelessWidget {
                     children: <Widget>[
                       Text(
                         // ARTICLE AUTHOR
-                        'Anon Writer',
+                        data[0]["_embedded"]["author"][0]["name"],
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 9,
@@ -112,7 +121,7 @@ class FourTileCategory extends StatelessWidget {
                       ),
                       Text(
                         // ARTICLE TITLE
-                        'The Writing Style of William',
+                        data[0]["title"]["rendered"].toString(),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 14,
@@ -127,6 +136,8 @@ class FourTileCategory extends StatelessWidget {
           ),
         ],
       ),
+      //   ],
+      // ),
     );
   }
 }

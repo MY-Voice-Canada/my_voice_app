@@ -4,6 +4,10 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:hexcolor/hexcolor.dart';
 
 class EditorsPicks extends StatelessWidget {
+  late final dynamic data;
+
+  EditorsPicks(this.data);
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -22,7 +26,7 @@ class EditorsPicks extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       padding: EdgeInsets.fromLTRB(10, 0, 10, 5),
                       child: Text(
-                        'Title of the Big Article (wraps)',
+                        data[0]["title"]["rendered"].toString(),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 15,
@@ -34,7 +38,7 @@ class EditorsPicks extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
                       child: Text(
-                        'Category',
+                        data[0]["_embedded"]["wp:term"][0][0]["name"],
                         style: TextStyle(
                           fontSize: 14,
                           color: HexColor('F5416C'),
@@ -45,7 +49,11 @@ class EditorsPicks extends StatelessWidget {
                       height: 200,
                       width: 400,
                       child: Card(
-                        child: Image.asset('assets/images/logo.png'),
+                        child: Image.network(
+                          data[0]["_embedded"]["wp:featuredmedia"][0]
+                              ["source_url"],
+                          fit: BoxFit.fill,
+                        ),
                         margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
                       ),
                     ),
@@ -56,7 +64,7 @@ class EditorsPicks extends StatelessWidget {
                         margin: EdgeInsets.only(left: 5),
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          'Little Summary of Big Pic (wraps)',
+                          data[0]["content"]["rendered"],
                           maxLines: 2,
                           style: TextStyle(
                             fontSize: 13,
@@ -80,14 +88,18 @@ class EditorsPicks extends StatelessWidget {
                           height: 100,
                           width: 175,
                           child: Card(
-                            child: Image.asset('assets/images/logo.png'),
+                            child: Image.network(
+                              data[1]["_embedded"]["wp:featuredmedia"][0]
+                                  ["source_url"],
+                              fit: BoxFit.fill,
+                            ),
                             margin: EdgeInsets.all(10),
                           ),
                         ),
                         Container(
                           padding: EdgeInsets.fromLTRB(10, 10, 0, 5),
                           child: Text(
-                            'Category',
+                            data[1]["_embedded"]["wp:term"][0][0]["name"],
                             style: TextStyle(
                               fontSize: 11,
                               color: HexColor('F5416C'),
@@ -97,9 +109,12 @@ class EditorsPicks extends StatelessWidget {
                         Container(
                           padding: EdgeInsets.fromLTRB(10, 0, 0, 5),
                           child: Text(
-                            'Smoll Title'.length > 20
-                                ? 'Smoll Title'.substring(0, 10) + '...'
-                                : 'Smoll Title',
+                            data[1]["title"]["rendered"].toString().length > 20
+                                ? data[1]["title"]["rendered"]
+                                        .toString()
+                                        .substring(0, 10) +
+                                    '...'
+                                : data[1]["title"]["rendered"].toString(),
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               fontSize: 12,
@@ -111,7 +126,7 @@ class EditorsPicks extends StatelessWidget {
                           width: 175,
                           padding: EdgeInsets.fromLTRB(10, 0, 0, 5),
                           child: Text(
-                            'Little Summary of small Pic. YES THE CONTAINER WRAPS',
+                            data[1]["content"]["rendered"],
                             maxLines: 2,
                             textAlign: TextAlign.left,
                             style: TextStyle(

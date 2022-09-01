@@ -72,7 +72,7 @@ class PlaylistSubTab extends StatelessWidget {
               physics: NeverScrollableScrollPhysics(),
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: 360,
-                childAspectRatio: 1.58,
+                childAspectRatio: 2.8,
                 crossAxisSpacing: 7,
                 mainAxisSpacing: 7,
               ),
@@ -85,39 +85,41 @@ class PlaylistSubTab extends StatelessWidget {
                   notifyParent();
                 },
                 child: Center(
-                  child: Column(
+                  child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       SizedBox(
-                        width: 80.0,
-                        height: 70.2,
+                        width: 88.5,
+                        height: 78.5,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(10.0),
-                          child: Image.network(
-                            videos[i].thumbnailUrl,
-                            fit: BoxFit.fill,
+                          child: Container(
+                            child: Image.network(
+                              videos[i].thumbnailUrl,
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
                       ),
                       ClipRect(
                         child: SizedBox(
                           height: 100.0,
-                          width: 450.0,
+                          width: 263.5,
                           child: videos[i].title.length > 60
                               ? Html(
                                   style: {
                                       "body": Style(
-                                        margin: EdgeInsets.zero,
+                                        margin: EdgeInsets.only(left: 25),
                                         padding: EdgeInsets.zero,
                                       )
                                     },
                                   data: "<h2>" +
-                                      videos[i].title.substring(0, 60) +
+                                      videos[i].title.substring(0, 40) +
                                       "..."
                                           "</h2>")
                               : Html(style: {
                                   "body": Style(
-                                    margin: EdgeInsets.zero,
+                                    margin: EdgeInsets.only(left: 25),
                                     padding: EdgeInsets.zero,
                                   )
                                 }, data: "<h2>" + videos[i].title + "</h2>"),

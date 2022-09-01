@@ -27,31 +27,39 @@ class PlaylistSubTab extends StatelessWidget {
           ),
           SizedBox(
             height: 10.0,
-            // child: OutlinedButton(
-            //   onPressed: () {
-            //     // Respond to button press
-            //   },
-            //   child: Text("View All >",
-            //       style: TextStyle(
-            //         color: Colors.black,
-            //         fontSize: 11,
-            //         fontWeight: FontWeight.bold,
-            //       )),
-            // )
           ),
-          MVCategoryText(
-            playlistName ?? "Miscellaneous",
-            fontSize: 19,
-            version: MVCTVersion.yellow,
-          ),
-          Container(
-            alignment: Alignment.topRight,
-            child: Text(
-              'View All >',
-              style: TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 14,
-                color: Colors.pink[300],
+          GestureDetector(
+            onTap: null,
+            child: Container(
+              child: Row(
+                children: [
+                  Container(
+                    alignment: Alignment.centerLeft,
+                    child: MVCategoryText(
+                      playlistName ?? "Miscellaneous",
+                      fontSize: 19,
+                      version: MVCTVersion.yellow,
+                    ),
+                  ),
+                  Text(
+                    'View All ',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 12,
+                      color: HexColor('000000'),
+                    ),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(bottom: 5),
+                    child: Text(
+                      ' >',
+                      style: TextStyle(
+                        fontSize: 23,
+                        color: HexColor('FFA500'),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
           ),

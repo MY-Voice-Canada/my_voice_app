@@ -38,7 +38,7 @@ class PlaylistSubTab extends StatelessWidget {
                     child: MVCategoryText(
                       playlistName ?? "Miscellaneous",
                       fontSize: 19,
-                      version: MVCTVersion.transparent,
+                      version: MVCTVersion.yellow,
                     ),
                   ),
                   Text(

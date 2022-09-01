@@ -34,11 +34,11 @@ class PlaylistSubTab extends StatelessWidget {
               child: Row(
                 children: [
                   Container(
-                    alignment: Alignment.centerLeft,
+                    margin: EdgeInsets.only(right: 18.0),
                     child: MVCategoryText(
                       playlistName ?? "Miscellaneous",
                       fontSize: 19,
-                      version: MVCTVersion.yellow,
+                      version: MVCTVersion.transparent,
                     ),
                   ),
                   Text(

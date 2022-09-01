@@ -84,9 +84,6 @@ class _WatchPageState extends State<WatchPage> {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 0,
-                    ),
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),
                       playlistName: "Race Against Racism",

@@ -12,6 +12,18 @@ import 'package:my_voice_app/screens/home/theatre.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+class QuestionClipPath extends CustomClipper<Path> {
+  Path getClip(Size size) {
+    return Path()
+      ..lineTo(size.width, 0)
+      ..lineTo(size.width, size.height)
+      ..lineTo(size.width * 0.25, size.height);
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> path) => false;
+}
+
 class WatchPage extends StatefulWidget {
   @override
   _WatchPageState createState() => _WatchPageState();
@@ -73,30 +85,47 @@ class _WatchPageState extends State<WatchPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     SizedBox(
-                      height: 350,
-                      width: 460,
-                      child: Container(
-                        color: Color.fromARGB(255, 187, 182, 182),
-                        child: MVCategoryText(
-                          playlistName ?? "Trending",
-                          fontSize: 19,
-                          version: MVCTVersion.transparent,
-                        ),
+                      height:
+                          Provider.of<MVP>(context).screenHeightAppbarless / 3,
+                      width: Provider.of<MVP>(context).screenWidth,
+                      child: Column(
+                        children: [
+                          Container(
+                            color: Color.fromARGB(255, 187, 182, 182),
+                            child: MVCategoryText(
+                              "Trending",
+                              fontSize: 19,
+                              version: MVCTVersion.transparent,
+                            ),
+                          ),
+                          ClipRRect(
+                            borderRadius: BorderRadius.circular(10.0),
+                            child: Image.network(
+                              Provider.of<MVP>(context)
+                                  .channel!
+                                  .videos![0]
+                                  .thumbnailUrl,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                          Text(Provider.of<MVP>(context)
+                              .channel!
+                              .videos![0]
+                              .title),
+                        ],
                       ),
+                    ),
+                    Divider(
+                      thickness: 4.0,
+                      color: HexColor("FFBF3B"),
                     ),
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),
                       playlistName: "Race Against Racism",
                     ),
-                    SizedBox(
-                      height: 0,
-                    ),
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),
                       playlistName: "Candid Convos",
-                    ),
-                    SizedBox(
-                      height: 0,
                     ),
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),
@@ -108,14 +137,11 @@ class _WatchPageState extends State<WatchPage> {
                       child: Container(
                         color: Color.fromARGB(255, 187, 182, 182),
                         child: MVCategoryText(
-                          playlistName ?? "For You",
+                          "For You",
                           fontSize: 19,
                           version: MVCTVersion.transparent,
                         ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 0,
                     ),
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),
@@ -124,31 +150,29 @@ class _WatchPageState extends State<WatchPage> {
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),
                     ),
-                    SizedBox(
-                      height: 0,
-                    ),
-                    Container(
+                    ClipPath(
+                        clipper: QuestionClipPath(),
                         child: Align(
-                      alignment: Alignment.centerRight,
-                      child: SizedBox(
-                          height: 42.0,
-                          width: 308.0,
-                          child: Container(
-                              color: Color.fromARGB(255, 255, 236, 141),
-                              child: new InkWell(
-                                child: new Text(
-                                    'Subscribe to our youtube channel (MY Voice Canada) for more content like this!',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 13.0,
-                                      fontWeight: FontWeight.bold,
-                                    )),
-                                // ignore: deprecated_member_use
-                                onTap: () => launch(
-                                    'https://www.youtube.com/c/MYVoiceCanada'),
-                              ))),
-                    )),
+                          alignment: Alignment.centerRight,
+                          child: SizedBox(
+                              height: 42.0,
+                              width: 308.0,
+                              child: Container(
+                                  color: Color.fromARGB(255, 255, 236, 141),
+                                  child: new InkWell(
+                                    child: new Text(
+                                        'Subscribe to our youtube channel (MY Voice Canada) for more content like this!',
+                                        textAlign: TextAlign.center,
+                                        style: TextStyle(
+                                          color: Colors.black,
+                                          fontSize: 13.0,
+                                          fontWeight: FontWeight.bold,
+                                        )),
+                                    // ignore: deprecated_member_use
+                                    onTap: () => launch(
+                                        'https://www.youtube.com/c/MYVoiceCanada'),
+                                  ))),
+                        )),
                   ],
                 ),
               );

@@ -17,17 +17,11 @@ class PlaylistSubTab extends StatelessWidget {
         ? Provider.of<MVP>(context).channel!.videos!
         : Provider.of<MVP>(context).playlists![playlistName]!;
 
-    return Card(
+    return Container(
+      color: Colors.white,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Divider(
-            thickness: 4.0,
-            color: HexColor("FFBF3B"),
-          ),
-          SizedBox(
-            height: 10.0,
-          ),
           GestureDetector(
             onTap: null,
             child: Container(
@@ -35,11 +29,9 @@ class PlaylistSubTab extends StatelessWidget {
                 children: [
                   Container(
                     margin: EdgeInsets.only(right: 18.0),
-                    child: MVCategoryText(
-                      playlistName ?? "Miscellaneous",
-                      fontSize: 19,
-                      version: MVCTVersion.yellow,
-                    ),
+                    child: Text(playlistName ?? "Miscellaneous",
+                        style: TextStyle(
+                            fontSize: 19, fontWeight: FontWeight.bold)),
                   ),
                   Text(
                     'View All ',

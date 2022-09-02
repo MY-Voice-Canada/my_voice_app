@@ -15,36 +15,42 @@ class MVLoading extends StatelessWidget {
   Widget build(BuildContext context) {
     return MVBackground(
       child: Container(
+        width: MediaQuery.of(context).size.width,
         color: Theme.of(context).primaryColor.withOpacity(0.4),
         child: Stack(
           children: [
-            Center(
-              child: SpinKitFoldingCube(
-                color: Colors.white,
-                size: 250.0,
-              ),
-            ),
-            if (message != null)
-              Positioned(
-                left: Provider.of<MVP>(context).screenWidth / 2 - 250,
-                bottom: 120.0,
-                child: Center(
-                  child: SizedBox(
-                    height: 100.0,
-                    width: 500.0,
-                    child: AutoSizeText(
-                      message!,
-                      textAlign: TextAlign.center,
-                      maxLines: 3,
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 36,
+            Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Center(
+                  child: SpinKitFoldingCube(
+                    color: Colors.white,
+                    size: 250.0,
+                  ),
+                ),
+                if (message != null)
+                  Positioned(
+                    left: Provider.of<MVP>(context).screenWidth / 2 - 250,
+                    bottom: 120.0,
+                    child: Center(
+                      child: SizedBox(
+                        height: 100.0,
+                        width: 500.0,
+                        child: AutoSizeText(
+                          message!,
+                          textAlign: TextAlign.center,
+                          maxLines: 3,
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 36,
+                          ),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
+              ],
+            ),
           ],
         ),
       ),

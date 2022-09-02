@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:my_voice_app/main.dart';
+import 'package:provider/provider.dart';
 
 class EditorsPicks extends StatelessWidget {
   late final dynamic data;
+  final Function notifyParent;
+  final bool? ja;
 
-  EditorsPicks(this.data);
+  EditorsPicks({required this.data, required this.notifyParent, this.ja});
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +20,14 @@ class EditorsPicks extends StatelessWidget {
           child: Column(
             children: [
               GestureDetector(
-                onTap: null,
+                onTap: () {
+                  ja != null
+                      ? Provider.of<MVP>(context, listen: false)
+                          .enableJAView(data[0])
+                      : Provider.of<MVP>(context, listen: false)
+                          .enableReadView(data[0]);
+                  notifyParent();
+                },
                 child: Column(
                   children: [
                     Container(
@@ -58,14 +67,14 @@ class EditorsPicks extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.fromLTRB(5, 10, 5, 10),
+                      padding: EdgeInsets.fromLTRB(5, 5, 5, 15),
                       child: Container(
                         width: 400,
                         margin: EdgeInsets.only(left: 5),
                         alignment: Alignment.centerLeft,
                         child: Text(
                           data[0]["content"]["rendered"],
-                          maxLines: 2,
+                          maxLines: 3,
                           style: TextStyle(
                             fontSize: 13,
                             color: HexColor('000000'),
@@ -79,65 +88,74 @@ class EditorsPicks extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  GestureDetector(
-                    onTap: null,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          height: 100,
-                          width: 175,
-                          child: Card(
-                            child: Image.network(
-                              data[1]["_embedded"]["wp:featuredmedia"][0]
-                                  ["source_url"],
-                              fit: BoxFit.fill,
-                            ),
-                            margin: EdgeInsets.all(10),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.fromLTRB(10, 10, 0, 5),
-                          child: Text(
-                            data[1]["_embedded"]["wp:term"][0][0]["name"],
-                            style: TextStyle(
-                              fontSize: 11,
-                              color: HexColor('F5416C'),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          padding: EdgeInsets.fromLTRB(10, 0, 0, 5),
-                          child: Text(
-                            data[1]["title"]["rendered"].toString().length > 20
-                                ? data[1]["title"]["rendered"]
-                                        .toString()
-                                        .substring(0, 10) +
-                                    '...'
-                                : data[1]["title"]["rendered"].toString(),
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 12,
-                              color: HexColor('000000'),
+                  for (var i = 1; i < 3; i++)
+                    (GestureDetector(
+                      onTap: () {
+                        ja != null
+                            ? Provider.of<MVP>(context, listen: false)
+                                .enableJAView(data[i])
+                            : Provider.of<MVP>(context, listen: false)
+                                .enableReadView(data[i]);
+                        notifyParent();
+                      },
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Container(
+                            height: 100,
+                            width: 175,
+                            child: Card(
+                              child: Image.network(
+                                data[i]["_embedded"]["wp:featuredmedia"][0]
+                                    ["source_url"],
+                                fit: BoxFit.fill,
+                              ),
+                              margin: EdgeInsets.all(10),
                             ),
                           ),
-                        ),
-                        Container(
-                          width: 175,
-                          padding: EdgeInsets.fromLTRB(10, 0, 0, 5),
-                          child: Text(
-                            data[1]["content"]["rendered"],
-                            maxLines: 2,
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                              fontSize: 10,
-                              color: HexColor('000000'),
+                          Container(
+                            padding: EdgeInsets.fromLTRB(10, 10, 0, 5),
+                            child: Text(
+                              data[i]["_embedded"]["wp:term"][0][0]["name"],
+                              style: TextStyle(
+                                fontSize: 11,
+                                color: HexColor('F5416C'),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ),
+                          Container(
+                            padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                            child: Text(
+                              data[i]["title"]["rendered"].toString().length >
+                                      22
+                                  ? data[i]["title"]["rendered"]
+                                          .toString()
+                                          .substring(0, 10) +
+                                      '...'
+                                  : data[i]["title"]["rendered"].toString(),
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 12,
+                                color: HexColor('000000'),
+                              ),
+                            ),
+                          ),
+                          Container(
+                            width: 175,
+                            padding: EdgeInsets.fromLTRB(10, 0, 0, 5),
+                            child: Text(
+                              data[i]["content"]["rendered"],
+                              maxLines: 3,
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                fontSize: 10,
+                                color: HexColor('000000'),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    )),
                 ],
               ),
             ],

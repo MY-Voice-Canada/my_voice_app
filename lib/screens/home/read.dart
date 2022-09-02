@@ -7,6 +7,7 @@ import 'package:my_voice_app/models/category_text.dart';
 import 'package:my_voice_app/models/loading.dart';
 import 'package:my_voice_app/screens/home/category_subtab.dart';
 import 'package:my_voice_app/screens/home/editorsPicksWidget.dart';
+import 'package:my_voice_app/screens/home/random_article.dart';
 import 'package:provider/provider.dart';
 import 'package:my_voice_app/screens/home/four_row_tiles.dart';
 import 'package:responsive_framework/responsive_framework.dart';
@@ -243,7 +244,10 @@ class _ReadPageState extends State<ReadPage> {
               ),
             ),
 
-            EditorsPicks(widget.snapshot.data.allPosts),
+            EditorsPicks(
+              data: widget.snapshot.data.allPosts,
+              notifyParent: () => setState(() {}),
+            ),
 
             Container(
               margin: EdgeInsets.zero,
@@ -257,124 +261,74 @@ class _ReadPageState extends State<ReadPage> {
             ),
 
             FourTileCategory(
-                data: widget.snapshot.data.cwPosts, cardColor: 'FFFFFF'), //test
-            FourTileCategory(
-                data: widget.snapshot.data.fthPosts, cardColor: 'D9D9D9'),
-            FourTileCategory(
-                data: widget.snapshot.data.fftPosts,
-                cardColor: 'FFFFFF'), //test
-            FourTileCategory(
-                data: widget.snapshot.data.iiPosts, cardColor: 'D9D9D9'),
-            FourTileCategory(
-                data: widget.snapshot.data.laePosts,
-                cardColor: 'FFFFFF'), //test
-
-            Card(
-              child: Column(
-                children: [
-                  Container(
-                    margin: EdgeInsets.only(top: 10),
-                    child: Text(
-                      'Random',
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 21,
-                        color: HexColor('000000'),
-                      ),
-                    ),
-                  ),
-                  Divider(
-                    thickness: 4,
-                    indent: 20,
-                    endIndent: 250,
-                    color: HexColor('F5416C'),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 10),
-                    child: Text(
-                      'Title of the Big Article',
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 15,
-                        color: HexColor('000000'),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(top: 10),
-                    child: Text(
-                      'Category',
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        fontSize: 14,
-                        color: HexColor('F5416C'),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    height: 200,
-                    width: 400,
-                    child: Card(
-                      child: Image.asset('assets/images/logo.png'),
-                      margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.all(10),
-                    child: Text(
-                      'Little Summary of Big Pic',
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        fontSize: 13,
-                        color: HexColor('000000'),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-
-            SizedBox(
-              height: 20.0,
-            ),
-            CategorySubTab(
-              notifyParent: () => setState(() {}),
               data: widget.snapshot.data.cwPosts,
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            CategorySubTab(
+              cardColor: 'FFFFFF',
               notifyParent: () => setState(() {}),
+            ), //test
+            FourTileCategory(
               data: widget.snapshot.data.fthPosts,
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            CategorySubTab(
+              cardColor: 'D9D9D9',
               notifyParent: () => setState(() {}),
+            ),
+            FourTileCategory(
               data: widget.snapshot.data.fftPosts,
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            CategorySubTab(
+              cardColor: 'FFFFFF',
               notifyParent: () => setState(() {}),
+            ), //test
+            FourTileCategory(
               data: widget.snapshot.data.iiPosts,
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            CategorySubTab(
+              cardColor: 'D9D9D9',
               notifyParent: () => setState(() {}),
+            ),
+            FourTileCategory(
               data: widget.snapshot.data.laePosts,
+              cardColor: 'FFFFFF',
+              notifyParent: () => setState(() {}),
+            ), //test
+
+            RandomArticle(
+              data: widget.snapshot.data.allPosts,
+              notifyParent: () => setState(() {}),
             ),
-            SizedBox(
-              height: 20.0,
-            ),
+
+            // SizedBox(
+            //   height: 20.0,
+            // ),
+            // CategorySubTab(
+            //   notifyParent: () => setState(() {}),
+            //   data: widget.snapshot.data.cwPosts,
+            // ),
+            // SizedBox(
+            //   height: 20.0,
+            // ),
+            // CategorySubTab(
+            //   notifyParent: () => setState(() {}),
+            //   data: widget.snapshot.data.fthPosts,
+            // ),
+            // SizedBox(
+            //   height: 20.0,
+            // ),
+            // CategorySubTab(
+            //   notifyParent: () => setState(() {}),
+            //   data: widget.snapshot.data.fftPosts,
+            // ),
+            // SizedBox(
+            //   height: 20.0,
+            // ),
+            // CategorySubTab(
+            //   notifyParent: () => setState(() {}),
+            //   data: widget.snapshot.data.iiPosts,
+            // ),
+            // SizedBox(
+            //   height: 20.0,
+            // ),
+            // CategorySubTab(
+            //   notifyParent: () => setState(() {}),
+            //   data: widget.snapshot.data.laePosts,
+            // ),
+            // SizedBox(
+            //   height: 20.0,
+            // ),
           ],
         ),
       );

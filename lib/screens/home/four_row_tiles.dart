@@ -1,19 +1,19 @@
-import 'dart:developer';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter_html/shims/dart_ui_real.dart';
 import 'package:hexcolor/hexcolor.dart';
-import 'package:responsive_framework/responsive_framework.dart';
+import 'package:my_voice_app/main.dart';
+import 'package:provider/provider.dart';
 
 class FourTileCategory extends StatelessWidget {
+  final Function notifyParent;
   final String cardColor;
-
+  final bool? ja;
   late final dynamic data;
 
-  FourTileCategory({required this.data, required this.cardColor});
+  FourTileCategory(
+      {required this.data,
+      required this.cardColor,
+      required this.notifyParent,
+      this.ja});
 
   @override
   Widget build(BuildContext context) {
@@ -74,70 +74,79 @@ class FourTileCategory extends StatelessWidget {
               ],
             ),
           ),
-          // ListView(
-          //   children: [
-          //     for (var i = 0; i < 4; i++)
-          GestureDetector(
-            onTap: null,
-            child: Card(
-              margin: EdgeInsets.zero,
-              color: HexColor(cardColor),
-              elevation: 0,
-              child: Row(
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.symmetric(
-                      vertical: 10,
-                      horizontal: 15,
-                    ),
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Theme.of(context).primaryColor,
-                        width: 2,
+          for (var i = 0; i < 4; i++)
+            (GestureDetector(
+              onTap: () {
+                ja != null
+                    ? Provider.of<MVP>(context, listen: false)
+                        .enableJAView(data[i])
+                    : Provider.of<MVP>(context, listen: false)
+                        .enableReadView(data[i]);
+                notifyParent();
+              },
+              child: Card(
+                margin: EdgeInsets.zero,
+                color: HexColor(cardColor),
+                elevation: 0,
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 15,
                       ),
-                    ),
-                    padding: EdgeInsets.all(10),
-                    child: Container(
-                      height: 30,
-                      width: 60,
-                      child: Image.network(
-                        data[0]["_embedded"]["wp:featuredmedia"][0]
-                            ["source_url"],
-                        fit: BoxFit.fill,
-                      ), //ARTICLE IMAGE
-                    ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text(
-                        // ARTICLE AUTHOR
-                        data[0]["_embedded"]["author"][0]["name"],
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 9,
-                          color: HexColor('F5416C'),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Theme.of(context).primaryColor,
+                          width: 2,
                         ),
                       ),
-                      Text(
-                        // ARTICLE TITLE
-                        data[0]["title"]["rendered"].toString(),
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 14,
-                          color: HexColor('000000'),
-                        ),
+                      padding: EdgeInsets.all(10),
+                      child: Container(
+                        height: 30,
+                        width: 60,
+                        child: Image.network(
+                          data[i]["_embedded"]["wp:featuredmedia"][0]
+                              ["source_url"],
+                          fit: BoxFit.fill,
+                        ), //ARTICLE IMAGE
                       ),
-                    ],
-                  ),
-                ],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          // ARTICLE AUTHOR
+                          data[i]["_embedded"]["author"][0]["name"],
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 9,
+                            color: HexColor('F5416C'),
+                          ),
+                        ),
+                        Text(
+                          // ARTICLE TITLE
+                          data[i]["title"]["rendered"].toString().length > 30
+                              ? data[i]["title"]["rendered"]
+                                      .toString()
+                                      .substring(0, 30) +
+                                  '...'
+                              : data[i]["title"]["rendered"].toString(),
+                          maxLines: 2,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 14,
+                            color: HexColor('000000'),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-          ),
+            )),
         ],
       ),
-      //   ],
-      // ),
     );
   }
 }

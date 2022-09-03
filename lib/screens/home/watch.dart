@@ -84,35 +84,47 @@ class _WatchPageState extends State<WatchPage> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      height:
-                          Provider.of<MVP>(context).screenHeightAppbarless / 3,
-                      width: Provider.of<MVP>(context).screenWidth,
-                      child: Column(
-                        children: [
-                          Container(
-                            color: Color.fromARGB(255, 187, 182, 182),
-                            child: MVCategoryText(
-                              "Trending",
-                              fontSize: 19,
-                              version: MVCTVersion.transparent,
-                            ),
+                    Container(
+                      child: GestureDetector(
+                        onTap: null,
+                        child: Container(
+                          color: Colors.white,
+                          child: Row(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(8),
+                                margin: EdgeInsets.only(right: 18.0),
+                                child: Text("Trending",
+                                    style: TextStyle(
+                                      fontSize: 23,
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                              ),
+                              Container(
+                                alignment: Alignment.bottomRight,
+                                padding: EdgeInsets.only(left: 150),
+                                child: Text(
+                                  'View All ',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12,
+                                    color: HexColor('000000'),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(bottom: 5),
+                                child: Text(
+                                  ' >',
+                                  style: TextStyle(
+                                    fontSize: 23,
+                                    color: HexColor('FFA500'),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
-                            child: Image.network(
-                              Provider.of<MVP>(context)
-                                  .channel!
-                                  .videos![0]
-                                  .thumbnailUrl,
-                              fit: BoxFit.fill,
-                            ),
-                          ),
-                          Text(Provider.of<MVP>(context)
-                              .channel!
-                              .videos![0]
-                              .title),
-                        ],
+                        ),
                       ),
                     ),
                     Divider(
@@ -131,15 +143,46 @@ class _WatchPageState extends State<WatchPage> {
                       notifyParent: () => setState(() {}),
                       playlistName: "The MY Voice Show",
                     ),
-                    SizedBox(
-                      height: 350,
-                      width: 460,
-                      child: Container(
-                        color: Color.fromARGB(255, 187, 182, 182),
-                        child: MVCategoryText(
-                          "For You",
-                          fontSize: 19,
-                          version: MVCTVersion.transparent,
+                    Container(
+                      child: GestureDetector(
+                        onTap: null,
+                        child: Container(
+                          color: Colors.white,
+                          child: Row(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(8),
+                                margin: EdgeInsets.only(right: 183),
+                                child: Text("For You",
+                                    style: TextStyle(
+                                      fontSize: 23,
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                              ),
+                              Container(
+                                alignment: Alignment.bottomRight,
+                                padding: EdgeInsets.only(left: 5),
+                                child: Text(
+                                  'View All ',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12,
+                                    color: HexColor('000000'),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(bottom: 5),
+                                child: Text(
+                                  ' >',
+                                  style: TextStyle(
+                                    fontSize: 23,
+                                    color: HexColor('FFA500'),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),

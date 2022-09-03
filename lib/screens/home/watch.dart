@@ -300,7 +300,7 @@ class _WatchPageState extends State<WatchPage> {
                     ),
                     Container(
                       height:
-                          Provider.of<MVP>(context).screenHeightAppbarless / 11,
+                          Provider.of<MVP>(context).screenHeightAppbarless / 15,
                       width: Provider.of<MVP>(context).screenWidth,
                       child: Container(
                         color: HexColor("D3D3D3"),

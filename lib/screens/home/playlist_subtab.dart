@@ -38,7 +38,7 @@ class PlaylistSubTab extends StatelessWidget {
                   ),
                   Container(
                     alignment: Alignment.bottomRight,
-                    padding: EdgeInsets.only(left: 5),
+                    padding: EdgeInsets.only(left: 7),
                     child: Text(
                       'View All ',
                       style: TextStyle(

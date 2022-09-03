@@ -85,45 +85,34 @@ class _WatchPageState extends State<WatchPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
-                      child: GestureDetector(
-                        onTap: null,
-                        child: Container(
-                          color: Colors.white,
-                          child: Row(
-                            children: [
-                              Container(
-                                padding: EdgeInsets.all(8),
-                                margin: EdgeInsets.only(right: 18.0),
-                                child: Text("Trending",
-                                    style: TextStyle(
-                                      fontSize: 23,
-                                      fontWeight: FontWeight.bold,
-                                    )),
-                              ),
-                              Container(
-                                alignment: Alignment.bottomRight,
-                                padding: EdgeInsets.only(left: 150),
-                                child: Text(
-                                  'View All ',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 12,
-                                    color: HexColor('000000'),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(bottom: 5),
-                                child: Text(
-                                  ' >',
+                      child: Container(
+                        color: Colors.white,
+                        child: Column(
+                          children: [
+                            Container(
+                              height: Provider.of<MVP>(context)
+                                      .screenHeightAppbarless /
+                                  28.3,
+                              width: Provider.of<MVP>(context).screenWidth,
+                              margin: EdgeInsets.only(left: 14, top: 5),
+                              child: Text("Trending",
                                   style: TextStyle(
                                     fontSize: 23,
-                                    color: HexColor('FFA500'),
-                                  ),
-                                ),
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                            ),
+                            Container(
+                              height: Provider.of<MVP>(context)
+                                      .screenHeightAppbarless /
+                                  53,
+                              width: Provider.of<MVP>(context).screenWidth,
+                              margin: EdgeInsets.only(left: 14, right: 292),
+                              child: Divider(
+                                thickness: 3.3,
+                                color: HexColor("FFBF3B"),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
@@ -131,7 +120,8 @@ class _WatchPageState extends State<WatchPage> {
                       children: [
                         Container(
                           color: Colors.white,
-                          padding: EdgeInsets.only(left: 13, right: 12),
+                          padding:
+                              EdgeInsets.only(left: 13, right: 12, top: 10),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10.0),
                             child: Image.network(
@@ -221,21 +211,74 @@ class _WatchPageState extends State<WatchPage> {
                     Row(
                       children: [
                         Container(
-                            padding: EdgeInsets.only(left: 14, top: 5),
-                            height: Provider.of<MVP>(context)
-                                    .screenHeightAppbarless /
-                                37,
-                            width: Provider.of<MVP>(context).screenWidth,
-                            color: Colors.white,
-                            child: Text('Miscellaneous',
-                                style: TextStyle(
-                                  fontSize: 10.2,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.orange,
-                                ))),
+                          height:
+                              Provider.of<MVP>(context).screenHeightAppbarless /
+                                  30,
+                          width: Provider.of<MVP>(context).screenWidth / 2,
+                          padding: EdgeInsets.only(left: 14, top: 6),
+                          color: Colors.white,
+                          child: Text('Miscellaneous',
+                              style: TextStyle(
+                                fontSize: 11,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.orange,
+                              )),
+                        ),
+                        Container(
+                          height:
+                              Provider.of<MVP>(context).screenHeightAppbarless /
+                                  30,
+                          width: Provider.of<MVP>(context).screenWidth / 2,
+                          padding: EdgeInsets.only(left: 14, top: 6),
+                          color: Colors.white,
+                          child: Text('Miscellaneous',
+                              style: TextStyle(
+                                fontSize: 11,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.orange,
+                              )),
+                        ),
                       ],
                     ),
+                    Row(children: [
+                      Container(
+                        height:
+                            Provider.of<MVP>(context).screenHeightAppbarless /
+                                20,
+                        width: Provider.of<MVP>(context).screenWidth / 2,
+                        padding: EdgeInsets.only(left: 14),
+                        color: Colors.white,
+                        child: Text(
+                            Provider.of<MVP>(context).channel!.videos![4].title,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                              color: Colors.black,
+                            )),
+                      ),
+                      Container(
+                        height:
+                            Provider.of<MVP>(context).screenHeightAppbarless /
+                                20,
+                        width: Provider.of<MVP>(context).screenWidth / 2,
+                        padding: EdgeInsets.only(left: 14),
+                        color: Colors.white,
+                        child: Text(
+                            Provider.of<MVP>(context)
+                                .channel!
+                                .videos![11]
+                                .title,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 14,
+                              color: Colors.black,
+                            )),
+                      ),
+                    ]),
                     Container(
+                      height:
+                          Provider.of<MVP>(context).screenHeightAppbarless / 27,
+                      width: Provider.of<MVP>(context).screenWidth,
                       padding: EdgeInsets.only(right: 15.0, left: 15.0),
                       color: Colors.white,
                       child: Divider(

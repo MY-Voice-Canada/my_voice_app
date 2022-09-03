@@ -28,17 +28,24 @@ class PlaylistSubTab extends StatelessWidget {
               child: Row(
                 children: [
                   Container(
+                    padding: EdgeInsets.all(8),
                     margin: EdgeInsets.only(right: 18.0),
                     child: Text(playlistName ?? "Miscellaneous",
                         style: TextStyle(
-                            fontSize: 19, fontWeight: FontWeight.bold)),
+                          fontSize: 23,
+                          fontWeight: FontWeight.bold,
+                        )),
                   ),
-                  Text(
-                    'View All ',
-                    style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 12,
-                      color: HexColor('000000'),
+                  Container(
+                    alignment: Alignment.bottomRight,
+                    padding: EdgeInsets.only(left: 5),
+                    child: Text(
+                      'View All ',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontSize: 12,
+                        color: HexColor('000000'),
+                      ),
                     ),
                   ),
                   Container(
@@ -80,41 +87,51 @@ class PlaylistSubTab extends StatelessWidget {
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      SizedBox(
-                        width: 88.5,
-                        height: 78.5,
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(10.0),
-                          child: Container(
-                            child: Image.network(
-                              videos[i].thumbnailUrl,
-                              fit: BoxFit.fill,
+                      Container(
+                        padding: EdgeInsets.only(left: 7),
+                        child: SizedBox(
+                          height:
+                              Provider.of<MVP>(context).screenHeightAppbarless /
+                                  11,
+                          width: Provider.of<MVP>(context).screenWidth / 3.9,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10.0),
+                            child: Container(
+                              child: Image.network(
+                                videos[i].thumbnailUrl,
+                                fit: BoxFit.fill,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                      ClipRect(
-                        child: SizedBox(
-                          height: 100.0,
-                          width: 263.5,
-                          child: videos[i].title.length > 60
-                              ? Html(
-                                  style: {
-                                      "body": Style(
-                                        margin: EdgeInsets.only(left: 25),
-                                        padding: EdgeInsets.zero,
-                                      )
-                                    },
-                                  data: "<h2>" +
-                                      videos[i].title.substring(0, 40) +
-                                      "..."
-                                          "</h2>")
-                              : Html(style: {
-                                  "body": Style(
-                                    margin: EdgeInsets.only(left: 25),
-                                    padding: EdgeInsets.zero,
-                                  )
-                                }, data: "<h2>" + videos[i].title + "</h2>"),
+                      Container(
+                        width: Provider.of<MVP>(context).screenWidth - 100,
+                        child: ClipRect(
+                          child: SizedBox(
+                            height: Provider.of<MVP>(context)
+                                    .screenHeightAppbarless /
+                                10,
+                            width: Provider.of<MVP>(context).screenWidth,
+                            child: videos[i].title.length > 100
+                                ? Html(
+                                    style: {
+                                        "body": Style(
+                                          margin: EdgeInsets.only(left: 14),
+                                          padding: EdgeInsets.zero,
+                                        )
+                                      },
+                                    data: "<h4>" +
+                                        videos[i].title.substring(0, 40) +
+                                        "..."
+                                            "</h4>")
+                                : Html(style: {
+                                    "body": Style(
+                                      margin: EdgeInsets.only(left: 14),
+                                      padding: EdgeInsets.zero,
+                                    )
+                                  }, data: "<h4>" + videos[i].title + "</h4>"),
+                          ),
                         ),
                       ),
                     ],

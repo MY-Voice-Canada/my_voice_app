@@ -150,29 +150,38 @@ class _WatchPageState extends State<WatchPage> {
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),
                     ),
-                    ClipPath(
-                        clipper: QuestionClipPath(),
-                        child: Align(
-                          alignment: Alignment.centerRight,
-                          child: SizedBox(
-                              height: 42.0,
-                              width: 308.0,
-                              child: Container(
-                                  color: Color.fromARGB(255, 255, 236, 141),
-                                  child: new InkWell(
-                                    child: new Text(
-                                        'Subscribe to our youtube channel (MY Voice Canada) for more content like this!',
-                                        textAlign: TextAlign.center,
-                                        style: TextStyle(
-                                          color: Colors.black,
-                                          fontSize: 13.0,
-                                          fontWeight: FontWeight.bold,
-                                        )),
-                                    // ignore: deprecated_member_use
-                                    onTap: () => launch(
-                                        'https://www.youtube.com/c/MYVoiceCanada'),
-                                  ))),
-                        )),
+                    SizedBox(
+                      height:
+                          Provider.of<MVP>(context).screenHeightAppbarless / 11,
+                      width: Provider.of<MVP>(context).screenWidth,
+                      child: Container(
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        child: ClipPath(
+                            clipper: QuestionClipPath(),
+                            child: Align(
+                              alignment: Alignment.centerRight,
+                              child: SizedBox(
+                                  height: 50.5,
+                                  width: 350,
+                                  child: Container(
+                                      color: Color.fromARGB(255, 255, 236, 141),
+                                      padding: EdgeInsets.all(8),
+                                      child: new InkWell(
+                                        child: new Text(
+                                            'Subscribe to our youtube channel (MY Voice Canada) for more content like this!',
+                                            textAlign: TextAlign.right,
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold,
+                                            )),
+                                        // ignore: deprecated_member_use
+                                        onTap: () => launch(
+                                            'https://www.youtube.com/c/MYVoiceCanada'),
+                                      ))),
+                            )),
+                      ),
+                    ),
                   ],
                 ),
               );

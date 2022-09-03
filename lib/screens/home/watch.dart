@@ -12,6 +12,18 @@ import 'package:my_voice_app/screens/home/theatre.dart';
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+class QuestionClipPath extends CustomClipper<Path> {
+  Path getClip(Size size) {
+    return Path()
+      ..lineTo(size.width, 0)
+      ..lineTo(size.width, size.height)
+      ..lineTo(size.width * 0.25, size.height);
+  }
+
+  @override
+  bool shouldReclip(CustomClipper<Path> path) => false;
+}
+
 class WatchPage extends StatefulWidget {
   @override
   _WatchPageState createState() => _WatchPageState();
@@ -72,50 +84,239 @@ class _WatchPageState extends State<WatchPage> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(
-                      height: 350,
-                      width: 460,
-                      child: Container(
-                        color: Color.fromARGB(255, 187, 182, 182),
-                        child: MVCategoryText(
-                          playlistName ?? "Trending",
-                          fontSize: 19,
-                          version: MVCTVersion.transparent,
+                    Container(
+                      child: GestureDetector(
+                        onTap: null,
+                        child: Container(
+                          color: Colors.white,
+                          child: Row(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(8),
+                                margin: EdgeInsets.only(right: 18.0),
+                                child: Text("Trending",
+                                    style: TextStyle(
+                                      fontSize: 23,
+                                      fontWeight: FontWeight.bold,
+                                    )),
+                              ),
+                              Container(
+                                alignment: Alignment.bottomRight,
+                                padding: EdgeInsets.only(left: 150),
+                                child: Text(
+                                  'View All ',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 12,
+                                    color: HexColor('000000'),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: EdgeInsets.only(bottom: 5),
+                                child: Text(
+                                  ' >',
+                                  style: TextStyle(
+                                    fontSize: 23,
+                                    color: HexColor('FFA500'),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
+                      ),
+                    ),
+                    Column(
+                      children: [
+                        Container(
+                          color: Colors.white,
+                          padding: EdgeInsets.only(left: 13, right: 12),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10.0),
+                            child: Image.network(
+                              Provider.of<MVP>(context)
+                                  .channel!
+                                  .videos![8]
+                                  .thumbnailUrl,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    Container(
+                        padding: EdgeInsets.only(left: 14, top: 5),
+                        height:
+                            Provider.of<MVP>(context).screenHeightAppbarless /
+                                37,
+                        width: Provider.of<MVP>(context).screenWidth,
+                        color: Colors.white,
+                        child: Text('Miscellaneous',
+                            style: TextStyle(
+                              fontSize: 14.5,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.orange,
+                            ))),
+                    Container(
+                        height:
+                            Provider.of<MVP>(context).screenHeightAppbarless /
+                                17,
+                        width: Provider.of<MVP>(context).screenWidth,
+                        color: Colors.white,
+                        child: SizedBox(
+                          child: Container(
+                            margin: EdgeInsets.only(left: 14, top: 5),
+                            child: Text(
+                                Provider.of<MVP>(context)
+                                    .channel!
+                                    .videos![8]
+                                    .title,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18.5,
+                                  color: Colors.black,
+                                )),
+                          ),
+                        )),
+                    Row(
+                      children: [
+                        Container(
+                          height:
+                              Provider.of<MVP>(context).screenHeightAppbarless /
+                                  8,
+                          width: Provider.of<MVP>(context).screenWidth / 2,
+                          padding: EdgeInsets.only(left: 13),
+                          color: Colors.white,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10.0),
+                            child: Image.network(
+                              Provider.of<MVP>(context)
+                                  .channel!
+                                  .videos![4]
+                                  .thumbnailUrl,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                        Container(
+                            height: Provider.of<MVP>(context)
+                                    .screenHeightAppbarless /
+                                8,
+                            width: Provider.of<MVP>(context).screenWidth / 2,
+                            padding: EdgeInsets.only(left: 13, right: 13),
+                            color: Colors.white,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10.0),
+                              child: Image.network(
+                                Provider.of<MVP>(context)
+                                    .channel!
+                                    .videos![11]
+                                    .thumbnailUrl,
+                                fit: BoxFit.fill,
+                              ),
+                            ))
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                            padding: EdgeInsets.only(left: 14, top: 5),
+                            height: Provider.of<MVP>(context)
+                                    .screenHeightAppbarless /
+                                37,
+                            width: Provider.of<MVP>(context).screenWidth,
+                            color: Colors.white,
+                            child: Text('Miscellaneous',
+                                style: TextStyle(
+                                  fontSize: 10.2,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.orange,
+                                ))),
+                      ],
+                    ),
+                    Container(
+                      padding: EdgeInsets.only(right: 15.0, left: 15.0),
+                      color: Colors.white,
+                      child: Divider(
+                        thickness: 5.0,
+                        color: HexColor("FFBF3B"),
                       ),
                     ),
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),
                       playlistName: "Race Against Racism",
                     ),
-                    SizedBox(
-                      height: 0,
-                    ),
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),
                       playlistName: "Candid Convos",
-                    ),
-                    SizedBox(
-                      height: 0,
                     ),
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),
                       playlistName: "The MY Voice Show",
                     ),
-                    SizedBox(
-                      height: 350,
-                      width: 460,
+                    Container(
+                      height:
+                          Provider.of<MVP>(context).screenHeightAppbarless / 11,
+                      width: Provider.of<MVP>(context).screenWidth,
                       child: Container(
-                        color: Color.fromARGB(255, 187, 182, 182),
-                        child: MVCategoryText(
-                          playlistName ?? "For You",
-                          fontSize: 19,
-                          version: MVCTVersion.transparent,
+                        color: HexColor("D3D3D3"),
+                        child: Column(
+                          children: [
+                            Container(
+                              width: Provider.of<MVP>(context).screenWidth,
+                              padding: EdgeInsets.all(8),
+                              child: Text("For You",
+                                  style: TextStyle(
+                                    fontSize: 23,
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                            ),
+                          ],
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 0,
+                    Container(
+                      height: Provider.of<MVP>(context).screenHeightAppbarless /
+                          4.2,
+                      width: Provider.of<MVP>(context).screenWidth,
+                      color: HexColor("D3D3D3"),
+                      child: SizedBox(
+                        child: Container(
+                          padding: EdgeInsets.only(left: 9, right: 9),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10.0),
+                            child: Image.network(
+                              Provider.of<MVP>(context)
+                                  .channel!
+                                  .videos![0]
+                                  .thumbnailUrl,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height:
+                          Provider.of<MVP>(context).screenHeightAppbarless / 11,
+                      width: Provider.of<MVP>(context).screenWidth,
+                      color: HexColor("D3D3D3"),
+                      child: SizedBox(
+                        child: Container(
+                          margin: EdgeInsets.all(17),
+                          child: Text(
+                              Provider.of<MVP>(context)
+                                  .channel!
+                                  .videos![0]
+                                  .title,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black,
+                              )),
+                        ),
+                      ),
                     ),
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),
@@ -125,30 +326,37 @@ class _WatchPageState extends State<WatchPage> {
                       notifyParent: () => setState(() {}),
                     ),
                     SizedBox(
-                      height: 0,
+                      height:
+                          Provider.of<MVP>(context).screenHeightAppbarless / 11,
+                      width: Provider.of<MVP>(context).screenWidth,
+                      child: Container(
+                        color: Color.fromARGB(255, 255, 255, 255),
+                        child: ClipPath(
+                            clipper: QuestionClipPath(),
+                            child: Align(
+                              alignment: Alignment.centerRight,
+                              child: SizedBox(
+                                  height: 50.5,
+                                  width: 350,
+                                  child: Container(
+                                      color: Color.fromARGB(255, 255, 236, 141),
+                                      padding: EdgeInsets.all(8),
+                                      child: new InkWell(
+                                        child: new Text(
+                                            'Subscribe to our youtube channel (MY Voice Canada) for more content like this!',
+                                            textAlign: TextAlign.right,
+                                            style: TextStyle(
+                                              color: Colors.black,
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold,
+                                            )),
+                                        // ignore: deprecated_member_use
+                                        onTap: () => launch(
+                                            'https://www.youtube.com/c/MYVoiceCanada'),
+                                      ))),
+                            )),
+                      ),
                     ),
-                    Container(
-                        child: Align(
-                      alignment: Alignment.centerRight,
-                      child: SizedBox(
-                          height: 42.0,
-                          width: 308.0,
-                          child: Container(
-                              color: Color.fromARGB(255, 255, 236, 141),
-                              child: new InkWell(
-                                child: new Text(
-                                    'Subscribe to our youtube channel (MY Voice Canada) for more content like this!',
-                                    textAlign: TextAlign.center,
-                                    style: TextStyle(
-                                      color: Colors.black,
-                                      fontSize: 13.0,
-                                      fontWeight: FontWeight.bold,
-                                    )),
-                                // ignore: deprecated_member_use
-                                onTap: () => launch(
-                                    'https://www.youtube.com/c/MYVoiceCanada'),
-                              ))),
-                    )),
                   ],
                 ),
               );

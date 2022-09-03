@@ -127,9 +127,13 @@ class _WatchPageState extends State<WatchPage> {
                         ),
                       ),
                     ),
-                    Divider(
-                      thickness: 4.0,
-                      color: HexColor("FFBF3B"),
+                    Container(
+                      padding: EdgeInsets.only(right: 15.0, left: 15.0),
+                      color: Colors.white,
+                      child: Divider(
+                        thickness: 5.0,
+                        color: HexColor("FFBF3B"),
+                      ),
                     ),
                     PlaylistSubTab(
                       notifyParent: () => setState(() {}),

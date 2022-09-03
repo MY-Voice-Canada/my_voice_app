@@ -121,16 +121,16 @@ class PlaylistSubTab extends StatelessWidget {
                                           padding: EdgeInsets.zero,
                                         )
                                       },
-                                    data: "<h4>" +
+                                    data: "<h3>" +
                                         videos[i].title.substring(0, 40) +
                                         "..."
-                                            "</h4>")
+                                            "</h3>")
                                 : Html(style: {
                                     "body": Style(
                                       margin: EdgeInsets.only(left: 14),
                                       padding: EdgeInsets.zero,
                                     )
-                                  }, data: "<h4>" + videos[i].title + "</h4>"),
+                                  }, data: "<h3>" + videos[i].title + "</h3>"),
                           ),
                         ),
                       ),

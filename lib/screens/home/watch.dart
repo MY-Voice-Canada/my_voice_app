@@ -148,46 +148,58 @@ class _WatchPageState extends State<WatchPage> {
                       playlistName: "The MY Voice Show",
                     ),
                     Container(
-                      child: GestureDetector(
-                        onTap: null,
-                        child: Container(
-                          color: Colors.white,
-                          child: Row(
-                            children: [
-                              Container(
-                                padding: EdgeInsets.all(8),
-                                margin: EdgeInsets.only(right: 183),
-                                child: Text("For You",
-                                    style: TextStyle(
-                                      fontSize: 23,
-                                      fontWeight: FontWeight.bold,
-                                    )),
-                              ),
-                              Container(
-                                alignment: Alignment.bottomRight,
-                                padding: EdgeInsets.only(left: 5),
-                                child: Text(
-                                  'View All ',
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 12,
-                                    color: HexColor('000000'),
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(bottom: 5),
-                                child: Text(
-                                  ' >',
+                      height:
+                          Provider.of<MVP>(context).screenHeightAppbarless / 11,
+                      width: Provider.of<MVP>(context).screenWidth,
+                      child: Container(
+                        color: HexColor("D3D3D3"),
+                        child: Column(
+                          children: [
+                            Container(
+                              width: Provider.of<MVP>(context).screenWidth,
+                              padding: EdgeInsets.all(8),
+                              child: Text("For You",
                                   style: TextStyle(
                                     fontSize: 23,
-                                    color: HexColor('FFA500'),
-                                  ),
-                                ),
-                              ),
-                            ],
+                                    fontWeight: FontWeight.bold,
+                                  )),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    Container(
+                      height: Provider.of<MVP>(context).screenHeightAppbarless /
+                          4.2,
+                      width: Provider.of<MVP>(context).screenWidth,
+                      color: HexColor("D3D3D3"),
+                      child: SizedBox(
+                        child: Container(
+                          padding: EdgeInsets.only(left: 11, right: 11),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10.0),
+                            child: Image.network(
+                              Provider.of<MVP>(context)
+                                  .channel!
+                                  .videos![0]
+                                  .thumbnailUrl,
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
+                      ),
+                    ),
+                    Container(
+                      height:
+                          Provider.of<MVP>(context).screenHeightAppbarless / 11,
+                      width: Provider.of<MVP>(context).screenWidth,
+                      color: HexColor("D3D3D3"),
+                      child: SizedBox(
+                        child: Container(
+                            child: Text(Provider.of<MVP>(context)
+                                .channel!
+                                .videos![0]
+                                .title)),
                       ),
                     ),
                     PlaylistSubTab(

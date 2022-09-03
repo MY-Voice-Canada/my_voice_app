@@ -285,7 +285,7 @@ class _WatchPageState extends State<WatchPage> {
                         child: Container(
                           padding: EdgeInsets.only(left: 9, right: 9),
                           child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
+                            borderRadius: BorderRadius.circular(6.0),
                             child: Image.network(
                               Provider.of<MVP>(context)
                                   .channel!
@@ -298,13 +298,26 @@ class _WatchPageState extends State<WatchPage> {
                       ),
                     ),
                     Container(
+                        padding: EdgeInsets.only(left: 14, top: 5),
+                        height:
+                            Provider.of<MVP>(context).screenHeightAppbarless /
+                                37,
+                        width: Provider.of<MVP>(context).screenWidth,
+                        color: HexColor("D3D3D3"),
+                        child: Text('Miscellaneous',
+                            style: TextStyle(
+                              fontSize: 12,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.orange,
+                            ))),
+                    Container(
                       height:
                           Provider.of<MVP>(context).screenHeightAppbarless / 11,
                       width: Provider.of<MVP>(context).screenWidth,
                       color: HexColor("D3D3D3"),
                       child: SizedBox(
                         child: Container(
-                          margin: EdgeInsets.all(17),
+                          margin: EdgeInsets.only(left: 14, right: 14, top: 2),
                           child: Text(
                               Provider.of<MVP>(context)
                                   .channel!

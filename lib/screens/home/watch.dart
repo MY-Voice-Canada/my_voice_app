@@ -127,6 +127,114 @@ class _WatchPageState extends State<WatchPage> {
                         ),
                       ),
                     ),
+                    Column(
+                      children: [
+                        Container(
+                          color: Colors.white,
+                          padding: EdgeInsets.only(left: 13, right: 12),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10.0),
+                            child: Image.network(
+                              Provider.of<MVP>(context)
+                                  .channel!
+                                  .videos![8]
+                                  .thumbnailUrl,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                    Container(
+                        padding: EdgeInsets.only(left: 14, top: 5),
+                        height:
+                            Provider.of<MVP>(context).screenHeightAppbarless /
+                                37,
+                        width: Provider.of<MVP>(context).screenWidth,
+                        color: Colors.white,
+                        child: Text('Miscellaneous',
+                            style: TextStyle(
+                              fontSize: 14.5,
+                              fontWeight: FontWeight.bold,
+                              color: Colors.orange,
+                            ))),
+                    Container(
+                        height:
+                            Provider.of<MVP>(context).screenHeightAppbarless /
+                                17,
+                        width: Provider.of<MVP>(context).screenWidth,
+                        color: Colors.white,
+                        child: SizedBox(
+                          child: Container(
+                            margin: EdgeInsets.only(left: 14, top: 5),
+                            child: Text(
+                                Provider.of<MVP>(context)
+                                    .channel!
+                                    .videos![8]
+                                    .title,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18.5,
+                                  color: Colors.black,
+                                )),
+                          ),
+                        )),
+                    Row(
+                      children: [
+                        Container(
+                          height:
+                              Provider.of<MVP>(context).screenHeightAppbarless /
+                                  8,
+                          width: Provider.of<MVP>(context).screenWidth / 2,
+                          padding: EdgeInsets.only(left: 13),
+                          color: Colors.white,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(10.0),
+                            child: Image.network(
+                              Provider.of<MVP>(context)
+                                  .channel!
+                                  .videos![4]
+                                  .thumbnailUrl,
+                              fit: BoxFit.fill,
+                            ),
+                          ),
+                        ),
+                        Container(
+                            height: Provider.of<MVP>(context)
+                                    .screenHeightAppbarless /
+                                8,
+                            width: Provider.of<MVP>(context).screenWidth / 2,
+                            padding: EdgeInsets.only(left: 13, right: 13),
+                            color: Colors.white,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10.0),
+                              child: Image.network(
+                                Provider.of<MVP>(context)
+                                    .channel!
+                                    .videos![11]
+                                    .thumbnailUrl,
+                                fit: BoxFit.fill,
+                              ),
+                            ))
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Container(
+                            padding: EdgeInsets.only(left: 14, top: 5),
+                            height: Provider.of<MVP>(context)
+                                    .screenHeightAppbarless /
+                                37,
+                            width: Provider.of<MVP>(context).screenWidth,
+                            color: Colors.white,
+                            child: Text('Miscellaneous',
+                                style: TextStyle(
+                                  fontSize: 10.2,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.orange,
+                                ))),
+                      ],
+                    ),
                     Container(
                       padding: EdgeInsets.only(right: 15.0, left: 15.0),
                       color: Colors.white,

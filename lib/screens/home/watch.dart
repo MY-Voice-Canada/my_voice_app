@@ -175,7 +175,7 @@ class _WatchPageState extends State<WatchPage> {
                       color: HexColor("D3D3D3"),
                       child: SizedBox(
                         child: Container(
-                          padding: EdgeInsets.only(left: 11, right: 11),
+                          padding: EdgeInsets.only(left: 9, right: 9),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(10.0),
                             child: Image.network(
@@ -196,10 +196,18 @@ class _WatchPageState extends State<WatchPage> {
                       color: HexColor("D3D3D3"),
                       child: SizedBox(
                         child: Container(
-                            child: Text(Provider.of<MVP>(context)
-                                .channel!
-                                .videos![0]
-                                .title)),
+                          margin: EdgeInsets.all(17),
+                          child: Text(
+                              Provider.of<MVP>(context)
+                                  .channel!
+                                  .videos![0]
+                                  .title,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 16,
+                                color: Colors.black,
+                              )),
+                        ),
                       ),
                     ),
                     PlaylistSubTab(

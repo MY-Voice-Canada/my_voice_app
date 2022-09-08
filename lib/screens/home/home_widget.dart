@@ -79,7 +79,8 @@ class _MVHomeState extends State<MVHome> {
         ? SizedBox.shrink()
         : FutureBuilder<MVWPContent>(
             future: MVWP.getContent(),
-            builder: (context, snapshot) => MVBackground(
+            builder: (context, snapshot) => Container(
+              color: Colors.white,
               child: WillPopScope(
                 onWillPop: () async => false,
                 child: Scaffold(

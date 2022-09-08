@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
 
+typedef Redirect = void Function();
+
 class ContinuedHeading extends StatelessWidget {
   final String title;
-  final String href;
   final Color textColor;
   final Color accentColor;
+  final Redirect redirect;
 
   const ContinuedHeading(
       {Key? key,
       required this.title,
-      required this.href,
+      required this.redirect,
       this.textColor = Colors.black,
       this.accentColor = Colors.black})
       : super(key: key);
-
-  redirect(BuildContext context) {
-    // TODO implementation for redirecting user
-    return () => Navigator.pushNamed(context, this.href);
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +30,7 @@ class ContinuedHeading extends StatelessWidget {
                       fontWeight: FontWeight.w600,
                       color: this.textColor)),
               GestureDetector(
-                onTap: redirect(context),
+                onTap: this.redirect,
                 child: Row(
                   children: [
                     Text("View All",

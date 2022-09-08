@@ -2,53 +2,59 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class MVWP {
-  static const String _baseUrl =
-      "http://myvoicecanada.com/wp-json/wp/v2/posts?per_page=20&_embed";
+  static const defaultParameters = {
+    "per_page": "20",
+    "_embed": "true",
+  };
+
+  static const String _baseUrl = "myvoicecanada.com";
+
+  static Uri API(String endpoint, {Map params = const {}}) =>
+      Uri.http(_baseUrl, endpoint, {...defaultParameters, ...params});
 
   static Future<MVWPContent> getContent() async {
     try {
-      List<dynamic> responses = [
-        await http.get(Uri.parse("$_baseUrl&categories=52,365,524,523,54"
-            .replaceAll("per_page=20", "per_page=100"))),
-        await http.get(Uri.parse("$_baseUrl&categories=52")),
-        await http.get(Uri.parse("$_baseUrl&categories=365")),
-        await http.get(Uri.parse("$_baseUrl&categories=524")),
-        await http.get(Uri.parse("$_baseUrl&categories=523")),
-        await http.get(Uri.parse("$_baseUrl&categories=54")),
-        await http.get(Uri.parse("$_baseUrl&categories=661,659,658,655,657,656"
-            .replaceAll("per_page=20", "per_page=100"))),
-        await http.get(Uri.parse("$_baseUrl&categories=661")),
-        await http.get(Uri.parse("$_baseUrl&categories=659")),
-        await http.get(Uri.parse("$_baseUrl&categories=658")),
-        await http.get(Uri.parse("$_baseUrl&categories=655")),
-        await http.get(Uri.parse("$_baseUrl&categories=657")),
-        await http.get(Uri.parse("$_baseUrl&categories=656")),
-      ];
+      List<http.Response> responses = await Future.wait([
+        http.get(API("/wp-json/wp/v2/posts",
+            params: {"categories": "52,365,524,523,54", "per_page": "100"})),
+        http.get(API("/wp-json/wp/v2/posts", params: {"categories": "52"})),
+        http.get(API("/wp-json/wp/v2/posts", params: {"categories": "365"})),
+        http.get(API("/wp-json/wp/v2/posts", params: {"categories": "524"})),
+        http.get(API("/wp-json/wp/v2/posts", params: {"categories": "523"})),
+        http.get(API("/wp-json/wp/v2/posts", params: {"categories": "54"})),
+        http.get(API("/wp-json/wp/v2/posts", params: {
+          "categories": "661,659,658,655,657,656",
+          "per_page": "100"
+        })),
+        http.get(API("/wp-json/wp/v2/posts", params: {"categories": "661"})),
+        http.get(API("/wp-json/wp/v2/posts", params: {"categories": "659"})),
+        http.get(API("/wp-json/wp/v2/posts", params: {"categories": "658"})),
+        http.get(API("/wp-json/wp/v2/posts", params: {"categories": "655"})),
+        http.get(API("/wp-json/wp/v2/posts", params: {"categories": "657"})),
+        http.get(API("/wp-json/wp/v2/posts", params: {"categories": "656"})),
+      ]);
 
-      List<dynamic> posts = List.filled(responses.length, dynamic);
+      List<dynamic> posts = responses.map((response) {
+        if (response.statusCode != 200) Future.error('error');
+        return jsonDecode(response.body);
+      }).toList();
 
-      for (int i = 0; i < responses.length; i++) {
-        if (responses[i].statusCode == 200) {
-          posts[i] = jsonDecode(responses[i].body);
-        } else
-          return Future.error("Server error.");
-      }
       return MVWPContent(
-        allPosts: posts[0],
+        allPosts: posts[0], // Pull only 11
         cwPosts: posts[1],
         fthPosts: posts[2],
         fftPosts: posts[3],
         iiPosts: posts[4],
         laePosts: posts[5],
-        allJAs: posts[6],
+        allJAs: posts[6], // Pull first
         fthJAs: posts[7],
         famJAs: posts[8],
         frnJAs: posts[9],
         giJAs: posts[10],
         lifJAs: posts[11],
       );
-    } catch (e) {
-      return Future.error("Error fetching data");
+    } catch (error) {
+      return Future.error(error);
     }
   }
 }
@@ -82,4 +88,9 @@ class MVWPContent {
     this.giJAs,
     this.lifJAs,
   });
+}
+
+void main() async {
+  print(MVWP.API("/wp-json/wp/v2/posts",
+      params: {"categories": "52,365,524,523,54", "per_page": "100"}));
 }

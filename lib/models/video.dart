@@ -19,4 +19,9 @@ class Video {
       channelTitle: videoJson["snippet"]['channelTitle'],
     );
   }
+
+  @override
+  String toString() {
+    return "${this.title}";
+  }
 }

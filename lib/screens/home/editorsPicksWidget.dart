@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:my_voice_app/main.dart';
 import 'package:provider/provider.dart';
@@ -34,13 +35,15 @@ class EditorsPicks extends StatelessWidget {
                       width: 400,
                       alignment: Alignment.centerLeft,
                       padding: EdgeInsets.fromLTRB(10, 0, 10, 5),
-                      child: Text(
-                        data[0]["title"]["rendered"].toString(),
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 15,
-                          color: HexColor('000000'),
-                        ),
+                      child: Html(
+                        data: data[0]["title"]["rendered"].toString(),
+                        style: {
+                          "h1": Style(
+                            fontWeight: FontWeight.bold,
+                            fontSize: FontSize(15),
+                            color: HexColor('000000'),
+                          ),
+                        },
                       ),
                     ),
                     Container(
@@ -72,13 +75,17 @@ class EditorsPicks extends StatelessWidget {
                         width: 400,
                         margin: EdgeInsets.only(left: 5),
                         alignment: Alignment.centerLeft,
-                        child: Text(
-                          data[0]["content"]["rendered"],
-                          maxLines: 3,
-                          style: TextStyle(
-                            fontSize: 13,
-                            color: HexColor('000000'),
-                          ),
+                        child: Html(
+                          data: data[0]["content"]["rendered"]
+                              .substring(0, 90)
+                              .replaceAll('\n', ' '),
+                          style: {
+                            "h1": Style(
+                              maxLines: 3,
+                              fontSize: FontSize(13),
+                              color: HexColor('000000'),
+                            ),
+                          },
                         ),
                       ),
                     ),

@@ -15,23 +15,36 @@ class MVWP {
   static Future<MVWPContent> getContent() async {
     try {
       List<http.Response> responses = await Future.wait([
-        http.get(API("/wp-json/wp/v2/posts",
-            params: {"categories": "52,365,524,523,54", "per_page": "100"})),
-        http.get(API("/wp-json/wp/v2/posts", params: {"categories": "52"})),
-        http.get(API("/wp-json/wp/v2/posts", params: {"categories": "365"})),
-        http.get(API("/wp-json/wp/v2/posts", params: {"categories": "524"})),
-        http.get(API("/wp-json/wp/v2/posts", params: {"categories": "523"})),
-        http.get(API("/wp-json/wp/v2/posts", params: {"categories": "54"})),
         http.get(API("/wp-json/wp/v2/posts", params: {
-          "categories": "661,659,658,655,657,656",
+          "categories": "69,68,70,72,73",
+          "per_page": "100"
+        })), //all posts
+        http.get(
+            API("/wp-json/wp/v2/posts", params: {"categories": "69"})), //cw
+        http.get(
+            API("/wp-json/wp/v2/posts", params: {"categories": "68"})), //fth
+        http.get(
+            API("/wp-json/wp/v2/posts", params: {"categories": "70"})), // fft
+        http.get(
+            API("/wp-json/wp/v2/posts", params: {"categories": "72"})), //ii
+        http.get(
+            API("/wp-json/wp/v2/posts", params: {"categories": "73"})), //lae
+        http.get(API("/wp-json/wp/v2/posts", params: {
+          //all ja's
+          "categories": "246,241,245,242,244,262",
           "per_page": "100"
         })),
-        http.get(API("/wp-json/wp/v2/posts", params: {"categories": "661"})),
-        http.get(API("/wp-json/wp/v2/posts", params: {"categories": "659"})),
-        http.get(API("/wp-json/wp/v2/posts", params: {"categories": "658"})),
-        http.get(API("/wp-json/wp/v2/posts", params: {"categories": "655"})),
-        http.get(API("/wp-json/wp/v2/posts", params: {"categories": "657"})),
-        http.get(API("/wp-json/wp/v2/posts", params: {"categories": "656"})),
+        http.get(API("/wp-json/wp/v2/posts",
+            params: {"categories": "246"})), //fth ja's
+        http.get(API("/wp-json/wp/v2/posts",
+            params: {"categories": "241"})), //fam ja's
+        http.get(API("/wp-json/wp/v2/posts",
+            params: {"categories": "245"})), // frn ja's
+        http.get(API("/wp-json/wp/v2/posts",
+            params: {"categories": "242"})), // gi ja's
+        http.get(API("/wp-json/wp/v2/posts",
+            params: {"categories": "244"})), // lif ja's
+        http.get(API("/wp-json/wp/v2/posts", params: {"categories": "262"})),
       ]);
 
       List<dynamic> posts = responses.map((response) {

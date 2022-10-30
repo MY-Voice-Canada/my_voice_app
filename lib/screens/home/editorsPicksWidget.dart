@@ -34,13 +34,13 @@ class EditorsPicks extends StatelessWidget {
                     Container(
                       width: 400,
                       alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.fromLTRB(10, 0, 10, 5),
+                      padding: EdgeInsets.fromLTRB(0, 0, 10, 5),
                       child: Html(
                         data: data[0]["title"]["rendered"].toString(),
                         style: {
                           "h1": Style(
                             fontWeight: FontWeight.bold,
-                            fontSize: FontSize(15),
+                            fontSize: FontSize(20),
                             color: HexColor('000000'),
                           ),
                         },
@@ -96,73 +96,78 @@ class EditorsPicks extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   for (var i = 1; i < 3; i++)
-                    (GestureDetector(
-                      onTap: () {
-                        ja != null
-                            ? Provider.of<MVP>(context, listen: false)
-                                .enableJAView(data[i])
-                            : Provider.of<MVP>(context, listen: false)
-                                .enableReadView(data[i]);
-                        notifyParent();
-                      },
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Container(
-                            height: 100,
-                            width: 175,
-                            child: Card(
-                              child: Image.network(
-                                data[i]["_embedded"]["wp:featuredmedia"][0]
-                                    ["source_url"],
-                                fit: BoxFit.fill,
-                              ),
-                              margin: EdgeInsets.all(10),
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.fromLTRB(10, 10, 0, 5),
-                            child: Text(
-                              data[i]["_embedded"]["wp:term"][0][0]["name"],
-                              style: TextStyle(
-                                fontSize: 11,
-                                color: HexColor('F5416C'),
+                    Expanded(
+                      child: (GestureDetector(
+                        onTap: () {
+                          ja != null
+                              ? Provider.of<MVP>(context, listen: false)
+                                  .enableJAView(data[i])
+                              : Provider.of<MVP>(context, listen: false)
+                                  .enableReadView(data[i]);
+                          notifyParent();
+                        },
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              height: 100,
+                              width: 175,
+                              child: Card(
+                                child: Image.network(
+                                  data[i]["_embedded"]["wp:featuredmedia"][0]
+                                      ["source_url"],
+                                  fit: BoxFit.fill,
+                                ),
+                                margin: EdgeInsets.all(10),
                               ),
                             ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
-                            child: Text(
-                              data[i]["title"]["rendered"].toString().length >
-                                      22
-                                  ? data[i]["title"]["rendered"]
-                                          .toString()
-                                          .substring(0, 10) +
-                                      '...'
-                                  : data[i]["title"]["rendered"].toString(),
-                              style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 12,
-                                color: HexColor('000000'),
+                            Container(
+                              padding: EdgeInsets.fromLTRB(10, 10, 0, 5),
+                              child: Text(
+                                data[i]["_embedded"]["wp:term"][0][0]["name"],
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  color: HexColor('F5416C'),
+                                ),
                               ),
                             ),
-                          ),
-                          Container(
-                            width: 175,
-                            padding: EdgeInsets.fromLTRB(10, 0, 0, 5),
-                            child: Text(
-                              data[i]["content"]["rendered"],
-                              maxLines: 3,
-                              textAlign: TextAlign.left,
-                              style: TextStyle(
-                                fontSize: 10,
-                                color: HexColor('000000'),
+                            Container(
+                              padding: EdgeInsets.fromLTRB(10, 0, 0, 0),
+                              child: Text(
+                                data[i]["title"]["rendered"].toString().length >
+                                        22
+                                    ? data[i]["title"]["rendered"]
+                                            .toString()
+                                            .substring(0, 10) +
+                                        '...'
+                                    : data[i]["title"]["rendered"].toString(),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12,
+                                  color: HexColor('000000'),
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    )),
+                            Container(
+                              width: 175,
+                              padding: EdgeInsets.fromLTRB(10, 0, 0, 5),
+                              child: Html(
+                                data: data[i]["content"]["rendered"]
+                                    .substring(0, 80)
+                                    .replaceAll('\n', ' '),
+                                style: {
+                                  "h1": Style(
+                                    maxLines: 3,
+                                    fontSize: FontSize(10),
+                                    color: HexColor('000000'),
+                                  ),
+                                },
+                              ),
+                            ),
+                          ],
+                        ),
+                      )),
+                    ),
                 ],
               ),
             ],

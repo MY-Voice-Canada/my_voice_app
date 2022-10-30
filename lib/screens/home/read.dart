@@ -210,15 +210,16 @@ class _ReadPageState extends State<ReadPage> {
                   padding: EdgeInsets.fromLTRB(0, 24, 24, 0),
                   child: RichText(
                     text: TextSpan(
-                        style: TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: "RobotoMono"),
-                        children: [
-                          TextSpan(
-                              text: "Editor's Picks",
-                              style: TextStyle(color: Colors.black)),
-                        ]),
+                      style: TextStyle(
+                          fontSize: 25,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: "RobotoMono"),
+                      children: [
+                        TextSpan(
+                            text: "Editor's Picks",
+                            style: TextStyle(color: Colors.black)),
+                      ],
+                    ),
                   ),
                 ),
               ),

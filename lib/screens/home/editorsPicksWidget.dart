@@ -13,6 +13,7 @@ class EditorsPicks extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
     return Column(
       // from here begins the 3 boxes under 'editors picks' text
       children: [
@@ -21,9 +22,11 @@ class EditorsPicks extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              for (var i = 0; i < 3; i++) (buildOneTile(context, i, 400, 200)),
-              buildOneTile(context, 0, 600, 300),
-              sideBySideTiles(context),
+              if (screenWidth < 625)
+                for (var i = 0; i < 3; i++)
+                  (buildOneTile(context, i, 400, 200)),
+              if (screenWidth > 625) buildOneTile(context, 0, 600, 300),
+              if (screenWidth > 625) sideBySideTiles(context),
             ],
           ),
         ),

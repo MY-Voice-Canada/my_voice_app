@@ -225,13 +225,13 @@ class _ReadPageState extends State<ReadPage> {
               ),
             ),
             Container(
-              padding: EdgeInsets.fromLTRB(10, 5, 0, 15),
+              padding: EdgeInsets.fromLTRB(0, 5, 0, 15),
               margin: EdgeInsets.zero,
               color: HexColor('FFFFFF'),
               child: Divider(
                 thickness: 5,
-                indent: 0,
-                endIndent: 260,
+                indent: 10,
+                endIndent: 10,
                 color: HexColor('F5416C'),
               ),
             ),

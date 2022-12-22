@@ -14,6 +14,8 @@ class EditorsPicks extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
+    var smallText = [20.0, 16.0, 13.0];
+    var bigText = [30.0, 26.0, 23.0];
     return Column(
       // from here begins the 3 boxes under 'editors picks' text
       children: [
@@ -24,9 +26,11 @@ class EditorsPicks extends StatelessWidget {
             children: [
               if (screenWidth < 625)
                 for (var i = 0; i < 3; i++)
-                  (buildOneTile(context, i, 400, 200)),
-              if (screenWidth > 625) buildOneTile(context, 0, 600, 300),
-              if (screenWidth > 625) sideBySideTiles(context),
+                  (buildOneTile(context, i, 400, 200, smallText)),
+              if (screenWidth > 625) ...[
+                buildOneTile(context, 0, 600, 300, bigText),
+                sideBySideTiles(context, smallText),
+              ],
             ],
           ),
         ),
@@ -34,7 +38,9 @@ class EditorsPicks extends StatelessWidget {
     );
   }
 
-  Widget buildOneTile(BuildContext context, i, double width, double height) {
+  Widget buildOneTile(
+      BuildContext context, i, double width, double height, var textSizes) {
+    int titleLength = data[i]["title"]["rendered"].toString().length;
     return Center(
       child: GestureDetector(
         onTap: () {
@@ -53,9 +59,9 @@ class EditorsPicks extends StatelessWidget {
               child: Html(
                 data: data[i]["title"]["rendered"].toString(),
                 style: {
-                  "h1": Style(
+                  "body": Style(
                     fontWeight: FontWeight.bold,
-                    fontSize: FontSize(20),
+                    fontSize: FontSize(textSizes[0]),
                     color: HexColor('000000'),
                   ),
                 },
@@ -64,11 +70,11 @@ class EditorsPicks extends StatelessWidget {
             Container(
               width: width,
               alignment: Alignment.centerLeft,
-              padding: EdgeInsets.fromLTRB(10, 5, 10, 0),
+              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: Text(
                 data[i]["_embedded"]["wp:term"][0][0]["name"],
                 style: TextStyle(
-                  fontSize: 14,
+                  fontSize: textSizes[1],
                   color: HexColor('F5416C'),
                 ),
               ),
@@ -92,12 +98,12 @@ class EditorsPicks extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: Html(
                   data: data[i]["content"]["rendered"]
-                      .substring(0, 90)
+                      .substring(titleLength + 4, 90)
                       .replaceAll('\n', ' '),
                   style: {
-                    "h1": Style(
+                    "body": Style(
                       maxLines: 3,
-                      fontSize: FontSize(13),
+                      fontSize: FontSize(textSizes[2]),
                       color: HexColor('000000'),
                     ),
                   },
@@ -110,7 +116,7 @@ class EditorsPicks extends StatelessWidget {
     );
   }
 
-  Widget sideBySideTiles(BuildContext context) {
+  Widget sideBySideTiles(BuildContext context, var textSize) {
     return Container(
       width: 600,
       child: Row(
@@ -148,7 +154,7 @@ class EditorsPicks extends StatelessWidget {
                       child: Text(
                         data[i]["_embedded"]["wp:term"][0][0]["name"],
                         style: TextStyle(
-                          fontSize: 11,
+                          fontSize: textSize[1],
                           color: HexColor('F5416C'),
                         ),
                       ),
@@ -165,7 +171,7 @@ class EditorsPicks extends StatelessWidget {
                             : data[i]["title"]["rendered"].toString(),
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
-                          fontSize: 12,
+                          fontSize: textSize[0],
                           color: HexColor('000000'),
                         ),
                       ),
@@ -179,8 +185,9 @@ class EditorsPicks extends StatelessWidget {
                             .replaceAll('\n', ' '),
                         style: {
                           "h1": Style(
+                            fontWeight: FontWeight.normal,
                             maxLines: 3,
-                            fontSize: FontSize(10),
+                            fontSize: FontSize(textSize[1]),
                             color: HexColor('000000'),
                           ),
                         },

@@ -17,6 +17,23 @@ class FourTileCategory extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+
+    var smallText = [21.0, 12.0, 23.0, 13.0, 16.0];
+    var bigText = [35.0, 24.0, 30.0, 18.0, 28.0];
+    var simageDimensions = [30.0, 60.0];
+    var limageDimensions = [60.0, 120.0];
+
+    return Column(
+      children: [
+        if (screenWidth < 625)
+          (fourTiles(context, smallText, simageDimensions)),
+        if (screenWidth > 625) (fourTiles(context, bigText, limageDimensions)),
+      ],
+    );
+  }
+
+  Widget fourTiles(BuildContext context, var fontSize, var imageSize) {
     return Container(
       margin: EdgeInsets.zero,
       child: Column(
@@ -38,7 +55,7 @@ class FourTileCategory extends StatelessWidget {
                         : data[0]["_embedded"]["wp:term"][0][0]["name"],
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
-                      fontSize: 21,
+                      fontSize: fontSize[0],
                       color: HexColor('000000'),
                     ),
                   ),
@@ -53,7 +70,7 @@ class FourTileCategory extends StatelessWidget {
                           'View All ',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 12,
+                            fontSize: fontSize[1],
                             color: HexColor('000000'),
                           ),
                         ),
@@ -62,7 +79,7 @@ class FourTileCategory extends StatelessWidget {
                           child: Text(
                             ' >',
                             style: TextStyle(
-                              fontSize: 23,
+                              fontSize: fontSize[2],
                               color: HexColor('F5416C'),
                             ),
                           ),
@@ -101,10 +118,10 @@ class FourTileCategory extends StatelessWidget {
                           width: 2,
                         ),
                       ),
-                      padding: EdgeInsets.all(10),
+                      padding: EdgeInsets.all(5),
                       child: Container(
-                        height: 30,
-                        width: 60,
+                        height: imageSize[0],
+                        width: imageSize[1],
                         child: Image.network(
                           data[i]["_embedded"]["wp:featuredmedia"][0]
                               ["source_url"],
@@ -115,13 +132,16 @@ class FourTileCategory extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text(
-                          // ARTICLE AUTHOR
-                          data[i]["_embedded"]["author"][0]["name"],
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 9,
-                            color: HexColor('F5416C'),
+                        Padding(
+                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
+                          child: Text(
+                            // ARTICLE AUTHOR
+                            data[i]["_embedded"]["author"][0]["name"],
+                            style: TextStyle(
+                              fontWeight: FontWeight.normal,
+                              fontSize: fontSize[3],
+                              color: HexColor('F5416C'),
+                            ),
                           ),
                         ),
                         Text(
@@ -135,7 +155,7 @@ class FourTileCategory extends StatelessWidget {
                           maxLines: 2,
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
-                            fontSize: 14,
+                            fontSize: fontSize[4],
                             color: HexColor('000000'),
                           ),
                         ),
@@ -150,7 +170,6 @@ class FourTileCategory extends StatelessWidget {
     );
   }
 }
-
 // class FourTileCategory extends StatelessWidget {
 //   @override
 //   Widget build(BuildContext context) {
@@ -168,12 +187,11 @@ class FourTileCategory extends StatelessWidget {
 //   }
 // }
 
-
 // ResponsiveRowColumn(
 //   rowMainAxisAlignment: MainAxisAlignment.center,
 //   rowPadding: const EdgeInsets.all(30),
 //   columnPadding: const EdgeInsets.all(30),
-//   layout: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP) 
+//   layout: ResponsiveWrapper.of(context).isSmallerThan(DESKTOP)
 //   ? ResponsiveRowColumnType.COLUMN //if its smaller than DESKTOP make it a Column
 //   : ResponsiveRowColumnType.ROW, //else make it a ROW
 

@@ -161,30 +161,27 @@ class EditorsPicks extends StatelessWidget {
                     ),
                     Container(
                       alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                      child: Text(
-                        data[i]["title"]["rendered"].toString().length > 22
-                            ? data[i]["title"]["rendered"]
-                                    .toString()
-                                    .substring(0, 10) +
-                                '...'
-                            : data[i]["title"]["rendered"].toString(),
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: textSize[0],
-                          color: HexColor('000000'),
-                        ),
+                      padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
+                      child: Html(
+                        data: data[i]["title"]["rendered"].toString(),
+                        style: {
+                          "body": Style(
+                            fontWeight: FontWeight.bold,
+                            fontSize: FontSize(textSize[0]),
+                            color: HexColor('000000'),
+                          ),
+                        },
                       ),
                     ),
                     Container(
                       alignment: Alignment.centerLeft,
                       padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
                       child: Html(
-                        data: data[i]["content"]["rendered"]
-                            .substring(0, 80)
-                            .replaceAll('\n', ' '),
+                        data: data[i]["content"]["rendered"].substring(
+                                data[i]["title"]["rendered"].length + 4, 300) +
+                            '...'.replaceAll('\n', ''),
                         style: {
-                          "h1": Style(
+                          "#": Style(
                             fontWeight: FontWeight.normal,
                             maxLines: 3,
                             fontSize: FontSize(textSize[1]),

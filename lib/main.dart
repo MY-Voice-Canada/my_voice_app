@@ -16,10 +16,10 @@ import 'package:firebase_core/firebase_core.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  runApp(MyVoiceApp());
+  runApp(MYVoiceApp());
 }
 
-Widget MyVoiceApp() => ChangeNotifierProvider(
+Widget MYVoiceApp() => ChangeNotifierProvider(
       create: (_) => MVP(),
       child: MVApp(),
     );

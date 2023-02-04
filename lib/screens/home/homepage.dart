@@ -144,7 +144,7 @@ class _HomePageState extends State<HomePage> {
                 Padding(
                   padding: const EdgeInsets.all(8),
                   child: ContinuedHeading(
-                      accentColor: MyVoiceColors['pink'] as Color,
+                      accentColor: MYVoiceColors['pink'] as Color,
                       title: "Articles",
                       redirect: () => widget.changePage(1)),
                 ),
@@ -168,7 +168,7 @@ class _HomePageState extends State<HomePage> {
                           thumbnailSrc: article['_embedded']['wp:featuredmedia']
                                   [0]['media_details']['sizes']['cb-600-400']
                               ['source_url'],
-                          accentColor: MyVoiceColors['pink'] as Color,
+                          accentColor: MYVoiceColors['pink'] as Color,
                         ),
                       );
                     },
@@ -187,7 +187,7 @@ class _HomePageState extends State<HomePage> {
                     Padding(
                         padding: const EdgeInsets.all(8),
                         child: ContinuedHeading(
-                          accentColor: MyVoiceColors['yellow'] as Color,
+                          accentColor: MYVoiceColors['yellow'] as Color,
                           title: "Videos",
                           redirect: () => widget.changePage(2),
                           textColor: Colors.white,
@@ -257,7 +257,7 @@ class _HomePageState extends State<HomePage> {
                     ContinuedHeading(
                       title: "Just Ask",
                       redirect: () => widget.changePage(3),
-                      accentColor: MyVoiceColors['teal'] as Color,
+                      accentColor: MYVoiceColors['teal'] as Color,
                     ),
                     SizedBox(height: 12),
                     JustAskPreview(

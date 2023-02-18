@@ -20,21 +20,17 @@ class RandomArticle extends StatelessWidget {
       margin: EdgeInsets.zero,
       child: Column(
         children: [
-          Row(
-            children: [
-              Container(
-                padding: EdgeInsets.fromLTRB(15, 20, 5, 0),
-                child: Text(
-                  'Random',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 21,
-                    color: HexColor('000000'),
-                  ),
-                  textAlign: TextAlign.left,
-                ),
+          Container(
+            padding: EdgeInsets.fromLTRB(15, 20, 5, 0),
+            child: Text(
+              'Random',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 21,
+                color: HexColor('000000'),
               ),
-            ],
+              textAlign: TextAlign.left,
+            ),
           ),
           Container(
             padding: EdgeInsets.fromLTRB(5, 20, 5, 10),
@@ -48,6 +44,7 @@ class RandomArticle extends StatelessWidget {
                 notifyParent();
               },
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
                     width: 400,
@@ -57,7 +54,7 @@ class RandomArticle extends StatelessWidget {
                       data[random]["title"]["rendered"].toString(),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
-                        fontSize: 15,
+                        fontSize: 17,
                         color: HexColor('000000'),
                       ),
                     ),
@@ -84,26 +81,6 @@ class RandomArticle extends StatelessWidget {
                         fit: BoxFit.fill,
                       ),
                       margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
-                    ),
-                  ),
-                  Container(
-                    padding: EdgeInsets.fromLTRB(5, 10, 5, 10),
-                    child: Container(
-                      width: 400,
-                      margin: EdgeInsets.only(left: 5),
-                      alignment: Alignment.centerLeft,
-                      child: Html(
-                        data: data[random]["content"]["rendered"]
-                            .substring(0, 80)
-                            .replaceAll('\n', ' '),
-                        style: {
-                          "h1": Style(
-                            maxLines: 3,
-                            fontSize: FontSize(13),
-                            color: HexColor('000000'),
-                          ),
-                        },
-                      ),
                     ),
                   ),
                 ],

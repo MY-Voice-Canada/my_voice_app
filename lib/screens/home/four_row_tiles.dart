@@ -48,11 +48,7 @@ class FourTileCategory extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.all(10),
                   child: Text(
-                    data[0]["_embedded"]["wp:term"][0][0]["name"].length > 25
-                        ? data[0]["_embedded"]["wp:term"][0][0]["name"]
-                                .substring(0, 10) +
-                            '...'
-                        : data[0]["_embedded"]["wp:term"][0][0]["name"],
+                    data[0]["_embedded"]["wp:term"][0][0]["name"],
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: fontSize[0],
@@ -149,7 +145,7 @@ class FourTileCategory extends StatelessWidget {
                           data[i]["title"]["rendered"].toString().length > 30
                               ? data[i]["title"]["rendered"]
                                       .toString()
-                                      .substring(0, 30) +
+                                      .substring(0, data[i]["title"]["rendered"].toString()[29] == ' '? 29 : 30) +
                                   '...'
                               : data[i]["title"]["rendered"].toString(),
                           maxLines: 2,

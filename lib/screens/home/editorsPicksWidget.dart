@@ -40,7 +40,6 @@ class EditorsPicks extends StatelessWidget {
 
   Widget buildOneTile(
       BuildContext context, i, double width, double height, var textSizes) {
-    int titleLength = data[i]["title"]["rendered"].toString().length;
     return Center(
       child: GestureDetector(
         onTap: () {
@@ -90,26 +89,9 @@ class EditorsPicks extends StatelessWidget {
                 margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
               ),
             ),
-            Container(
-              padding: EdgeInsets.fromLTRB(5, 5, 5, 15),
-              child: Container(
-                width: width,
-                margin: EdgeInsets.only(left: 5),
-                alignment: Alignment.centerLeft,
-                child: Html(
-                  data: data[i]["content"]["rendered"]
-                      .substring(titleLength + 4, 90)
-                      .replaceAll('\n', ' '),
-                  style: {
-                    "body": Style(
-                      maxLines: 3,
-                      fontSize: FontSize(textSizes[2]),
-                      color: HexColor('000000'),
-                    ),
-                  },
-                ),
-              ),
-            ),
+            SizedBox(
+              height: 12,
+            )
           ],
         ),
       ),
@@ -168,23 +150,6 @@ class EditorsPicks extends StatelessWidget {
                           "body": Style(
                             fontWeight: FontWeight.bold,
                             fontSize: FontSize(textSize[0]),
-                            color: HexColor('000000'),
-                          ),
-                        },
-                      ),
-                    ),
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      padding: EdgeInsets.fromLTRB(0, 0, 0, 5),
-                      child: Html(
-                        data: data[i]["content"]["rendered"].substring(
-                                data[i]["title"]["rendered"].length + 4, 300) +
-                            '...'.replaceAll('\n', ''),
-                        style: {
-                          "#": Style(
-                            fontWeight: FontWeight.normal,
-                            maxLines: 3,
-                            fontSize: FontSize(textSize[1]),
                             color: HexColor('000000'),
                           ),
                         },

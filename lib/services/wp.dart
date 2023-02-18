@@ -13,6 +13,7 @@ class MVWP {
       Uri.http(_baseUrl, endpoint, {...defaultParameters, ...params});
 
   static Future<MVWPContent> getContent() async {
+    print("WordPress: Started making website http requests.");
     try {
       List<http.Response> responses = await Future.wait([
         http.get(API("/wp-json/wp/v2/posts", params: {
@@ -47,9 +48,12 @@ class MVWP {
         http.get(API("/wp-json/wp/v2/posts", params: {"categories": "262"})),
       ]);
 
+      print("WordPress: Finished making all http requests.");
+
       List<dynamic> posts = responses.map((response) {
-        if (response.statusCode != 200) Future.error('error');
-        return jsonDecode(response.body);
+        if (response.statusCode != 200)
+          Future.error('WordPress Error: Could not load content from website.');
+        return jsonDecode(response.body.replaceAll(RegExp("&amp;"), '&')).replaceAll(RegExp("&#8217;"), '\'');
       }).toList();
 
       return MVWPContent(

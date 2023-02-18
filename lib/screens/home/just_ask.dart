@@ -105,7 +105,7 @@ class _JAPageState extends State<JAPage> {
                     textAlign: TextAlign.start,
                   )
                 },
-                data: Provider.of<MVP>(context).jaContent.toString(),
+                data: Provider.of<MVP>(context).jaContent,
               ),
               SizedBox(height: 50.0),
               Center(

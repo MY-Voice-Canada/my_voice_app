@@ -41,7 +41,7 @@ class _ReadPageState extends State<ReadPage> {
                 Html(
                     style: {
                       "h1": Style(
-                        fontSize: FontSize(22.0),
+                        fontSize: FontSize(24.0),
                         margin: EdgeInsets.zero,
                       ),
                     },
@@ -154,7 +154,7 @@ class _ReadPageState extends State<ReadPage> {
                       textAlign: TextAlign.start,
                     )
                   },
-                  data: Provider.of<MVP>(context).readContent.toString(),
+                  data: Provider.of<MVP>(context).readContent,
                 ),
                 SizedBox(height: 50.0),
                 Center(

@@ -71,7 +71,7 @@ class MVP extends ChangeNotifier {
   bool jaView = false;
   dynamic jaImage;
   dynamic jaTitle;
-  dynamic jaContent;
+  String? jaContent;
   dynamic jaCategory;
   dynamic jaAuthor;
   DateTime? jaDate;
@@ -80,17 +80,28 @@ class MVP extends ChangeNotifier {
     jaView = true;
     jaImage = question["_embedded"]["wp:featuredmedia"][0]["source_url"];
     jaTitle = question["title"]["rendered"];
-    jaContent = question["content"]["rendered"];
     jaCategory = question["_embedded"]["wp:term"][0][0]["name"];
     jaAuthor = question["_embedded"]["author"][0]["name"];
+
     jaDate = DateTime.parse(question["date"]);
+    jaContent = question["content"]["rendered"].toString();
+    if (jaContent != null) if (jaContent![1] == 'h') {
+      int cutoff = 0;
+      for (int i = 0; i < jaContent!.length - 3; i++) {
+        if (jaContent!.substring(i, i + 3) == "</h") {
+          cutoff = i + 5;
+          break;
+        }
+      }
+      jaContent = jaContent!.substring(cutoff);
+    }
   }
 
 // For ReadPage:
   bool readView = false;
   dynamic readImage;
   dynamic readTitle;
-  dynamic readContent;
+  String? readContent;
   dynamic readCategory;
   dynamic readAuthor;
   DateTime? readDate;
@@ -99,10 +110,21 @@ class MVP extends ChangeNotifier {
     readView = true;
     readImage = article["_embedded"]["wp:featuredmedia"][0]["source_url"];
     readTitle = article["title"]["rendered"];
-    readContent = article["content"]["rendered"];
     readCategory = article["_embedded"]["wp:term"][0][0]["name"];
     readAuthor = article["_embedded"]["author"][0]["name"];
+
     readDate = DateTime.parse(article["date"]);
+    readContent = article["content"]["rendered"].toString();
+    if (readContent != null) if (readContent![1] == 'h') {
+      int cutoff = 0;
+      for (int i = 0; i < readContent!.length - 3; i++) {
+        if (readContent!.substring(i, i + 3) == "</h") {
+          cutoff = i + 5;
+          break;
+        }
+      }
+      readContent = readContent!.substring(cutoff);
+    }
   }
 
   // For WatchPage:

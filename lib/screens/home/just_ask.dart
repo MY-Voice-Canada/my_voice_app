@@ -218,7 +218,6 @@ class _JAPageState extends State<JAPage> {
       );
     } else
       return MVLoading(
-          message:
-              "Don't forget to count your blessings while we're loading...");
+          message: "Uh oh, something's gone wrong! Please restart the app...");
   }
 }

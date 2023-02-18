@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:html_unescape/html_unescape_small.dart';
 import 'package:http/http.dart' as http;
 
 class MVWP {
@@ -15,6 +16,7 @@ class MVWP {
   static Future<MVWPContent> getContent() async {
     print("WordPress: Started making website http requests.");
     try {
+      final stopwatch = Stopwatch()..start();
       List<http.Response> responses = await Future.wait([
         http.get(API("/wp-json/wp/v2/posts", params: {
           "categories": "69,68,70,72,73",
@@ -48,13 +50,21 @@ class MVWP {
         http.get(API("/wp-json/wp/v2/posts", params: {"categories": "262"})),
       ]);
 
-      print("WordPress: Finished making all http requests.");
+      stopwatch.stop();
 
+      final HtmlUnescape unescape = HtmlUnescape();
       List<dynamic> posts = responses.map((response) {
         if (response.statusCode != 200)
-          Future.error('WordPress Error: Could not load content from website.');
-        return jsonDecode(response.body.replaceAll(RegExp("&amp;"), '&')).replaceAll(RegExp("&#8217;"), '\'');
+          return Future.error(
+              'WordPress Error: Could not load content from website. Failed in ${stopwatch.elapsed.inSeconds}s.');
+        else
+          return jsonDecode(response.body
+              .replaceAll(RegExp("&amp;"), '&')
+              .replaceAll(RegExp("&#39;"), '\''));
       }).toList();
+
+      print(
+          "WordPress: Successfully loaded content from website in ${stopwatch.elapsed.inSeconds}s.");
 
       return MVWPContent(
         allPosts: posts[0], // Pull only 11

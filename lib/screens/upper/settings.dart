@@ -20,7 +20,10 @@ class _MVSettingsState extends State<MVSettings> {
     final MVUser? user = Provider.of<MVUser?>(context);
 
     return _isLoading
-        ? MVLoading()
+        ? MVLoading(
+            message:
+                "Don't forget to count your blessings while we're loading...",
+          )
         : MVBackground(
             child: Scaffold(
               backgroundColor: Colors.transparent,

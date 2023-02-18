@@ -3,6 +3,7 @@ import 'package:hexcolor/hexcolor.dart';
 import 'package:my_voice_app/main.dart';
 import 'package:my_voice_app/models/background_image.dart';
 import 'package:my_voice_app/models/channel.dart';
+import 'package:my_voice_app/models/loading.dart';
 import 'package:my_voice_app/models/user.dart';
 import 'package:my_voice_app/models/video.dart';
 import 'package:my_voice_app/screens/home/homepage.dart';
@@ -22,6 +23,7 @@ class MVHome extends StatefulWidget {
 class _MVHomeState extends State<MVHome> {
   int _currentIndex = 0;
   late PageController _pageController;
+  late final wordPressContent = MVWP.getContent();
 
   @override
   void initState() {
@@ -78,74 +80,90 @@ class _MVHomeState extends State<MVHome> {
     return user == null
         ? SizedBox.shrink()
         : FutureBuilder<MVWPContent>(
-            future: MVWP.getContent(),
-            builder: (context, snapshot) => Container(
-              color: Colors.white,
-              child: WillPopScope(
-                onWillPop: () async => false,
-                child: Scaffold(
-                  backgroundColor: Colors.transparent,
-                  appBar: getMVAppBar(context),
-                  bottomNavigationBar: BottomNavigationBar(
-                    onTap: _onBottomNavChange,
-                    type: BottomNavigationBarType.fixed,
-                    backgroundColor: Colors.black,
-                    selectedIconTheme: IconThemeData(color: Colors.amberAccent),
-                    selectedItemColor: Colors.white,
-                    unselectedItemColor: Colors.white,
-                    unselectedIconTheme:
-                        IconThemeData(color: Colors.cyanAccent),
-                    currentIndex: _currentIndex,
-                    items: [
-                      BottomNavigationBarItem(
-                          icon: Icon(
-                            Icons.home,
+            future: wordPressContent,
+            builder: (context, snapshot) {
+              if (snapshot.hasError) {
+                print(snapshot.error);
+                return MVLoading(
+                    message:
+                        "Uh oh, something's gone wrong! Please restart the app...");
+              } else if (snapshot.connectionState == ConnectionState.done)
+                return Container(
+                  color: Colors.white,
+                  child: WillPopScope(
+                    onWillPop: () async => false,
+                    child: Scaffold(
+                      backgroundColor: Colors.transparent,
+                      appBar: getMVAppBar(context),
+                      bottomNavigationBar: BottomNavigationBar(
+                        onTap: _onBottomNavChange,
+                        type: BottomNavigationBarType.fixed,
+                        backgroundColor: Colors.black,
+                        selectedIconTheme:
+                            IconThemeData(color: Colors.amberAccent),
+                        selectedItemColor: Colors.white,
+                        unselectedItemColor: Colors.white,
+                        unselectedIconTheme:
+                            IconThemeData(color: Colors.cyanAccent),
+                        currentIndex: _currentIndex,
+                        items: [
+                          BottomNavigationBarItem(
+                              icon: Icon(
+                                Icons.home,
+                              ),
+                              label: "Home"),
+                          BottomNavigationBarItem(
+                              icon: Icon(
+                                Icons.menu_book_rounded,
+                              ),
+                              label: "Read"),
+                          BottomNavigationBarItem(
+                              icon: Icon(
+                                Icons.ondemand_video_rounded,
+                              ),
+                              label: "Watch"),
+                          BottomNavigationBarItem(
+                              icon: Icon(
+                                Icons.textsms_rounded,
+                              ),
+                              label: "Ask"),
+                          BottomNavigationBarItem(
+                              icon: Icon(
+                                Icons.groups,
+                              ),
+                              label: "Join")
+                        ],
+                      ),
+                      body: PageView(
+                        controller: _pageController,
+                        onPageChanged: (i) {
+                          setState(() => _currentIndex = i);
+                        },
+                        children: [
+                          HomePage(
+                            snapshot: snapshot,
+                            changePage: changePage,
                           ),
-                          label: "Home"),
-                      BottomNavigationBarItem(
-                          icon: Icon(
-                            Icons.menu_book_rounded,
+                          ReadPage(
+                            snapshot: snapshot,
                           ),
-                          label: "Read"),
-                      BottomNavigationBarItem(
-                          icon: Icon(
-                            Icons.ondemand_video_rounded,
+                          WatchPage(),
+                          JAPage(
+                            snapshot: snapshot,
                           ),
-                          label: "Watch"),
-                      BottomNavigationBarItem(
-                          icon: Icon(
-                            Icons.textsms_rounded,
-                          ),
-                          label: "Ask"),
-                      BottomNavigationBarItem(
-                          icon: Icon(
-                            Icons.groups,
-                          ),
-                          label: "Join")
-                    ],
+                        ],
+                      ),
+                    ),
                   ),
-                  body: PageView(
-                    controller: _pageController,
-                    onPageChanged: (i) {
-                      setState(() => _currentIndex = i);
-                    },
-                    children: [
-                      HomePage(
-                        snapshot: snapshot,
-                        changePage: changePage,
-                      ),
-                      ReadPage(
-                        snapshot: snapshot,
-                      ),
-                      WatchPage(),
-                      JAPage(
-                        snapshot: snapshot,
-                      ),
-                    ],
+                );
+              else
+                return Scaffold(
+                  body: Center(
+                    child: MVLoading(
+                        message:
+                            "Don't forget to count your blessings while we're loading..."),
                   ),
-                ),
-              ),
-            ),
-          );
+                );
+            });
   }
 }

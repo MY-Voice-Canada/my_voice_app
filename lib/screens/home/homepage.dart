@@ -30,6 +30,14 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final MVUser user = Provider.of<MVUser?>(context)!;
     final videos = Provider.of<MVP>(context).channel?.videos ?? [];
+    List<String> ayas = [
+      "“And Allah would not punish them while they seek forgiveness”\n\n[Quran 8:33]",
+      "“He created the heavens and earth in truth and formed you and perfected your forms; and to Him is the [final] destination”\n\n[Quran 64:3]",
+      "“Do what is beautiful. Allah loves those who do what is beautiful”\n\n[Quran 2:195]",
+      "“The truth is from your Lord, so do not be among the doubters”\n\n[Quran 3:60]",
+      "“Allah does not burden a soul beyond that it can bear”\n\n[Quran 2:286]",
+      "“So verily, with the hardship, there is relief. Verily, with the hardship, there is relief”\n\n[Quran 94:5-6]",
+    ];
 
     if (widget.snapshot.hasData) {
       final MVWPContent data = widget.snapshot.data;
@@ -66,8 +74,8 @@ class _HomePageState extends State<HomePage> {
                                 color: Colors.blueAccent[100],
                                 child: Padding(
                                   padding: const EdgeInsets.all(8.0),
-                                  child: const Text(
-                                    "This is text that does something its just for the heading for ayah of the week lets go!",
+                                  child: Text(
+                                    (ayas.toList()..shuffle()).first,
                                     softWrap: true,
                                   ),
                                 )),
@@ -77,23 +85,27 @@ class _HomePageState extends State<HomePage> {
                     ),
                     Expanded(
                       child: Column(children: [
-                        Text("LATEST ISSUES",
-                            style: TextStyle(
-                              color: Colors.redAccent[400],
-                              fontWeight: FontWeight.w600,
-                              fontFamily: 'Raleway',
-                              fontSize:
-                                  text_utils.getadaptiveTextSize(context, 15),
-                            )),
+                        // Text("LATEST ISSUES",
+                        //     style: TextStyle(
+                        //       color: Colors.redAccent[400],
+                        //       fontWeight: FontWeight.w600,
+                        //       fontFamily: 'Raleway',
+                        //       fontSize:
+                        //           text_utils.getadaptiveTextSize(context, 15),
+                        //     )),
                         Padding(
                             padding: const EdgeInsets.symmetric(vertical: 12),
                             child: Transform.rotate(
                               angle: 0.15,
-                              child: Image.network(
-                                  "https://cdn.discordapp.com/attachments/718441789358473270/1012040671865077890/Latest_Magazine_1.png",
-                                  width: 80),
+                              child: Image.asset(
+                                "assets/images/magazine_volumes.png",
+                                width:
+                                    Provider.of<MVP>(context).screenWidth / 5,
+                                height:
+                                    Provider.of<MVP>(context).screenWidth / 5,
+                              ),
                             )),
-                        Text("Passing the Torch",
+                        Text("For the Youth, By the Youth!",
                             style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontFamily: 'Raleway',
@@ -112,7 +124,7 @@ class _HomePageState extends State<HomePage> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8),
                     child: ContinuedHeading(
-                      title: "Latest Issues",
+                      title: "Latest Issues For Purchase",
                       noViewAll: true,
                       redirect: () => widget.changePage(1),
                     ),
@@ -123,15 +135,15 @@ class _HomePageState extends State<HomePage> {
                     children: <Widget>[
                       Expanded(
                         child: MagazineCard(
-                            title: "The Price of Morality",
+                            title: "The Dark Side: Nothing is as it Seems",
                             thumbnailImage:
-                                "https://cdn.discordapp.com/attachments/718441789358473270/1009620920249352212/Magazine_3mag.png"),
+                                "https://image.isu.pub/221225170921-391091463ef4d4e2a3fa46d8b3cac3be/jpg/page_1_thumb_large.jpg"),
                       ),
                       Expanded(
                         child: MagazineCard(
-                            title: "Success and the Fear of Failure",
+                            title: "The Other Side of the Coin",
                             thumbnailImage:
-                                "https://cdn.discordapp.com/attachments/718441789358473270/1009628036783673414/Magazine_2e.png"),
+                                "https://image.isu.pub/220830022548-778fe168f61cbac9965ba447cbe874bd/jpg/page_1_thumb_large.jpg"),
                       )
                     ],
                   )
@@ -286,11 +298,7 @@ class _HomePageState extends State<HomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Expanded(
-                    child: Image.network(
-                      "https://cdn.discordapp.com/attachments/718441789358473270/1011461820772520036/ask_1.png",
-                    ),
-                    flex: 2),
+                Expanded(child: Image.asset("assets/images/ask.png"), flex: 2),
                 Expanded(flex: 1, child: SizedBox()),
                 Expanded(
                     child: ClipPath(

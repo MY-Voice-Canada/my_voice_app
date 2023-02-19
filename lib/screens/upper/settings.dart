@@ -42,25 +42,23 @@ class _MVSettingsState extends State<MVSettings> {
                   ),
                   Center(
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
-                          "Hello, ${Provider.of<MVP>(context).userName ?? user?.displayName}",
+                          "Hello,\n${Provider.of<MVP>(context).userName ?? "User"}",
+                          textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 56.0,
+                            fontSize: 50.0,
                             color: Theme.of(context).primaryColor,
                           ),
                         ),
-                        SizedBox(
-                          height: 100.0,
-                        ),
                         Text(
                           "More settings will be added soon...",
+                          textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontSize: 36.0, fontStyle: FontStyle.italic),
-                        ),
-                        SizedBox(
-                          height: 150.0,
+                            fontSize: 36.0,
+                            fontStyle: FontStyle.italic,
+                          ),
                         ),
                         TextButton(
                           style: ButtonStyle(

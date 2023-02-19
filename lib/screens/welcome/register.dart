@@ -65,7 +65,7 @@ class _MVRegisterState extends State<MVRegister> {
                           SizedBox(
                             height: Provider.of<MVP>(context)
                                     .screenHeightAppbarless /
-                                2.5,
+                                2,
                             width: Provider.of<MVP>(context).screenWidth * 0.90,
                             child: Form(
                               key: _formKey,

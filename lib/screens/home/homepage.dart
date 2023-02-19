@@ -59,7 +59,7 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                              "Welcome, ${user.displayName.isEmpty ? 'User' : user.displayName}!",
+                              "السَّلَامُ عَلَيْكُمْ, ${Provider.of<MVP>(context).userName ?? "User"}!",
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontFamily: 'Raleway',

@@ -130,11 +130,11 @@ class _MVHomeState extends State<MVHome> {
                                 Icons.textsms_rounded,
                               ),
                               label: "Ask"),
-                          BottomNavigationBarItem(
-                              icon: Icon(
-                                Icons.groups,
-                              ),
-                              label: "Join")
+                          // BottomNavigationBarItem(
+                          //     icon: Icon(
+                          //       Icons.groups,
+                          //     ),
+                          //     label: "Join")
                         ],
                       ),
                       body: PageView(

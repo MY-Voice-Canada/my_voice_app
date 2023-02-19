@@ -58,7 +58,11 @@ class EditorsPicks extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: EdgeInsets.fromLTRB(0, 0, 10, 5),
               child: Html(
-                data: data[i]["title"]["rendered"].toString(),
+                data: data[i]["title"]["rendered"].toString().length > 150
+                    ? text_utils.limit(
+                        150, data[i]["title"]["rendered"].toString(),
+                        overflow: "...")
+                    : data[i]["title"]["rendered"],
                 style: {
                   "body": Style(
                     fontWeight: FontWeight.bold,
@@ -73,10 +77,15 @@ class EditorsPicks extends StatelessWidget {
               alignment: Alignment.centerLeft,
               padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
               child: Text(
-                data[i]["_embedded"]["wp:term"][0][0]["name"],
+                this.ja == true
+                    ? data[0]["_embedded"]["wp:term"][0][0]["name"]
+                        .toString()
+                        .substring(11)
+                    : data[0]["_embedded"]["wp:term"][0][0]["name"],
                 style: TextStyle(
                   fontSize: textSizes[1],
-                  color: HexColor('F5416C'),
+                  color:
+                      this.ja == true ? HexColor("1BCFC9") : HexColor('F5416C'),
                 ),
               ),
             ),
@@ -158,7 +167,9 @@ class EditorsPicks extends StatelessWidget {
                         data[i]["_embedded"]["wp:term"][0][0]["name"],
                         style: TextStyle(
                           fontSize: textSizes[1],
-                          color: HexColor('F5416C'),
+                          color: this.ja == true
+                              ? HexColor("1BCFC9")
+                              : HexColor('F5416C'),
                         ),
                       ),
                     ),
@@ -166,7 +177,11 @@ class EditorsPicks extends StatelessWidget {
                       alignment: Alignment.centerLeft,
                       padding: EdgeInsets.fromLTRB(0, 0, 10, 0),
                       child: Html(
-                        data: data[i]["title"]["rendered"].toString(),
+                        data: data[i]["title"]["rendered"].toString().length > 100
+                    ? text_utils.limit(
+                        100, data[i]["title"]["rendered"].toString(),
+                        overflow: "...")
+                    : data[i]["title"]["rendered"],
                         style: {
                           "body": Style(
                             fontWeight: FontWeight.bold,

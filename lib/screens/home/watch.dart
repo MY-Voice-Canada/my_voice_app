@@ -121,7 +121,7 @@ class _WatchPageState extends State<WatchPage> {
                     Container(
                       height:
                           Provider.of<MVP>(context).screenHeightAppbarless / 53,
-                      width: Provider.of<MVP>(context).screenWidth,
+                      width: 115,
                       margin: EdgeInsets.only(left: 14, right: 292),
                       child: Divider(
                         thickness: 3.3,
@@ -481,7 +481,7 @@ class _WatchPageState extends State<WatchPage> {
                                 color: HexColor("FFBF3B"),
                                 child: Padding(
                                   padding: const EdgeInsets.only(
-                                      right: 15, top: 15, bottom: 15, left: 50),
+                                      right: 10, top: 15, bottom: 15, left: 60),
                                   child: AutoSizeText(
                                     "Click here to subscribe to our YouTube channel, MY Voice Canada!",
                                     maxLines: 2,

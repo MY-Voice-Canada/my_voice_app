@@ -39,8 +39,6 @@ class _HomePageState extends State<HomePage> {
       "“So verily, with the hardship, there is relief. Verily, with the hardship, there is relief”\n\n[Quran 94:5-6]",
     ];
 
-    print(Provider.of<MVP>(context).screenWidth);
-
     if (widget.snapshot.hasData) {
       final MVWPContent data = widget.snapshot.data;
       final articles = data.allPosts;

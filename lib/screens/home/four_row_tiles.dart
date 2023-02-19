@@ -23,8 +23,8 @@ class FourTileCategory extends StatelessWidget {
 
     var smallText = [21.0, 12.0, 23.0, 13.0, 16.0];
     var bigText = [35.0, 24.0, 30.0, 18.0, 28.0];
-    var simageDimensions = [60.0, 90.0];
-    var limageDimensions = [90.0, 150.0];
+    var simageDimensions = [65.0, 95.0];
+    var limageDimensions = [95.0, 155.0];
 
     return Column(
       children: [
@@ -50,7 +50,11 @@ class FourTileCategory extends StatelessWidget {
                 Container(
                   margin: EdgeInsets.all(10),
                   child: Text(
-                    data[0]["_embedded"]["wp:term"][0][0]["name"],
+                    this.ja == true
+                        ? data[0]["_embedded"]["wp:term"][0][0]["name"]
+                            .toString()
+                            .substring(11)
+                        : data[0]["_embedded"]["wp:term"][0][0]["name"],
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: fontSize[0],
@@ -112,7 +116,9 @@ class FourTileCategory extends StatelessWidget {
                       ),
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: Theme.of(context).primaryColor,
+                          color: this.ja == true
+                              ? HexColor("1BCFC9")
+                              : HexColor('F5416C'),
                           width: 2,
                         ),
                       ),
@@ -139,7 +145,9 @@ class FourTileCategory extends StatelessWidget {
                             style: TextStyle(
                               fontWeight: FontWeight.normal,
                               fontSize: fontSize[3],
-                              color: HexColor('F5416C'),
+                              color: this.ja == true
+                                  ? HexColor("1BCFC9")
+                                  : HexColor('F5416C'),
                             ),
                           ),
                         ),

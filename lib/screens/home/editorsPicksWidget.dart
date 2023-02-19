@@ -3,6 +3,8 @@ import 'package:flutter_html/flutter_html.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:my_voice_app/main.dart';
 import 'package:provider/provider.dart';
+import 'package:my_voice_app/utils/html.dart' as html;
+import 'package:my_voice_app/utils/text.dart' as text_utils;
 
 class EditorsPicks extends StatelessWidget {
   late final dynamic data;
@@ -89,16 +91,35 @@ class EditorsPicks extends StatelessWidget {
                 margin: EdgeInsets.fromLTRB(10, 20, 10, 0),
               ),
             ),
-            SizedBox(
-              height: 12,
-            )
+            Container(
+              padding: EdgeInsets.fromLTRB(5, 5, 5, 15),
+              child: Container(
+                width: width,
+                margin: EdgeInsets.only(left: 5),
+                alignment: Alignment.centerLeft,
+                child: Html(
+                  data: text_utils.limit(
+                      180,
+                      html.stripMarkup(Provider.of<MVP>(context)
+                          .headingRemover(data[i]['content']['rendered'])),
+                      overflow: "..."),
+                  style: {
+                    "body": Style(
+                      maxLines: 3,
+                      fontSize: FontSize(textSizes[2]),
+                      color: HexColor('000000'),
+                    ),
+                  },
+                ),
+              ),
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget sideBySideTiles(BuildContext context, var textSize) {
+  Widget sideBySideTiles(BuildContext context, var textSizes) {
     return Container(
       width: 600,
       child: Row(
@@ -136,7 +157,7 @@ class EditorsPicks extends StatelessWidget {
                       child: Text(
                         data[i]["_embedded"]["wp:term"][0][0]["name"],
                         style: TextStyle(
-                          fontSize: textSize[1],
+                          fontSize: textSizes[1],
                           color: HexColor('F5416C'),
                         ),
                       ),
@@ -149,10 +170,33 @@ class EditorsPicks extends StatelessWidget {
                         style: {
                           "body": Style(
                             fontWeight: FontWeight.bold,
-                            fontSize: FontSize(textSize[0]),
+                            fontSize: FontSize(textSizes[0]),
                             color: HexColor('000000'),
                           ),
                         },
+                      ),
+                    ),
+                    Container(
+                      padding: EdgeInsets.fromLTRB(5, 5, 5, 15),
+                      child: Container(
+                        width: 300,
+                        margin: EdgeInsets.only(left: 5),
+                        alignment: Alignment.centerLeft,
+                        child: Html(
+                          data: text_utils.limit(
+                              180,
+                              html.stripMarkup(Provider.of<MVP>(context)
+                                  .headingRemover(
+                                      data[i]['content']['rendered'])),
+                              overflow: "..."),
+                          style: {
+                            "body": Style(
+                              maxLines: 3,
+                              fontSize: FontSize(textSizes[2]),
+                              color: HexColor('000000'),
+                            ),
+                          },
+                        ),
                       ),
                     ),
                   ],

@@ -8,8 +8,10 @@ import 'package:provider/provider.dart';
 class PlaylistSubTab extends StatelessWidget {
   final Function notifyParent;
   final String? playlistName;
+  final String cardColor;
 
-  PlaylistSubTab({required this.notifyParent, this.playlistName});
+  PlaylistSubTab(
+      {required this.notifyParent, required this.cardColor, this.playlistName});
 
   @override
   Widget build(BuildContext context) {
@@ -17,8 +19,10 @@ class PlaylistSubTab extends StatelessWidget {
         ? Provider.of<MVP>(context).channel!.videos!
         : Provider.of<MVP>(context).playlists![playlistName]!;
 
-    return Container(
-      color: Colors.white,
+    return Card(
+      margin: EdgeInsets.zero,
+      color: HexColor(cardColor),
+      elevation: 0,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -36,28 +40,28 @@ class PlaylistSubTab extends StatelessWidget {
                           fontWeight: FontWeight.bold,
                         )),
                   ),
-                  Container(
-                    alignment: Alignment.bottomRight,
-                    padding: EdgeInsets.only(left: 7),
-                    child: Text(
-                      'View All ',
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontSize: 12,
-                        color: HexColor('000000'),
-                      ),
-                    ),
-                  ),
-                  Container(
-                    margin: EdgeInsets.only(bottom: 5),
-                    child: Text(
-                      ' >',
-                      style: TextStyle(
-                        fontSize: 23,
-                        color: HexColor('FFA500'),
-                      ),
-                    ),
-                  ),
+                  // Container(
+                  //   alignment: Alignment.bottomRight,
+                  //   padding: EdgeInsets.only(left: 7),
+                  //   child: Text(
+                  //     'View All ',
+                  //     style: TextStyle(
+                  //       fontWeight: FontWeight.bold,
+                  //       fontSize: 12,
+                  //       color: HexColor('000000'),
+                  //     ),
+                  //   ),
+                  // ),
+                  // Container(
+                  //   margin: EdgeInsets.only(bottom: 5),
+                  //   child: Text(
+                  //     ' >',
+                  //     style: TextStyle(
+                  //       fontSize: 23,
+                  //       color: HexColor('FFA500'),
+                  //     ),
+                  //   ),
+                  // ),
                 ],
               ),
             ),
@@ -66,15 +70,11 @@ class PlaylistSubTab extends StatelessWidget {
             height: 15.0,
           ),
           SizedBox(
-            height: playlistName == null ? 1750.0 : 875.0,
-            child: GridView.builder(
+            height: playlistName == null
+                ? Provider.of<MVP>(context).screenHeightAppbarless * 4 / 3.1
+                : Provider.of<MVP>(context).screenHeightAppbarless * 2 / 3.1,
+            child: ListView.builder(
               physics: NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                maxCrossAxisExtent: 360,
-                childAspectRatio: 2.8,
-                crossAxisSpacing: 7,
-                mainAxisSpacing: 7,
-              ),
               itemCount: playlistName == null ? 12 : 6,
               itemBuilder: (context, i) => GestureDetector(
                 onTap: () {
@@ -83,59 +83,47 @@ class PlaylistSubTab extends StatelessWidget {
                       videos[i];
                   notifyParent();
                 },
-                child: Center(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.only(left: 7),
-                        child: SizedBox(
-                          height:
-                              Provider.of<MVP>(context).screenHeightAppbarless /
-                                  11,
-                          width: Provider.of<MVP>(context).screenWidth / 3.9,
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10.0),
-                            child: Container(
-                              child: Image.network(
-                                videos[i].thumbnailUrl,
-                                fit: BoxFit.fill,
-                              ),
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.only(left: 7),
+                      child: SizedBox(
+                        height:
+                            Provider.of<MVP>(context).screenHeightAppbarless /
+                                12,
+                        width: Provider.of<MVP>(context).screenWidth / 5,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(10.0),
+                          child: Container(
+                            child: Image.network(
+                              videos[i].thumbnailUrl,
+                              fit: BoxFit.fill,
                             ),
                           ),
                         ),
                       ),
-                      Container(
-                        width: Provider.of<MVP>(context).screenWidth - 100,
-                        child: ClipRect(
-                          child: SizedBox(
-                            height: Provider.of<MVP>(context)
-                                    .screenHeightAppbarless /
-                                10,
-                            width: Provider.of<MVP>(context).screenWidth,
-                            child: videos[i].title.length > 100
-                                ? Html(
-                                    style: {
-                                        "body": Style(
-                                          margin: EdgeInsets.only(left: 14),
-                                          padding: EdgeInsets.zero,
-                                        )
-                                      },
-                                    data: "<h3>" +
-                                        videos[i].title.substring(0, 40) +
-                                        "..."
-                                            "</h3>")
-                                : Html(style: {
-                                    "body": Style(
-                                      margin: EdgeInsets.only(left: 14),
-                                      padding: EdgeInsets.zero,
-                                    )
-                                  }, data: "<h3>" + videos[i].title + "</h3>"),
-                          ),
+                    ),
+                    Container(
+                      height:
+                          Provider.of<MVP>(context).screenHeightAppbarless / 10,
+                      width: Provider.of<MVP>(context).screenWidth / 1.3,
+                      padding: EdgeInsets.fromLTRB(12, 13, 0, 0),
+                      child: Text(
+                        videos[i].title,
+                        softWrap: false,
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: Provider.of<MVP>(context).screenWidth > 625
+                              ? 28.0
+                              : 16.0,
+                          color: HexColor('000000'),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),

@@ -7,12 +7,14 @@ class FourTileCategory extends StatelessWidget {
   final Function notifyParent;
   final String cardColor;
   final bool? ja;
+  final bool? vid;
   late final dynamic data;
 
   FourTileCategory(
       {required this.data,
       required this.cardColor,
       required this.notifyParent,
+      this.vid,
       this.ja});
 
   @override
@@ -21,8 +23,8 @@ class FourTileCategory extends StatelessWidget {
 
     var smallText = [21.0, 12.0, 23.0, 13.0, 16.0];
     var bigText = [35.0, 24.0, 30.0, 18.0, 28.0];
-    var simageDimensions = [30.0, 60.0];
-    var limageDimensions = [60.0, 120.0];
+    var simageDimensions = [60.0, 90.0];
+    var limageDimensions = [90.0, 150.0];
 
     return Column(
       children: [
@@ -62,24 +64,24 @@ class FourTileCategory extends StatelessWidget {
                     margin: EdgeInsets.all(5),
                     child: Row(
                       children: [
-                        Text(
-                          'View All ',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: fontSize[1],
-                            color: HexColor('000000'),
-                          ),
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(bottom: 5),
-                          child: Text(
-                            ' >',
-                            style: TextStyle(
-                              fontSize: fontSize[2],
-                              color: HexColor('F5416C'),
-                            ),
-                          ),
-                        ),
+                        // Text(
+                        //   'View All ',
+                        //   style: TextStyle(
+                        //     fontWeight: FontWeight.bold,
+                        //     fontSize: fontSize[1],
+                        //     color: HexColor('000000'),
+                        //   ),
+                        // ),
+                        // Container(
+                        //   margin: EdgeInsets.only(bottom: 5),
+                        //   child: Text(
+                        //     ' >',
+                        //     style: TextStyle(
+                        //       fontSize: fontSize[2],
+                        //       color: HexColor('F5416C'),
+                        //     ),
+                        //   ),
+                        // ),
                       ],
                     ),
                   ),
@@ -87,7 +89,7 @@ class FourTileCategory extends StatelessWidget {
               ],
             ),
           ),
-          for (var i = 0; i < 4; i++)
+          for (var i = 0; i < 6; i++)
             (GestureDetector(
               onTap: () {
                 ja != null
@@ -127,7 +129,8 @@ class FourTileCategory extends StatelessWidget {
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
                         Padding(
                           padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
                           child: Text(
@@ -140,19 +143,55 @@ class FourTileCategory extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Text(
-                          // ARTICLE TITLE
-                          data[i]["title"]["rendered"].toString().length > 30
-                              ? data[i]["title"]["rendered"]
-                                      .toString()
-                                      .substring(0, data[i]["title"]["rendered"].toString()[29] == ' '? 29 : 30) +
-                                  '...'
-                              : data[i]["title"]["rendered"].toString(),
-                          maxLines: 2,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: fontSize[4],
-                            color: HexColor('000000'),
+                        SizedBox(
+                          width: Provider.of<MVP>(context).screenWidth / 1.5,
+                          child: Text(
+                            // ARTICLE TITLE
+                            data[i]["title"]["rendered"]
+                                        .toString()
+                                        .replaceAll(RegExp("&amp;"), '&')
+                                        .replaceAll(RegExp("&#038;"), '&')
+                                        .replaceAll(RegExp("&#39;"), '\'')
+                                        .replaceAll("&#8217;", '\'')
+                                        .length >
+                                    60
+                                ? data[i]["title"]["rendered"]
+                                        .toString()
+                                        .replaceAll(RegExp("&amp;"), '&')
+                                        .replaceAll(RegExp("&#038;"), '&')
+                                        .replaceAll(RegExp("&#39;"), '\'')
+                                        .replaceAll("&#8217;", '\'')
+                                        .substring(
+                                            0,
+                                            data[i]["title"]["rendered"]
+                                                        .toString()
+                                                        .replaceAll(
+                                                            RegExp("&amp;"),
+                                                            '&')
+                                                        .replaceAll(
+                                                            RegExp("&#038;"),
+                                                            '&')
+                                                        .replaceAll(
+                                                            RegExp("&#39;"),
+                                                            '\'')
+                                                        .replaceAll("&#8217;",
+                                                            '\'')[49] ==
+                                                    ' '
+                                                ? 59
+                                                : 60) +
+                                    '...'
+                                : data[i]["title"]["rendered"]
+                                    .toString()
+                                    .replaceAll(RegExp("&amp;"), '&')
+                                    .replaceAll(RegExp("&#038;"), '&')
+                                    .replaceAll(RegExp("&#39;"), '\'')
+                                    .replaceAll("&#8217;", '\''),
+                            maxLines: 2,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: fontSize[4],
+                              color: HexColor('000000'),
+                            ),
                           ),
                         ),
                       ],

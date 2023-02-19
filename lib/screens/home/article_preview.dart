@@ -60,7 +60,7 @@ class ArticlePreview extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 2),
               child: Text(
                 this.title,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
               )),
           Padding(
               padding: const EdgeInsets.symmetric(vertical: 4),

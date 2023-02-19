@@ -21,6 +21,7 @@ class MVTheatreState extends State<MVTheatre> {
       flags: YoutubePlayerFlags(
         mute: false,
         autoPlay: true,
+        showLiveFullscreenButton: false,
       ),
     );
   }
@@ -32,6 +33,16 @@ class MVTheatreState extends State<MVTheatre> {
         children: [
           YoutubePlayer(
             controller: _controller,
+            bottomActions: [
+              const SizedBox(width: 14.0),
+              CurrentPosition(),
+              const SizedBox(width: 8.0),
+              ProgressBar(
+                isExpanded: true,
+              ),
+              RemainingDuration(),
+              const PlaybackSpeedButton(),
+            ],
             showVideoProgressIndicator: true,
             onReady: () {},
           ),

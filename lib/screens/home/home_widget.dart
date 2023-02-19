@@ -48,6 +48,9 @@ class _MVHomeState extends State<MVHome> {
     await MVYT.instance
         .fetchVideos(playlistId: "PLnpXzeyF9i1BQCGig_5tnRUryxKMPUOBj")
         .then((value) => playlists["Connecting The World"] = value);
+    await MVYT.instance
+        .fetchVideos(playlistId: "PLnpXzeyF9i1AwR0-M9rVsi6Yh_zOqpG48")
+        .then((value) => playlists["The Hungry Muslim"] = value);
 
     if (mounted) Provider.of<MVP>(context, listen: false).channel = channel;
     if (mounted) Provider.of<MVP>(context, listen: false).playlists = playlists;

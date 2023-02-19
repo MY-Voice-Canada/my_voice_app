@@ -1,7 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:my_voice_app/main.dart';
-import 'package:my_voice_app/models/article_preview.dart';
+import 'package:my_voice_app/screens/home/article_preview.dart';
 import 'package:my_voice_app/models/loading.dart';
 import 'package:my_voice_app/models/user.dart';
 import 'package:my_voice_app/services/wp.dart';
@@ -38,6 +38,8 @@ class _HomePageState extends State<HomePage> {
       "“Allah does not burden a soul beyond that it can bear”\n\n[Quran 2:286]",
       "“So verily, with the hardship, there is relief. Verily, with the hardship, there is relief”\n\n[Quran 94:5-6]",
     ];
+
+    print(Provider.of<MVP>(context).screenWidth);
 
     if (widget.snapshot.hasData) {
       final MVWPContent data = widget.snapshot.data;
@@ -105,7 +107,7 @@ class _HomePageState extends State<HomePage> {
                                     Provider.of<MVP>(context).screenWidth / 5,
                               ),
                             )),
-                        Text("For the Youth, By the Youth!",
+                        Text("For Youth, By Youth!",
                             style: TextStyle(
                                 fontWeight: FontWeight.w700,
                                 fontFamily: 'Raleway',
@@ -164,7 +166,9 @@ class _HomePageState extends State<HomePage> {
                       redirect: () => widget.changePage(1)),
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.width > 500 ? 600 : 400,
+                  height: Provider.of<MVP>(context).screenWidth > 500
+                      ? Provider.of<MVP>(context).screenHeightAppbarless / 2.2
+                      : Provider.of<MVP>(context).screenHeightAppbarless / 1.8,
                   child: Carousel(
                     itemCount: 6,
                     carouselController: PageController(viewportFraction: 0.7),
@@ -301,6 +305,8 @@ class _HomePageState extends State<HomePage> {
                 Expanded(child: Image.asset("assets/images/ask.png"), flex: 2),
                 Expanded(flex: 1, child: SizedBox()),
                 Expanded(
+                  child: GestureDetector(
+                    onTap: () => widget.changePage(3),
                     child: ClipPath(
                       clipper: QuestionClipPath(),
                       child: Container(
@@ -317,13 +323,15 @@ class _HomePageState extends State<HomePage> {
                                 fontWeight: FontWeight.bold,
                                 fontSize:
                                     text_utils.getadaptiveTextSize(context, 20),
-                                color: Color.fromRGBO(254, 182, 206, 1)),
+                                color: Color.fromRGBO(255, 255, 255, 1)),
                             textAlign: TextAlign.right,
                           ),
                         ),
                       ),
                     ),
-                    flex: 6)
+                  ),
+                  flex: 6,
+                ),
               ],
             )
           ],

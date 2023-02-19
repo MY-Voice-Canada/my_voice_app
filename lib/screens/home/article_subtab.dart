@@ -5,6 +5,8 @@ import 'package:my_voice_app/main.dart';
 import 'package:my_voice_app/models/category_text.dart';
 import 'package:provider/provider.dart';
 
+// IMPORTANT NOTE: THIS IS THE OLD WAY TO DISPLAY ARTICLES. THE NEW CLASS IS IN four_row_tiles.dart!!!
+
 class ArticleSubTab extends StatelessWidget {
   final Function changePage;
   final data;

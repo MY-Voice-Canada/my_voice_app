@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                              "Welcome ${user.displayName.isEmpty ? 'User' : user.displayName}",
+                              "Welcome, ${user.displayName.isEmpty ? 'User' : user.displayName}!",
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontFamily: 'Raleway',
@@ -103,6 +103,7 @@ class _HomePageState extends State<HomePage> {
                   ],
                 )),
             SizedBox(height: 10),
+
             // Latest Issues
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -112,6 +113,7 @@ class _HomePageState extends State<HomePage> {
                     padding: const EdgeInsets.only(bottom: 8),
                     child: ContinuedHeading(
                       title: "Latest Issues",
+                      noViewAll: true,
                       redirect: () => widget.changePage(1),
                     ),
                   ),
@@ -137,6 +139,7 @@ class _HomePageState extends State<HomePage> {
               ),
             ),
             SizedBox(height: 24),
+
             // Articles
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -151,24 +154,31 @@ class _HomePageState extends State<HomePage> {
                 Container(
                   height: MediaQuery.of(context).size.width > 500 ? 600 : 400,
                   child: Carousel(
-                    itemCount: 3,
-                    carouselController: PageController(viewportFraction: 0.9),
+                    itemCount: 6,
+                    carouselController: PageController(viewportFraction: 0.7),
                     carouselBuilder: (context, pageNumber) {
                       final article = articles[pageNumber];
 
-                      return Padding(
-                        // TODO Try to decouple the code, write functions to recieve such data...
-                        padding: const EdgeInsets.all(8.0),
-                        child: ArticlePreview(
-                          categoryName: article['_embedded']['wp:term'][0][0]
-                              ['name'],
-                          title: article['title']['rendered'],
-                          description:
-                              html.stripMarkup(article['content']['rendered']),
-                          thumbnailSrc: article['_embedded']['wp:featuredmedia']
-                                  [0]['media_details']['sizes']['cb-600-400']
-                              ['source_url'],
-                          accentColor: MYVoiceColors['pink'] as Color,
+                      return SizedBox(
+                        width: Provider.of<MVP>(context).screenWidth / 2.2,
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: ArticlePreview(
+                            changeToReadPage: () => widget.changePage(1),
+                            article: article,
+                            categoryName: article['_embedded']['wp:term'][0][0]
+                                ['name'],
+                            title: article['title']['rendered']
+                                .replaceAll(RegExp("&amp;"), '&')
+                                .replaceAll(RegExp("&#038;"), '&')
+                                .replaceAll(RegExp("&#39;"), '\''),
+                            description: html.stripMarkup(
+                                Provider.of<MVP>(context).headingRemover(
+                                    article['content']['rendered'])),
+                            thumbnailSrc: article['_embedded']
+                                ['wp:featuredmedia'][0]['source_url'],
+                            accentColor: MYVoiceColors['pink'] as Color,
+                          ),
                         ),
                       );
                     },
@@ -176,8 +186,8 @@ class _HomePageState extends State<HomePage> {
                 ),
               ],
             ),
+            SizedBox(height: 24),
 
-            SizedBox(height: 40),
             // Videos
             Container(
                 color: Colors.black,

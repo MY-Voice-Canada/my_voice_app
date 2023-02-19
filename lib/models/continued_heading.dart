@@ -7,11 +7,13 @@ class ContinuedHeading extends StatelessWidget {
   final Color textColor;
   final Color accentColor;
   final Redirect redirect;
+  final bool noViewAll;
 
   const ContinuedHeading(
       {Key? key,
       required this.title,
       required this.redirect,
+      this.noViewAll = false,
       this.textColor = Colors.black,
       this.accentColor = Colors.black})
       : super(key: key);
@@ -29,19 +31,21 @@ class ContinuedHeading extends StatelessWidget {
                       fontSize: 24,
                       fontWeight: FontWeight.w600,
                       color: this.textColor)),
-              GestureDetector(
-                onTap: this.redirect,
-                child: Row(
-                  children: [
-                    Text("View All",
-                        style: TextStyle(fontSize: 16, color: this.textColor)),
-                    Icon(
-                      Icons.chevron_right_rounded,
-                      color: this.accentColor,
-                    )
-                  ],
-                ),
-              )
+              if (!noViewAll)
+                GestureDetector(
+                  onTap: this.redirect,
+                  child: Row(
+                    children: [
+                      Text("View All",
+                          style:
+                              TextStyle(fontSize: 16, color: this.textColor)),
+                      Icon(
+                        Icons.chevron_right_rounded,
+                        color: this.accentColor,
+                      )
+                    ],
+                  ),
+                )
             ]),
         ClipRRect(
             borderRadius: BorderRadius.circular(100),

@@ -67,6 +67,21 @@ class MVP extends ChangeNotifier {
   late double screenHeightAppbarless;
   late double screenWidth;
 
+  String headingRemover(String htmlBody) {
+    // This function removes a title heading in an html body of text if there is one
+    if (htmlBody[1] == 'h') {
+      int cutoff = 0;
+      for (int i = 0; i < htmlBody!.length - 3; i++) {
+        if (htmlBody.substring(i, i + 3) == "</h") {
+          cutoff = i + 5;
+          break;
+        }
+      }
+      return htmlBody.substring(cutoff);
+    } else
+      return htmlBody;
+  }
+
   // For JAPage:
   bool jaView = false;
   dynamic jaImage;
@@ -84,17 +99,7 @@ class MVP extends ChangeNotifier {
     jaAuthor = question["_embedded"]["author"][0]["name"];
 
     jaDate = DateTime.parse(question["date"]);
-    jaContent = question["content"]["rendered"].toString();
-    if (jaContent != null) if (jaContent![1] == 'h') {
-      int cutoff = 0;
-      for (int i = 0; i < jaContent!.length - 3; i++) {
-        if (jaContent!.substring(i, i + 3) == "</h") {
-          cutoff = i + 5;
-          break;
-        }
-      }
-      jaContent = jaContent!.substring(cutoff);
-    }
+    if (jaContent != null) jaContent = headingRemover(jaContent!);
   }
 
 // For ReadPage:
@@ -115,16 +120,7 @@ class MVP extends ChangeNotifier {
 
     readDate = DateTime.parse(article["date"]);
     readContent = article["content"]["rendered"].toString();
-    if (readContent != null) if (readContent![1] == 'h') {
-      int cutoff = 0;
-      for (int i = 0; i < readContent!.length - 3; i++) {
-        if (readContent!.substring(i, i + 3) == "</h") {
-          cutoff = i + 5;
-          break;
-        }
-      }
-      readContent = readContent!.substring(cutoff);
-    }
+    if (readContent != null) readContent = headingRemover(readContent!);
   }
 
   // For WatchPage:

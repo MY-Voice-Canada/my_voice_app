@@ -133,76 +133,78 @@ class FourTileCategory extends StatelessWidget {
                         ), //ARTICLE IMAGE
                       ),
                     ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
-                          child: Text(
-                            // ARTICLE AUTHOR
-                            data[i]["_embedded"]["author"][0]["name"],
-                            style: TextStyle(
-                              fontWeight: FontWeight.normal,
-                              fontSize: fontSize[3],
-                              color: this.ja == true
-                                  ? HexColor("1BCFC9")
-                                  : HexColor('F5416C'),
+                    Container(
+                      width: Provider.of<MVP>(context).screenWidth * (0.5),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.fromLTRB(0, 0, 0, 5),
+                            child: Text(
+                              // ARTICLE AUTHOR
+                              data[i]["_embedded"]["author"][0]["name"],
+                              style: TextStyle(
+                                fontWeight: FontWeight.normal,
+                                fontSize: fontSize[3],
+                                color: this.ja == true
+                                    ? HexColor("1BCFC9")
+                                    : HexColor('F5416C'),
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          width: Provider.of<MVP>(context).screenWidth / 1.5,
-                          child: Text(
-                            // ARTICLE TITLE
-                            data[i]["title"]["rendered"]
-                                        .toString()
-                                        .replaceAll(RegExp("&amp;"), '&')
-                                        .replaceAll(RegExp("&#038;"), '&')
-                                        .replaceAll(RegExp("&#39;"), '\'')
-                                        .replaceAll("&#8217;", '\'')
-                                        .length >
-                                    60
-                                ? data[i]["title"]["rendered"]
-                                        .toString()
-                                        .replaceAll(RegExp("&amp;"), '&')
-                                        .replaceAll(RegExp("&#038;"), '&')
-                                        .replaceAll(RegExp("&#39;"), '\'')
-                                        .replaceAll("&#8217;", '\'')
-                                        .substring(
-                                            0,
-                                            data[i]["title"]["rendered"]
-                                                        .toString()
-                                                        .replaceAll(
-                                                            RegExp("&amp;"),
-                                                            '&')
-                                                        .replaceAll(
-                                                            RegExp("&#038;"),
-                                                            '&')
-                                                        .replaceAll(
-                                                            RegExp("&#39;"),
-                                                            '\'')
-                                                        .replaceAll("&#8217;",
-                                                            '\'')[49] ==
-                                                    ' '
-                                                ? 59
-                                                : 60) +
-                                    '...'
-                                : data[i]["title"]["rendered"]
-                                    .toString()
-                                    .replaceAll(RegExp("&amp;"), '&')
-                                    .replaceAll(RegExp("&#038;"), '&')
-                                    .replaceAll(RegExp("&#39;"), '\'')
-                                    .replaceAll("&#8217;", '\''),
-                            maxLines: 2,
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: fontSize[4],
-                              color: HexColor('000000'),
+                          SizedBox(
+                            child: Text(
+                              // ARTICLE TITLE
+                              data[i]["title"]["rendered"]
+                                          .toString()
+                                          .replaceAll(RegExp("&amp;"), '&')
+                                          .replaceAll(RegExp("&#038;"), '&')
+                                          .replaceAll(RegExp("&#39;"), '\'')
+                                          .replaceAll("&#8217;", '\'')
+                                          .length >
+                                      60
+                                  ? data[i]["title"]["rendered"]
+                                          .toString()
+                                          .replaceAll(RegExp("&amp;"), '&')
+                                          .replaceAll(RegExp("&#038;"), '&')
+                                          .replaceAll(RegExp("&#39;"), '\'')
+                                          .replaceAll("&#8217;", '\'')
+                                          .substring(
+                                              0,
+                                              data[i]["title"]["rendered"]
+                                                          .toString()
+                                                          .replaceAll(
+                                                              RegExp("&amp;"),
+                                                              '&')
+                                                          .replaceAll(
+                                                              RegExp("&#038;"),
+                                                              '&')
+                                                          .replaceAll(
+                                                              RegExp("&#39;"),
+                                                              '\'')
+                                                          .replaceAll("&#8217;",
+                                                              '\'')[49] ==
+                                                      ' '
+                                                  ? 59
+                                                  : 60) +
+                                      '...'
+                                  : data[i]["title"]["rendered"]
+                                      .toString()
+                                      .replaceAll(RegExp("&amp;"), '&')
+                                      .replaceAll(RegExp("&#038;"), '&')
+                                      .replaceAll(RegExp("&#39;"), '\'')
+                                      .replaceAll("&#8217;", '\''),
+                              maxLines: 2,
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: fontSize[4],
+                                color: HexColor('000000'),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ],
                 ),

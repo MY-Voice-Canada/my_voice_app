@@ -34,7 +34,10 @@ class _MVSplashScreenState extends State<MVSplashScreen> {
                   LoginRow(
                     signedIn: false,
                     registered: false,
-                    buttonSize: 40,
+                    buttonSize: MediaQuery.of(context).orientation ==
+                            Orientation.landscape
+                        ? 20
+                        : 40,
                   ),
                   TextButton(
                       onPressed: () async {

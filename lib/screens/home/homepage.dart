@@ -48,16 +48,17 @@ class _HomePageState extends State<HomePage> {
       );
 
       return AlertDialog(
-        title: IconButton(
-          onPressed: () => Navigator.of(context).pop(),
-          icon: Icon(Icons.close),
-        ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.end,
           children: [
+            IconButton(
+              onPressed: () => Navigator.of(context).pop(),
+              icon: Icon(Icons.close),
+            ),
             SizedBox(
               width: Provider.of<MVP>(context).screenWidth / 1.1,
-              height: Provider.of<MVP>(context).screenHeightAppbarless / 1.3,
+              height: Provider.of<MVP>(context).screenHeightAppbarless / 1.5,
               child: PdfViewPinch(
                 controller: pdfPinchController,
               ),
@@ -87,7 +88,11 @@ class _HomePageState extends State<HomePage> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                              "السَّلَامُ عَلَيْكُمْ, ${Provider.of<MVP>(context).userName ?? "User"}!",
+                              (Provider.of<MVP>(context).userName ??
+                                      (user.displayName.isEmpty
+                                          ? "User"
+                                          : user.displayName)) +
+                                  " السَّلَامُ عَلَيْكُمْ",
                               style: TextStyle(
                                   fontWeight: FontWeight.w600,
                                   fontFamily: 'Raleway',
@@ -152,7 +157,7 @@ class _HomePageState extends State<HomePage> {
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8),
                     child: ContinuedHeading(
-                      title: "Latest Issues For Purchase",
+                      title: "Latest Issues",
                       noViewAll: true,
                       redirect: () => widget.changePage(1),
                     ),
@@ -267,14 +272,24 @@ class _HomePageState extends State<HomePage> {
                           textColor: Colors.white,
                         )),
                     Column(
-                      children: <Widget>[
+                      children: [
                         Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 12, vertical: 6),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 6),
+                          child: GestureDetector(
+                            onTap: () {
+                              Provider.of<MVP>(context, listen: false)
+                                  .watchVideo = videos[0];
+                              Provider.of<MVP>(context, listen: false)
+                                  .watchView = true;
+                              widget.changePage(2);
+                            },
                             child: VideoPreview(
                                 title: videos[0].title,
                                 channelTitle: videos[0].channelTitle,
-                                videoThumbnailSrc: videos[0].thumbnailUrl)),
+                                videoThumbnailSrc: videos[0].thumbnailUrl),
+                          ),
+                        ),
                         SizedBox(height: 24),
                         Container(
                           height: MediaQuery.of(context).size.width > 500
@@ -293,22 +308,44 @@ class _HomePageState extends State<HomePage> {
                                   child: Row(
                                     children: <Widget>[
                                       Expanded(
-                                        child: VideoPreview(
-                                          title: vids[index][0].title,
-                                          channelTitle:
-                                              vids[index][0].channelTitle,
-                                          videoThumbnailSrc:
-                                              vids[index][0].thumbnailUrl,
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            Provider.of<MVP>(context,
+                                                    listen: false)
+                                                .watchVideo = vids[index][0];
+                                            Provider.of<MVP>(context,
+                                                    listen: false)
+                                                .watchView = true;
+                                            widget.changePage(2);
+                                          },
+                                          child: VideoPreview(
+                                            title: vids[index][0].title,
+                                            channelTitle:
+                                                vids[index][0].channelTitle,
+                                            videoThumbnailSrc:
+                                                vids[index][0].thumbnailUrl,
+                                          ),
                                         ),
                                       ),
                                       SizedBox(width: 30),
                                       Expanded(
-                                        child: VideoPreview(
-                                          title: vids[index][1].title,
-                                          channelTitle:
-                                              vids[index][1].channelTitle,
-                                          videoThumbnailSrc:
-                                              vids[index][1].thumbnailUrl,
+                                        child: GestureDetector(
+                                          onTap: () {
+                                            Provider.of<MVP>(context,
+                                                    listen: false)
+                                                .watchVideo = vids[index][1];
+                                            Provider.of<MVP>(context,
+                                                    listen: false)
+                                                .watchView = true;
+                                            widget.changePage(2);
+                                          },
+                                          child: VideoPreview(
+                                            title: vids[index][1].title,
+                                            channelTitle:
+                                                vids[index][1].channelTitle,
+                                            videoThumbnailSrc:
+                                                vids[index][1].thumbnailUrl,
+                                          ),
                                         ),
                                       ),
                                     ],
@@ -334,15 +371,22 @@ class _HomePageState extends State<HomePage> {
                       accentColor: MYVoiceColors['teal'] as Color,
                     ),
                     SizedBox(height: 12),
-                    JustAskPreview(
-                      title: justAsk['title']['rendered'],
-                      meta:
-                          "${justAsk["_embedded"]["wp:term"][0][0]["name"]} | ${justAsk["_embedded"]["author"][0]["name"]}",
-                      description: html.stripMarkup(
-                          justAsk['content']['rendered'].substring(0, 250) +
-                              "..."),
-                      thumbnail: justAsk["_embedded"]["wp:featuredmedia"][0]
-                          ["source_url"],
+                    GestureDetector(
+                      onTap: () {
+                        Provider.of<MVP>(context, listen: false)
+                            .enableJAView(justAsk);
+                        widget.changePage(3);
+                      },
+                      child: JustAskPreview(
+                        title: justAsk['title']['rendered'],
+                        meta:
+                            "${justAsk["_embedded"]["wp:term"][0][0]["name"]} | ${justAsk["_embedded"]["author"][0]["name"]}",
+                        description: html.stripMarkup(
+                            justAsk['content']['rendered'].substring(0, 250) +
+                                "..."),
+                        thumbnail: justAsk["_embedded"]["wp:featuredmedia"][0]
+                            ["source_url"],
+                      ),
                     ),
                   ],
                 )),

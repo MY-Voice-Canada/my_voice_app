@@ -9,7 +9,7 @@ AppBar getMVAppBar(BuildContext context) {
     elevation: 0,
     leading: IconButton(
         icon: Icon(
-          Icons.hail_outlined,
+          Icons.volunteer_activism,
           color: Colors.white,
         ),
         onPressed: () async {

@@ -20,9 +20,11 @@ class _MVSettingsState extends State<MVSettings> {
     final MVUser? user = Provider.of<MVUser?>(context);
 
     return _isLoading
-        ? MVLoading(
-            message:
-                "Don't forget to count your blessings while we're loading...",
+        ? Scaffold(
+            body: MVLoading(
+              message:
+                  "Don't forget to count your blessings while we're loading...",
+            ),
           )
         : MVBackground(
             child: Scaffold(
@@ -45,10 +47,15 @@ class _MVSettingsState extends State<MVSettings> {
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Text(
-                          "Hello,\n${Provider.of<MVP>(context).userName ?? "User"}",
+                          (Provider.of<MVP>(context).userName ??
+                                  (user?.displayName.isEmpty == null ||
+                                          user?.displayName.isEmpty == true
+                                      ? "User"
+                                      : user!.displayName)) +
+                              " لأشك يكون الله تعالى",
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            fontSize: 50.0,
+                            fontSize: 40.0,
                             color: Theme.of(context).primaryColor,
                           ),
                         ),

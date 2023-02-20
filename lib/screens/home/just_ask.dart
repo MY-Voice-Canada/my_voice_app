@@ -33,111 +33,161 @@ class _JAPageState extends State<JAPage> {
     if (Provider.of<MVP>(context).jaView) {
       return SingleChildScrollView(
         child: Card(
-          margin: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 5.0,
-              ),
-              MVCategoryText(
-                Provider.of<MVP>(context).jaCategory,
-                version: MVCTVersion.black,
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              ClipRRect(
-                borderRadius: BorderRadius.circular(10.0),
-                child: Image.network(
-                  Provider.of<MVP>(context).jaImage,
-                  height: 250.0,
-                  width: Provider.of<MVP>(context).screenWidth,
-                  fit: BoxFit.fill,
+          margin: EdgeInsets.zero,
+          child: Container(
+            padding: EdgeInsets.all(10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                SizedBox(
+                  height: 20.0,
                 ),
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              Html(
-                  style: {
-                    "h1": Style(
-                      fontSize: FontSize(56.0),
-                      margin: EdgeInsets.zero,
-                    ),
-                  },
-                  data: "<h1>" +
-                      Provider.of<MVP>(context).jaTitle.toString() +
-                      "</h1>"),
-              SizedBox(
-                height: 15.0,
-              ),
-              Padding(
-                padding: EdgeInsets.only(left: 10.0),
-                child: Row(
-                  children: [
-                    RichText(
-                      text: TextSpan(
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 18.0,
-                        ),
-                        children: [
-                          TextSpan(
-                            text: Provider.of<MVP>(context)
-                                    .jaAuthor
-                                    .toString()
-                                    .toUpperCase() +
-                                " " * 15,
+                Html(
+                    style: {
+                      "h1": Style(
+                        fontSize: FontSize(24.0),
+                        margin: EdgeInsets.zero,
+                      ),
+                    },
+                    data: "<h1>" +
+                        Provider.of<MVP>(context).jaTitle.toString() +
+                        "</h1>"),
+                Container(
+                  margin: EdgeInsets.zero,
+                  color: HexColor('FFFFFF'),
+                  child: Divider(
+                    thickness: 3,
+                    indent: 10,
+                    endIndent: 240,
+                    color: HexColor('1BCFC9'),
+                  ),
+                ),
+                SizedBox(
+                  height: 10.0,
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 10.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        child: RichText(
+                          text: TextSpan(
+                            style: TextStyle(
+                              color: Theme.of(context).secondaryHeaderColor,
+                              fontSize: 18.0,
+                            ),
+                            children: [
+                              TextSpan(
+                                text: Provider.of<MVP>(context)
+                                        .jaAuthor
+                                        .toString()
+                                        .toUpperCase() +
+                                    " " * 2,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12,
+                                  color: HexColor('1BCFC9'),
+                                ),
+                              ),
+                              TextSpan(
+                                  text: ' |  ',
+                                  style: TextStyle(color: HexColor('000000'))),
+                              TextSpan(
+                                text: DateFormat("MMMM d, y")
+                                    .format(Provider.of<MVP>(context).jaDate!)
+                                    .toUpperCase(),
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 12,
+                                  color: HexColor('1BCFC9'),
+                                ),
+                              ),
+                            ],
                           ),
-                          TextSpan(
-                            text: DateFormat("MMMM d, y")
-                                .format(Provider.of<MVP>(context).jaDate!)
-                                .toUpperCase(),
+                        ),
+                      ),
+                      Row(
+                        children: [
+                          IconButton(
+                            padding: EdgeInsets.all(5),
+                            onPressed: null,
+                            icon: Image(
+                              image: AssetImage("assets/images/logo_icon.png"),
+                            ),
+                          ),
+                          IconButton(
+                            padding: EdgeInsets.all(5),
+                            onPressed: null,
+                            icon: Image(
+                              image: AssetImage("assets/images/logo_icon.png"),
+                            ),
                           ),
                         ],
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              Html(
-                style: {
-                  "body": Style(
-                    fontSize: FontSize(20.0),
-                    textAlign: TextAlign.start,
-                  )
-                },
-                data: Provider.of<MVP>(context).jaContent,
-              ),
-              SizedBox(height: 50.0),
-              Center(
-                child: ElevatedButton(
-                    style: ButtonStyle(
-                      shape: MaterialStateProperty.all(
-                        RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15.0),
-                        ),
-                      ),
-                      backgroundColor: MaterialStateProperty.all(Colors.black),
-                      overlayColor:
-                          MaterialStateProperty.all(HexColor("FFBF3B")),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Container(
+                  padding: EdgeInsets.all(1),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(10.0),
+                    child: Image.network(
+                      Provider.of<MVP>(context).jaImage,
+                      height: 250.0,
+                      width: Provider.of<MVP>(context).screenWidth,
+                      fit: BoxFit.fill,
                     ),
-                    onPressed: () {
-                      setState(() {
-                        Provider.of<MVP>(context, listen: false).jaView = false;
-                      });
-                    },
-                    child: Text(
-                      "Find the Answer to Something Else",
-                      style: TextStyle(color: Colors.white, fontSize: 20.0),
-                    )),
-              ),
-              SizedBox(height: 20.0),
-            ],
+                  ),
+                  decoration: BoxDecoration(
+                    border: Border.all(),
+                    color: Colors.black,
+                    borderRadius: BorderRadius.circular(10.0),
+                  ),
+                ),
+                SizedBox(
+                  height: 20.0,
+                ),
+                Html(
+                  style: {
+                    "body": Style(
+                      fontSize: FontSize(20.0),
+                      textAlign: TextAlign.start,
+                    )
+                  },
+                  data: Provider.of<MVP>(context).jaContent,
+                ),
+                SizedBox(height: 50.0),
+                Center(
+                  child: ElevatedButton(
+                      style: ButtonStyle(
+                        shape: MaterialStateProperty.all(
+                          RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(15.0),
+                          ),
+                        ),
+                        backgroundColor:
+                            MaterialStateProperty.all(HexColor("1BCFC9")),
+                        overlayColor:
+                            MaterialStateProperty.all(HexColor("1BCFC9")),
+                      ),
+                      onPressed: () {
+                        setState(() {
+                          Provider.of<MVP>(context, listen: false).jaView =
+                              false;
+                        });
+                      },
+                      child: Text(
+                        "Find Answers to More Questions",
+                        style: TextStyle(color: Colors.white, fontSize: 20.0),
+                      )),
+                ),
+                SizedBox(height: 20.0),
+              ],
+            ),
           ),
         ),
       );

@@ -99,6 +99,7 @@ class MVP extends ChangeNotifier {
     jaAuthor = question["_embedded"]["author"][0]["name"];
 
     jaDate = DateTime.parse(question["date"]);
+    jaContent = question["content"]["rendered"].toString();
     if (jaContent != null) jaContent = headingRemover(jaContent!);
   }
 

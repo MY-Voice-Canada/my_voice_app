@@ -38,6 +38,7 @@ dependencies:
   flutter_linkify: ^5.0.2
   responsive_framework: ^0.2.0
   html_unescape: ^2.0.0
+  pdfx: ^2.3.0
 
 dev_dependencies:
   flutter_test:
@@ -63,6 +64,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/pdfs/
     - assets/
 
   # An image asset can refer to one or more resolution-specific "variants", see

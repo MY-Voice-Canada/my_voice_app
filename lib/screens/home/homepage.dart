@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:pdfx/pdfx.dart';
 import 'package:my_voice_app/main.dart';
 import 'package:my_voice_app/screens/home/article_preview.dart';
 import 'package:my_voice_app/models/loading.dart';
@@ -11,6 +12,7 @@ import 'package:my_voice_app/models/continued_heading.dart';
 import 'package:my_voice_app/models/magazine_card.dart';
 import 'package:my_voice_app/models/video_preview.dart';
 import 'package:my_voice_app/models/carousel.dart';
+import 'package:my_voice_app/services/pdf.dart';
 import 'package:collection/collection.dart';
 import 'package:my_voice_app/utils/text.dart' as text_utils;
 import 'package:my_voice_app/utils/html.dart' as html;
@@ -30,6 +32,7 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     final MVUser user = Provider.of<MVUser?>(context)!;
     final videos = Provider.of<MVP>(context).channel?.videos ?? [];
+
     List<String> ayas = [
       "“And Allah would not punish them while they seek forgiveness”\n\n[Quran 8:33]",
       "“He created the heavens and earth in truth and formed you and perfected your forms; and to Him is the [final] destination”\n\n[Quran 64:3]",
@@ -38,6 +41,31 @@ class _HomePageState extends State<HomePage> {
       "“Allah does not burden a soul beyond that it can bear”\n\n[Quran 2:286]",
       "“So verily, with the hardship, there is relief. Verily, with the hardship, there is relief”\n\n[Quran 94:5-6]",
     ];
+
+    Widget _buildMagazineReaderPopup(BuildContext context, String path) {
+      final pdfPinchController = PdfControllerPinch(
+        document: PdfDocument.openAsset(path),
+      );
+
+      return AlertDialog(
+        title: IconButton(
+          onPressed: () => Navigator.of(context).pop(),
+          icon: Icon(Icons.close),
+        ),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            SizedBox(
+              width: Provider.of<MVP>(context).screenWidth / 1.1,
+              height: Provider.of<MVP>(context).screenHeightAppbarless / 1.3,
+              child: PdfViewPinch(
+                controller: pdfPinchController,
+              ),
+            ),
+          ],
+        ),
+      );
+    }
 
     if (widget.snapshot.hasData) {
       final MVWPContent data = widget.snapshot.data;
@@ -132,19 +160,41 @@ class _HomePageState extends State<HomePage> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
+                    children: [
                       Expanded(
-                        child: MagazineCard(
+                        child: GestureDetector(
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (BuildContext context) =>
+                                  _buildMagazineReaderPopup(
+                                      context, "assets/pdfs/v10i2.pdf"),
+                            );
+                          },
+                          child: MagazineCard(
                             title: "The Dark Side: Nothing is as it Seems",
                             thumbnailImage:
-                                "https://image.isu.pub/221225170921-391091463ef4d4e2a3fa46d8b3cac3be/jpg/page_1_thumb_large.jpg"),
+                                "https://image.isu.pub/221225170921-391091463ef4d4e2a3fa46d8b3cac3be/jpg/page_1_thumb_large.jpg",
+                          ),
+                        ),
                       ),
                       Expanded(
-                        child: MagazineCard(
-                            title: "The Other Side of the Coin",
-                            thumbnailImage:
-                                "https://image.isu.pub/220830022548-778fe168f61cbac9965ba447cbe874bd/jpg/page_1_thumb_large.jpg"),
-                      )
+                        child: GestureDetector(
+                          onTap: () {
+                            showDialog(
+                                context: context,
+                                builder: (BuildContext context) =>
+                                    _buildMagazineReaderPopup(
+                                      context,
+                                      "assets/pdfs/v10i1.pdf",
+                                    ));
+                          },
+                          child: MagazineCard(
+                              title: "The Other Side of the Coin",
+                              thumbnailImage:
+                                  "https://image.isu.pub/220830022548-778fe168f61cbac9965ba447cbe874bd/jpg/page_1_thumb_large.jpg"),
+                        ),
+                      ),
                     ],
                   )
                 ],

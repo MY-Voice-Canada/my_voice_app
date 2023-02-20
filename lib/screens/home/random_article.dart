@@ -51,7 +51,13 @@ class RandomArticle extends StatelessWidget {
                     alignment: Alignment.centerLeft,
                     padding: EdgeInsets.fromLTRB(10, 0, 10, 5),
                     child: Text(
-                      data[random]["title"]["rendered"].toString(),
+                      data[random]["title"]["rendered"]
+                          .toString()
+                          .replaceAll(RegExp("&amp;"), '&')
+                          .replaceAll(RegExp("&#038;"), '&')
+                          .replaceAll(RegExp("&#39;"), '\'')
+                          .replaceAll("&#8217;", '\'')
+                          .replaceAll("&#8211;", '–'),
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 17,

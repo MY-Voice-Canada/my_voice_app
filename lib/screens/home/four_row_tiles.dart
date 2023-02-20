@@ -153,6 +153,7 @@ class FourTileCategory extends StatelessWidget {
                               ),
                             ),
                           ),
+<<<<<<< HEAD
                           SizedBox(
                             child: Text(
                               // ARTICLE TITLE
@@ -201,6 +202,62 @@ class FourTileCategory extends StatelessWidget {
                                 fontSize: fontSize[4],
                                 color: HexColor('000000'),
                               ),
+=======
+                        ),
+                        SizedBox(
+                          width: Provider.of<MVP>(context).screenWidth / 1.6,
+                          child: Text(
+                            // ARTICLE TITLE
+                            data[i]["title"]["rendered"]
+                                        .toString()
+                                        .replaceAll(RegExp("&amp;"), '&')
+                                        .replaceAll(RegExp("&#038;"), '&')
+                                        .replaceAll(RegExp("&#39;"), '\'')
+                                        .replaceAll("&#8217;", '\'')
+                                        .replaceAll("&#8211;", '–')
+                                        .length >
+                                    60
+                                ? data[i]["title"]["rendered"]
+                                        .toString()
+                                        .replaceAll(RegExp("&amp;"), '&')
+                                        .replaceAll(RegExp("&#038;"), '&')
+                                        .replaceAll(RegExp("&#39;"), '\'')
+                                        .replaceAll("&#8217;", '\'')
+                                        .replaceAll("&#8211;", '–')
+                                        .substring(
+                                            0,
+                                            data[i]["title"]["rendered"]
+                                                        .toString()
+                                                        .replaceAll(
+                                                            RegExp("&amp;"),
+                                                            '&')
+                                                        .replaceAll(
+                                                            RegExp("&#038;"),
+                                                            '&')
+                                                        .replaceAll(
+                                                            RegExp("&#39;"),
+                                                            '\'')
+                                                        .replaceAll(
+                                                            "&#8217;", '\'')
+                                                        .replaceAll("&#8211;",
+                                                            '–')[49] ==
+                                                    ' '
+                                                ? 59
+                                                : 60) +
+                                    '...'
+                                : data[i]["title"]["rendered"]
+                                    .toString()
+                                    .replaceAll(RegExp("&amp;"), '&')
+                                    .replaceAll(RegExp("&#038;"), '&')
+                                    .replaceAll(RegExp("&#39;"), '\'')
+                                    .replaceAll("&#8217;", '\'')
+                                    .replaceAll("&#8211;", '–'),
+                            maxLines: 2,
+                            style: TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: fontSize[4],
+                              color: HexColor('000000'),
+>>>>>>> 8c62ec8ab438486ce2978c29f5ead21a9e5aaab0
                             ),
                           ),
                         ],

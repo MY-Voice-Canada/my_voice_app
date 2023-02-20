@@ -58,11 +58,14 @@ class MVWP {
           return Future.error(
               'WordPress Error: Could not load content from website. Failed in ${stopwatch.elapsed.inSeconds}s.');
         else
-          return jsonDecode(response.body
-              .replaceAll(RegExp("&amp;"), '&')
-              .replaceAll(RegExp("&#038;"), '&')
-              .replaceAll(RegExp("&#39;"), '\'')
-              .replaceAll("&#8217;", '\''));
+          return jsonDecode(
+            response.body
+                .replaceAll(RegExp("&amp;"), '&')
+                .replaceAll(RegExp("&#038;"), '&')
+                .replaceAll(RegExp("&#39;"), '\'')
+                .replaceAll("&#8217;", '\'')
+                .replaceAll("&#8211;", '–'),
+          );
       }).toList();
 
       print(

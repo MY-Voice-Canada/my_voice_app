@@ -152,7 +152,7 @@ class FourTileCategory extends StatelessWidget {
                           ),
                         ),
                         SizedBox(
-                          width: Provider.of<MVP>(context).screenWidth / 1.5,
+                          width: Provider.of<MVP>(context).screenWidth / 1.6,
                           child: Text(
                             // ARTICLE TITLE
                             data[i]["title"]["rendered"]
@@ -161,6 +161,7 @@ class FourTileCategory extends StatelessWidget {
                                         .replaceAll(RegExp("&#038;"), '&')
                                         .replaceAll(RegExp("&#39;"), '\'')
                                         .replaceAll("&#8217;", '\'')
+                                        .replaceAll("&#8211;", '–')
                                         .length >
                                     60
                                 ? data[i]["title"]["rendered"]
@@ -169,6 +170,7 @@ class FourTileCategory extends StatelessWidget {
                                         .replaceAll(RegExp("&#038;"), '&')
                                         .replaceAll(RegExp("&#39;"), '\'')
                                         .replaceAll("&#8217;", '\'')
+                                        .replaceAll("&#8211;", '–')
                                         .substring(
                                             0,
                                             data[i]["title"]["rendered"]
@@ -182,8 +184,10 @@ class FourTileCategory extends StatelessWidget {
                                                         .replaceAll(
                                                             RegExp("&#39;"),
                                                             '\'')
-                                                        .replaceAll("&#8217;",
-                                                            '\'')[49] ==
+                                                        .replaceAll(
+                                                            "&#8217;", '\'')
+                                                        .replaceAll("&#8211;",
+                                                            '–')[49] ==
                                                     ' '
                                                 ? 59
                                                 : 60) +
@@ -193,7 +197,8 @@ class FourTileCategory extends StatelessWidget {
                                     .replaceAll(RegExp("&amp;"), '&')
                                     .replaceAll(RegExp("&#038;"), '&')
                                     .replaceAll(RegExp("&#39;"), '\'')
-                                    .replaceAll("&#8217;", '\''),
+                                    .replaceAll("&#8217;", '\'')
+                                    .replaceAll("&#8211;", '–'),
                             maxLines: 2,
                             style: TextStyle(
                               fontWeight: FontWeight.bold,

@@ -57,7 +57,7 @@ class _MVSplashScreenState extends State<MVSplashScreen> {
                       child: FittedBox(
                         child: Text(
                           _guestText,
-                          style: TextStyle(color: Colors.black, fontSize: 16.0),
+                          style: TextStyle(color: Colors.black, fontSize: 20.0),
                         ),
                         fit: BoxFit.fitWidth,
                       )),

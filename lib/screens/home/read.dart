@@ -103,24 +103,6 @@ class _ReadPageState extends State<ReadPage> {
                           ),
                         ),
                       ),
-                      // Row(
-                      //   children: [
-                      //     IconButton(
-                      //       padding: EdgeInsets.all(5),
-                      //       onPressed: null,
-                      //       icon: Image(
-                      //         image: AssetImage("assets/images/logo_icon.png"),
-                      //       ),
-                      //     ),
-                      //     IconButton(
-                      //       padding: EdgeInsets.all(5),
-                      //       onPressed: null,
-                      //       icon: Image(
-                      //         image: AssetImage("assets/images/logo_icon.png"),
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
                     ],
                   ),
                 ),

@@ -39,6 +39,14 @@ dependencies:
   responsive_framework: ^0.2.0
   html_unescape: ^2.0.0
   pdfx: ^2.3.0
+  dropbox_client: ^1.0.0
+  dbx_platform: ^1.1.7+9
+  path_provider: ^2.0.14
+  path: ^1.8.2
+  flutter_pdfview: ^1.2.9
+  file_picker: ^5.2.6
+
+
 
 dev_dependencies:
   flutter_test:

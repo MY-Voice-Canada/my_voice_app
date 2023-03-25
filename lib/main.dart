@@ -12,6 +12,8 @@ import 'package:my_voice_app/screens/welcome/splashscreen.dart';
 import 'package:my_voice_app/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:dropbox_client/dropbox_client.dart';
+import 'package:dbx_platform/dbx_platform.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

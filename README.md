@@ -47,7 +47,7 @@ As aforementioned, this app was entirely **thought of**, **designed**, and **dev
 | Name             |            Role             |        
 | :--------------- | :-------------------------: | 
 | Sabah Raja       |       Advisor       |        
-| Faizaan Aslam       | Team Lead|      
+| [Faizaan Aslam](https://github.com/faizaan3424)       | Team Lead|      
 | Rayan Alam | UI Designer, App Developer |
 | Arhum Farhan | App Developer |
 | Musa Khan | App Developer |
